@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.hau_navbar{
+    display:flex;
+    align-items: center;
+    padding: 2rem;
+    background-color: white;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.hau_navbar-links_logo img{
+    width: 140px;
+    height: 45px;
+}
+.hau_navbar-links_logo {
+    display:flex;
+    flex-direction: row;
+}
+.usericon{
+    align-items: center;
+    display: flex;
+}
+.icons{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.notif{
+    margin-right: 20px;
+    
+}
