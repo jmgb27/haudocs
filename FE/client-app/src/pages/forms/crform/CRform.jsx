@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Logout = () => {
+const CRform = () => {
   return (
     <div>
+      hello
     </div>
   )
 }
 
-export default Logout
+export default CRform

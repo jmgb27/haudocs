@@ -8,9 +8,15 @@
     align-items: center;
     padding: 2rem;
     background-color: white;
-    flex-direction: row;
     justify-content: space-between;
+    top: 0;
+    width: 100%;
+    padding: 30px 10px;
+    position: fixed;
 }
+hr.new4 {
+    border: 5px solid #800000;
+  }
 .hau_navbar-links_logo img{
     width: 140px;
     height: 45px;
@@ -19,16 +25,84 @@
     display:flex;
     flex-direction: row;
 }
-.usericon{
-    align-items: center;
-    display: flex;
+.dropdown {
+    position: relative;
 }
-.icons{
-    align-items: center;
-    display: flex;
-    flex-direction: row;
+
+.dropdown-toggle {
+    position: relative;
+    padding: 0.2rem 0.35rem;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
 }
-.notif{
-    margin-right: 20px;
-    
+
+.dropdown-toggle:hover {
+    background: #efeff1;
+}
+
+.dropdown-toggle:active {
+    background: #dbdbdf;
+}
+
+.dropdown-toggle.toggle-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;  
+}
+
+.dropdown-toggle-avatar{
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dropdown-toggle-avatar .dropdown-toggle-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style: none;
+    background: #ffffff;
+    top: 100%;
+    right: 0;
+    box-shadow: 0px 7px 15px rgba(100, 100, 111, 0.18);
+    border-radius: 8px;
+    padding: 0 0.5rem;
+    min-width: 200px;
+    transform: translateY(10px);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 0;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-link {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    overflow: hidden;
+    column-gap: 5px;
+    color: #4d4d50;
+    padding: 0.25rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background 0.2s;
 }

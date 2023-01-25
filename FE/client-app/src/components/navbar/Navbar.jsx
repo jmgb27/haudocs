@@ -1,10 +1,10 @@
 import React from 'react'
 import './navbar.css';
 import logo from '../../assets/haulogo.png'
-import {FaUserCircle} from "react-icons/fa";
-import {AiFillBell} from "react-icons/ai";
+import { Link } from 'react-router-dom';
+import Dropdown from './Dropdown';
 
-const Navbar = () => {
+function Navbar() {
   return (
     <div>
       <div className="hau_navbar">
@@ -14,16 +14,38 @@ const Navbar = () => {
             </div>
         </div>
         <div className='icons'>
-        <div className="notif">
-            <AiFillBell size={25}/>
-            </div>
-            <div className='usericon'>
-            <FaUserCircle size={25}/>
+          
+          <Dropdown
+            icon= {"bx bx-bell"}
+            menu= {
+              <>
+                <li className='dropdown-list'>
+                  <Link className='dropdown-link'>Link 1</Link>
+                </li>
+                <li className='dropdown-list'>
+                  <Link className='dropdown-link'>Link 2</Link>
+                </li>
+              </>
+            }
+            />
+
+            <Dropdown
+            avatar={"http://placeimg.com/100/100/people"}
+            menu= {
+              <>
+                <li className='dropdown-list'>
+                  <Link className='dropdown-link'>Link 1</Link>
+                </li>
+                <li className='dropdown-list'>
+                  <Link className='dropdown-link'>Link 2</Link>
+                </li>
+              </>
+            }
+            />
             </div>
             </div> 
       </div>
-    </div>
   )
 }
 
-export default Navbar
+export default Navbar;
