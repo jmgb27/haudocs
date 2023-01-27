@@ -1,11 +1,16 @@
 import React from 'react'
-import '../App.css';
+import './sidebar.css';
 import {FaTh} from "react-icons/fa";
 import {AiOutlineFileSync, AiFillSetting, AiOutlineFileAdd} from "react-icons/ai";
 import {FiDownload, FiLogOut} from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
+import logo from '../assets/haulogo.png'
+import {FaUserCircle} from "react-icons/fa";
+import {AiFillBell} from "react-icons/ai";
+import './navbar/navbar.css'
+import Navbar from './navbar/Navbar';
 
-const Sidebar = ({children}) => {
+const Sidebar = ({children},{setIsSignin}) => {
   const SidenavItem = [
     {
       path:'/dashboard',
@@ -28,12 +33,15 @@ const Sidebar = ({children}) => {
       icon: <AiOutlineFileAdd/>
     },
   ]
-  const BottomnavItem = [
+  const Setting = [
     {
       path:'/setting',
       name:"Setting",
       icon: <AiFillSetting/>
     },
+  ]
+
+  const BottomnavItem = [
     {
       path:'/logout',
       name:"Logout",
@@ -43,6 +51,7 @@ const Sidebar = ({children}) => {
   return (
     <div className='container'>
       <div className='sidebar'>
+      <Navbar />
         <div className='top_section'>
         </div>
         {
@@ -52,11 +61,20 @@ const Sidebar = ({children}) => {
               <div className="link_text">{item.name}</div>
             </NavLink>
           ))
-        }
+        }      
       <div className='bottom_section'>
           {
-          BottomnavItem.map((item, index)=>(
+          Setting.map((item, index)=>(
             <NavLink to={item.path} key={index} className="link" activeclassName="active">
+              <div className="icon">{item.icon}</div>
+              <div className="link_text">{item.name}</div>
+            </NavLink>
+          ))
+          }
+          
+          {
+          BottomnavItem.map((item, index)=>(
+            <NavLink to={item.path} key={index} className="link" onClick={()=>setIsSignin(false)}>
               <div className="icon">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
