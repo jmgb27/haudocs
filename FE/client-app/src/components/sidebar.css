@@ -6,11 +6,13 @@
 
 .container {
     display: flex;
+    background-color: white;
+    height: 100%;
 }
 
 
 .sidebar{
-    background: #800000;;
+    background: #800000;
     color: #fff;
     position: fixed;
     height: 88.2vh;

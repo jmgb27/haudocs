@@ -1,11 +1,11 @@
 import React from 'react'
 
-const FRform = () => {
+const Tracking = () => {
   return (
     <div>
-      hello
+      Tracking
     </div>
   )
 }
 
-export default FRform
+export default Tracking

@@ -4,9 +4,6 @@ import {FaTh} from "react-icons/fa";
 import {AiOutlineFileSync, AiFillSetting, AiOutlineFileAdd} from "react-icons/ai";
 import {FiDownload, FiLogOut} from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
-import logo from '../assets/haulogo.png'
-import {FaUserCircle} from "react-icons/fa";
-import {AiFillBell} from "react-icons/ai";
 import './navbar/navbar.css'
 import Navbar from './navbar/Navbar';
 

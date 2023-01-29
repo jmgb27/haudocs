@@ -1,10 +1,30 @@
-import React from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './navbar.css';
-import logo from '../../assets/haulogo.png'
-import { Link } from 'react-router-dom';
-import Dropdown from './Dropdown';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/haulogo.png';
+import user from '../../assets/user.png';
+import edit from '../../assets/edit.png';
+import envelope from '../../assets/envelope.png';
 
-function Navbar() {
+function Navbar({setIsSignin}) {
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false);
+
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (e) => {
+      if(!menuRef.current.contains(e.target)) {
+      setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return() => {
+      document.removeEventListener("mousedown", handler);
+    }
+  });
+
   return (
     <div>
       <div className="hau_navbar">
@@ -14,38 +34,33 @@ function Navbar() {
             </div>
         </div>
         <div className='icons'>
-          
-          <Dropdown
-            icon= {"bx bx-bell"}
-            menu= {
-              <>
-                <li className='dropdown-list'>
-                  <Link className='dropdown-link'>Link 1</Link>
-                </li>
-                <li className='dropdown-list'>
-                  <Link className='dropdown-link'>Link 2</Link>
-                </li>
-              </>
-            }
-            />
-
-            <Dropdown
-            avatar={"http://placeimg.com/100/100/people"}
-            menu= {
-              <>
-                <li className='dropdown-list'>
-                  <Link className='dropdown-link'>Link 1</Link>
-                </li>
-                <li className='dropdown-list'>
-                  <Link className='dropdown-link'>Link 2</Link>
-                </li>
-              </>
-            }
-            />
+          <div className="menu-container" ref={menuRef}>
+            <div className="menu-trigger" onClick={() => {setOpen(!open)}}>
+              <img src='http://placeimg.com/100/100/people'></img>
             </div>
-            </div> 
+            <div className={`dropdown-menu ${open? 'active' : 'inactive'}`}>
+              <h3>Haudocs Users<br/><span>Users Role</span></h3>
+              <ul>
+                <Link to = {"/dashboard"}>
+                <DropdownItem img = {edit} text = {"Edit Profile"}/>
+                </Link>
+                <DropdownItem img = {envelope} text = {"Inbox"}/>
+              </ul>
+            </div>
+          </div>
+       </div>
+      </div> 
       </div>
-  )
+  );
+}
+
+function DropdownItem(props) {
+  return(
+    <li className='dropdownItem'>
+      <img src={props.img}></img>
+      <a>{props.text}</a>
+    </li>
+  );
 }
 
 export default Navbar;

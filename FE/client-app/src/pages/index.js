@@ -4,6 +4,3 @@ export { default as Download    } from './download/Download';
 export { default as Setting     } from './setting/Setting';
 export { default as Submission  } from './submission/Submission';
 export { default as Logout      } from './logout/Logout';
-export { default as IRform      } from './forms/irform/IRform';
-export { default as CRform      } from './forms/crform/CRform';
-export { default as FRform      } from './forms/frform/FRform';
