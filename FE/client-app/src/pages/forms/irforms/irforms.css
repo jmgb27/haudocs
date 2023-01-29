@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+.irform {
+    font-size: 30px;
+    margin-top: 4rem;
+    margin-left: 1rem;
+}
+main {
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.hr-ir {
+    width: 99%;
+}
+
+.ir-container {
+    border:1px solid black;
+    margin-top: 3rem;
+    width: 99.5%;
+}
+
+.ir-content {
+    margin-top: 3rem;
+}
+
+.ir-content th, td, tr {
+    border:1px solid black;
+    width: 50%;
+}
+
+.ir-content th {
+    text-align: left;
+}
+
+table {
+    width: 100%;
+}
+.ir-table {
+    border-collapse: collapse;
+}
+
+.ir-table p {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-weight: 400;
+}
+
+.ir-section th {
+    width: 100%;
+}
+
+.ir-title th{
+    text-align: center;
+    font-size: 15px;
+}
+
+.ir-container h1{
+    font-size: 20px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.ir-input {
+    margin-left: 1rem;
+    background-color: transparent;
+    height: 20px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.ir-input-small {
+    margin-left: 1rem;
+    background-color: transparent;
+    height: 20px;
+    width: 150px;
+    flex-direction: column;
+}
+
+.ir-container input {
+    margin: 0.5rem auto;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: 0;
+    border: 0;
+}
+.quali {
+    margin-left: 2.8rem;
+    font-weight: 400;
+}
+
+.five-others th{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.ethical {
+    margin-top: 1rem;
+}
+
+.ethical th {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.ethical-sub {
+    font-style: italic;
+}

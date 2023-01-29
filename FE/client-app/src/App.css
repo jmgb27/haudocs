@@ -34,3 +34,6 @@
     font-size: 13px;
     margin-top: 2px;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -10,7 +10,7 @@ const Signin = ({ setIsLoggedIn }) => {
   const [errorMessages, setErrorMessages] = useState({});
 
   const errors = {
-    username: "Invalid username",
+    username: "Invalid email",
     password: "Invalid password",
     noUsername: "Please enter your username",
     noPassword: "Please enter your password",

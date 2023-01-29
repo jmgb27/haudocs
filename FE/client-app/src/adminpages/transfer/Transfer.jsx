@@ -1,11 +1,11 @@
 import React from 'react'
 
-const IRform = () => {
+const Transfer = () => {
   return (
     <div>
-      hello
+      Transfer
     </div>
   )
 }
 
-export default IRform
+export default Transfer
