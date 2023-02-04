@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 main {
-    width: 100%;
-    margin-left: 13rem;
+    width: 150%;
+    margin-left: 20rem;
     margin-top: 5rem;
 }
 
@@ -13,7 +13,6 @@ main {
     display: flex;
     justify-content: center;
     margin-top: 5rem;
-    background-color: white;
     padding-bottom: 11vh;
 }
 
@@ -59,3 +58,7 @@ main {
 .ir-title {
     margin-top: 4rem;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

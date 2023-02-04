@@ -15,6 +15,9 @@
     position: fixed;
     border-bottom-style: solid;
     border-color: #800000;
+    border-top: 0;
+    border-right: 0;
+    border-left:0;
     border-width: 15px;
 }
 hr.new4 {

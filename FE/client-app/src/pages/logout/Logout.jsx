@@ -1,10 +1,11 @@
-import React from 'react'
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+
 
 const Logout = () => {
-  return (
-    <div>
-    </div>
-  )
+  signOut(auth).then(() => {
+    console.log('sign out successful')
+  }).catch(error => console.log(error));
 }
 
 export default Logout

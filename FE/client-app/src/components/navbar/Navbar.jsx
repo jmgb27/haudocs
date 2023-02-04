@@ -1,14 +1,27 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import './navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/haulogo.png';
 import user from '../../assets/user.png';
 import edit from '../../assets/edit.png';
 import envelope from '../../assets/envelope.png';
+import signout from '../../assets/log-out.png';
+import { UserAuth } from '../../context/AuthContext';
 
-function Navbar({setIsSignin}) {
+function Navbar() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false);
+  const { user, logout } = UserAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+      console.log('You are logged out')
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   let menuRef = useRef();
 
@@ -36,15 +49,18 @@ function Navbar({setIsSignin}) {
         <div className='icons'>
           <div className="menu-container" ref={menuRef}>
             <div className="menu-trigger" onClick={() => {setOpen(!open)}}>
-              <img src='http://placeimg.com/100/100/people'></img>
+              <img src={user.photoURL}></img>
             </div>
             <div className={`dropdown-menu ${open? 'active' : 'inactive'}`}>
-              <h3>Haudocs Users<br/><span>Users Role</span></h3>
+              <h3 className='text-sm'>{user && user.displayName}<br/><span>Researcher</span></h3>
               <ul>
                 <Link to = {"/dashboard"}>
                 <DropdownItem img = {edit} text = {"Edit Profile"}/>
                 </Link>
                 <DropdownItem img = {envelope} text = {"Inbox"}/>
+                <Link onClick={handleLogout}>
+                <DropdownItem img = {signout} text = {"Logout"}/>
+                </Link>
               </ul>
             </div>
           </div>
