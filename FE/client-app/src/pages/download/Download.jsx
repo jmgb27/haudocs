@@ -6,9 +6,11 @@ import Accordion2 from './accordion/crformsdata/Accordion2';
 import Accordion3 from './accordion/frformsdata/Accordion3';
 import frformsdata from './accordion/frformsdata/frformsdata';
 import './download.css';
+import Sidebar from '../../components/Sidebar';
 
 const Download = () => {
   return (
+    <Sidebar>
     <div className='head'>
       <div className="accordion">
         {formsdata.map(({ title, form1, form2, form3 }) => (
@@ -25,6 +27,7 @@ const Download = () => {
         ))}
       </div>
     </div>
+    </Sidebar>
   )
 }
 

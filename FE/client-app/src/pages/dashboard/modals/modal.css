@@ -63,7 +63,7 @@ body.active-modal {
 .close-modal {
     position: absolute;
     border: none;
-    margin-left: 32rem;
+    margin-left: 31rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     background: gray;
@@ -101,7 +101,7 @@ body.active-modal {
 .ir-close-modal {
     position: absolute;
     border: none;
-    margin-left: 32rem;
+    margin-left: 31rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     background: gray;

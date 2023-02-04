@@ -3,17 +3,29 @@
   color: white;
   text-align: center;
   margin-bottom: 1rem;
-  font-size: 30px;
+  font-size: 25px;
 }
 
-body {
-  background-image: url("../../assets/bg.jpg");
+.title p {
+  font-size: 18px;
+}
+
+.h3class {
+  color: white;
+  text-align: left;
+}
+
+.here {
+  background: none;
+  border: 0;
+  color: #FFDB58;
+  cursor: pointer;
 }
 
 .subtitle {
   color: rgb(218, 218, 218);
   text-align: left;
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   font-size: 18px;
 }
@@ -21,13 +33,6 @@ body {
 .inputs_container {
   display: flex;
   flex-direction: column;
-}
-
-.auth-header-logo-img {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
 }
 
 .inputs_container input {
@@ -139,4 +144,36 @@ body {
   .small {
     margin-bottom: 3rem;
   }
+}
+.auth{
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  text-align: center;
+}
+
+.auth form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto 10px auto;
+}
+
+.auth__success{
+  padding: 10px 0;
+  background-color: hsl(147, 79%, 87%);
+  margin-bottom: 20px;
+}
+
+.auth__error{
+  padding: 10px 0;
+  background-color: hsl(0, 79%, 87%);
+  margin-bottom: 20px;
+}
+
+.auth form > input, button{
+  height: 40px;
+  font-size: 16px;
+  padding: 0 10px;
 }

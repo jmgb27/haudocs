@@ -23,11 +23,11 @@ function Accordion ({ title, form1, form2, form3}) {
   
     return (
       <div className="accordion-item">
-        <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+        <div className="accordion-title items-center jusify-center flex" onClick={() => setIsActive(!isActive)}>
         <div>{isActive ? <BiCaretDown/> : <RiArrowRightSFill/>}</div>
           <div>{title}</div>
         </div>
-        <div>
+        <div className=''>
         {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {form1}</button></div>}
         {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX2_FILE_URL)}}><IoMdDownload/> {form2}</button></div>}
         {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX3_FILE_URL)}}><IoMdDownload/> {form3}</button></div>}
