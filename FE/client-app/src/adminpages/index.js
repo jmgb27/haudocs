@@ -1,7 +1,8 @@
-export { default as Application } from './application/Application';
-export { default as Archiving   } from './archiving/Archiving';
-export { default as Dashboard   } from './dashboard/Dashboard';
-export { default as Tracking    } from './tracking/Tracking';
-export { default as Transfer    } from './transfer/Transfer';
-export { default as Users       } from './users/Users';
-export { default as Logout      } from './logout/Logout';
+export { default as AdminApplication } from './application/AdminApplication';
+export { default as AdminArchiving   } from './archiving/AdminArchiving';
+export { default as AdminDashboard   } from './dashboard/AdminDashboard';
+export { default as AdminTracking    } from './tracking/AdminTracking';
+export { default as AdminTransfer    } from './transfer/AdminTransfer';
+export { default as AdminUsers       } from './users/AdminUsers';
+export { default as AdminLogout      } from './logout/AdminLogout';
+export { default as AdminSettings     } from './settings/AdminSettings';

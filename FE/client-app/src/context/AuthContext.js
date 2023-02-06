@@ -11,13 +11,14 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
+
 const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
   };
 
   useEffect(()=> {
@@ -29,12 +30,12 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  const createUser = (email, password, passwordconfirm) => {
-    return createUserWithEmailAndPassword(auth, email, password, passwordconfirm);
+  const createUser = (email, password, passwordconfirm, userName) => {
+    return createUserWithEmailAndPassword(auth, email, password, passwordconfirm, userName);
   };
 
-   const signIn = (email, password) =>  {
-    return signInWithEmailAndPassword(auth, email, password)
+   const signIn = (email, password, userName) =>  {
+    return signInWithEmailAndPassword(auth, email, password, userName)
    }
 
   const logout = () => {
