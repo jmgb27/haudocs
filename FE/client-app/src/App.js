@@ -11,6 +11,8 @@ import Signup from "./login/auth/Signup";
 import { Navigate } from "react-router-dom";
 import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
+import Forgotpassword from "./login/auth/Forgotpassword";
+import { AdminDashboard, AdminApplication, AdminArchiving, AdminTracking, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -26,7 +28,7 @@ function App() {
     <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
     <BrowserRouter>
     <Routes>
-    <Route exact path ="/"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+    <Route exact path ="/"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
     <Route path="/Signin" element={
             !currentUser?.emailVerified 
             ? <Signin/>
@@ -38,6 +40,7 @@ function App() {
             : <Navigate to='/' replace/>
           } />
     <Route path='/verifyemail' element={<VerifyEmail/>} /> 
+    <Route path='/forgotpassword' element={<Forgotpassword/>} /> 
     </Routes>
     <Routes>
     <Route path ="/dashboard"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
@@ -47,6 +50,16 @@ function App() {
     <Route path ="/submission"element={<ProtectedRoute><Submission/></ProtectedRoute>}/>
     <Route path ="/logout"element={<ProtectedRoute><Logout/></ProtectedRoute>}/>
   </Routes>
+    <Routes>
+    <Route path ="/admindashboard"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
+    <Route path ="/adminapplication"element={<ProtectedRoute><AdminApplication/></ProtectedRoute>}/>
+    <Route path ="/adminarchiving"element={<ProtectedRoute><AdminArchiving/></ProtectedRoute>}/>
+    <Route path ="/admintracking"element={<ProtectedRoute><AdminTracking/></ProtectedRoute>}/>
+    <Route path ="/admintransfer"element={<ProtectedRoute><AdminTransfer/></ProtectedRoute>}/>
+    <Route path ="/adminusers"element={<ProtectedRoute><AdminUsers/></ProtectedRoute>}/>
+    <Route path ="/adminsettings"element={<ProtectedRoute><AdminSettings/></ProtectedRoute>}/>
+    <Route path ="/adminlogout"element={<ProtectedRoute><AdminLogout/></ProtectedRoute>}/>
+    </Routes>
   </BrowserRouter>
   </AuthProvider>
   </AuthContextProvider>

@@ -12,39 +12,39 @@ import Navbar from '../components/navbar/Navbar';
 const Adminsidebar = ({children}, {setIsSignin}) => {
     const AdminsidenavItem = [
         {
-          path:'/dashboard',
+          path:'/admindashboard',
           name:"Dashboard",
           icon: <FaTh/>
         },
         {
-          path:'/users',
+          path:'/adminusers',
           name:"Users",
           icon: <FaUserAlt/>
         },
         {
-          path:'/application',
+          path:'/adminapplication',
           name:"Application Status",
           icon: <AiOutlineFileSync/>
         },
         {
-          path:'/transfer',
+          path:'/admintransfer',
           name:"Transfer",
           icon: <RiFileTransferFill/>
         },
         {
-          path:'/tracking',
+          path:'/admintracking',
           name:"Tracking Number",
           icon: <ImLocation2/>
         },
         {
-          path:'/archiving',
+          path:'/adminarchiving',
           name:"Archiving",
           icon: <BsFillArchiveFill/>
         },
       ]
       const Setting = [
         {
-          path:'/setting',
+          path:'/adminsettings',
           name:"Setting",
           icon: <AiFillSetting/>
         },
@@ -52,7 +52,7 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
     
       const BottomnavItem = [
         {
-          path:'/logout',
+          path:'/adminlogout',
           name:"Logout",
           icon: <FiLogOut/>
         },

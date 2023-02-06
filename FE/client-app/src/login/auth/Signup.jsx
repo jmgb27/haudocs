@@ -6,18 +6,16 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerificati
 import { useNavigate, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/Authvalue";
 import { db } from "../../firebase";
-import { UserAuth } from "../../context/AuthContext";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore/lite";
 
 function Signup() {
   const [email, setEmail] = useState("");
+  const [userName, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState("");
   const navigate = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
   const {setTimeActive} = useAuthValue()
-  const { user } = UserAuth();
-  const usersCollectionRef = collection(db, `users`);
 
   const validatePassword = () => {
     let isValid = true
@@ -31,9 +29,12 @@ function Signup() {
   }
 
   const createUser = async () => {
+    const usersCollectionRef = collection(db, "users")
     await addDoc(usersCollectionRef, { 
       email: email,
       createdAt: serverTimestamp(),
+      user: userName,
+      role: "",
     });
   };
 
@@ -49,7 +50,7 @@ function Signup() {
     e.preventDefault();
     if(validatePassword()) {
       // Create a new user with email and password using firebase
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password, userName)
         .then(() => {
           sendEmailVerification(auth.currentUser) 
           .then(() => {
@@ -57,6 +58,7 @@ function Signup() {
             navigate('/verifyemail')}).catch((err) => alert(err.message))
         }).catch(err => setErrorMessages(err.message))
     }
+    setUser('')
     setEmail('')
     setPassword('')
     setConfirmPassword('')
@@ -83,16 +85,18 @@ function Signup() {
   return (
     <Card>
     <h1 className="title">Sign Up for HAUDOCS <p>Create a free account</p> </h1>
-    {errorMessages && <div className='auth__error'>{errorMessages}</div>}
     <form onSubmit={handleSubmit}>
       <div className="inputs_container">
       <hr className='hrline'></hr>
       <p className='text-base mb-4 mt-6 text-white'>Welcome! Please Enter your details</p>
+      {errorMessages && <div className='auth__error'>{errorMessages}</div>}
       <p className="text-base text-white">Your Name:</p>
         <input
           required
           type="text"
           placeholder="Name"
+          value={userName}
+          onChange={(e) => setUser(e.target.value)}
         />
       <p className="text-base text-white">Your Email:</p>
         <input

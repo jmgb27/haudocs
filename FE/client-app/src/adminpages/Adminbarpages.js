@@ -11,13 +11,13 @@ const Adminbarpages= () => {
   <BrowserRouter>
   <Adminsidebar>
   <Routes>
-    <Route path ="/dashboard"element={<Dashboard/>}/>
-    <Route path ="/application"element={<Application/>}/>
-    <Route path ="/archiving"element={<Archiving/>}/>
-    <Route path ="/tracking"element={<Tracking/>}/>
-    <Route path ="/transfer"element={<Transfer/>}/>
-    <Route path ="/users"element={<Users/>}/>
-    <Route path ="/logout"element={<Logout/>}/>
+    <Route path ="/Admindashboard"element={<AdminDashboard/>}/>
+    <Route path ="/Adminapplication"element={<AdminApplication/>}/>
+    <Route path ="/Adminarchiving"element={<AdminArchiving/>}/>
+    <Route path ="/Admintracking"element={<AdminTracking/>}/>
+    <Route path ="/Admintransfer"element={<AdminTransfer/>}/>
+    <Route path ="/Adminusers"element={<AdminUsers/>}/>
+    <Route path ="/Adminlogout"element={<AdminLogout/>}/>
   </Routes>
   <Routes>
     <Route path ="/dashboard/irforms"element={<IRforms/>}/>

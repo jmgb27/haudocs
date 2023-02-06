@@ -5,9 +5,10 @@ import {AiFillFileText} from 'react-icons/ai';
 import {IoSyncCircleSharp} from 'react-icons/io5';
 import {BsFillFileEarmarkCheckFill} from 'react-icons/bs'
 import './modals.css'
+import Adminsidebar from '../Adminsidebar'
 
 
-function Dashboard() {
+function AdminDashboard() {
 
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
@@ -29,39 +30,40 @@ function Dashboard() {
 
   const navigate = useNavigate()
   return (
+  <Adminsidebar>
   <div className='db-bg'>
     <div className='db-containers'>
       <div className='db-title'>
-         <h1>HAU-Institutional Review Board</h1>
+         <h1 class="text-3xl font-bold">HAU-Institutional Review Board</h1>
       </div>
   <div className='db-ir-head'>
     <button onClick={toggleModal2} classname="btn-modal" class="db-ir">
       <div className='db-logo-container'>
-        <div className='logo'>
+        <div class="inline-block align-middle">
         <AiFillFileText size={100}/>
         </div>
       </div>
-      <h1 className='ir-title'>Initial Review</h1>
+      <h1 className='font-bold mt-16 text-lg'>Initial Review</h1>
     </button>
   </div>
   <div className='db-cr-head'>
     <button onClick={toggleModal} className="btn-modal" class="db-ir">
       <div className='db-logo-container'>
-       <div className='logo'>
+       <div class="inline-block align-middle">
         <IoSyncCircleSharp size={100}/>
       </div>
     </div>
-    <h1 className='ir-title'>Continuing Review</h1>
+    <h1 className='font-bold mt-16 text-lg'>Continuing Review</h1>
    </button>
   </div>
   <div className='db-fr-head'>
     <button onClick={toggleModal3} class="db-ir">
     <div className='db-logo-container'>
-       <div className='logo'>
+       <div class='inline-block align-middle'>
         <BsFillFileEarmarkCheckFill size={100}/>
       </div>
     </div>
-    <h1 className='ir-title'>Final Review</h1>
+    <h1 className="font-bold mt-16 text-lg">Final Review</h1>
     </button>
   </div>
 </div>
@@ -70,7 +72,7 @@ function Dashboard() {
       <div className='modal'>
       <div className='overlay'></div>
       <div className="modal-content" >
-      <h1>CONTINUING Review (Post-approval reports)</h1>
+      <h1 className='text-xl font-bold mb-10'>CONTINUING Review (Post-approval reports)</h1>
     
       <p>Upon issuance of ethical clearance <em>(approval letter is valid for 1 year),</em> the researcher 
         has the responsibility to the submission of the following post-approval reports <strong>during the 
@@ -112,8 +114,8 @@ function Dashboard() {
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
       <div>
-      <button className='continue-button'>Continue</button>
-      <button onClick={toggleModal} className='close-modal'>Close</button>
+      <button className='continue-button items-center justify-center flex'>Continue</button>
+      <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>
       <p></p>
       </div>
@@ -124,7 +126,7 @@ function Dashboard() {
     <div className='modal'>
     <div className='overlay'></div>
     <div className="ir-modal-content" >
-    <h1>INITIAL Process (Application)</h1>
+    <h1 className='text-xl font-bold mb-10'>INITIAL PROCESS (Application)</h1>
     <div className='require'>
     <p><strong>REQUIREMENTS for Ethics Review Initial application:</strong></p>
     </div>
@@ -148,9 +150,9 @@ function Dashboard() {
     <p>Please be reminded that students/researchers cannot proceed with any form of data
       collection <em>(pilot testing included)</em> unless issued an ethical clearance.</p>
 
-    <div>
-    <button onClick={() => navigate('/dashboard/irforms')} className='continue-button'>Continue</button>
-    <button onClick={toggleModal2} className='ir-close-modal'>Close</button>
+    <div className='mt-2 mb-10'>
+    <button onClick={() => navigate('/download/accordion')} className='continue-button items-center justify-center flex'>Continue</button>
+    <button onClick={toggleModal2} className='ir-close-modal items-center justify-center flex'>Close</button>
     </div>
     <p></p>
     </div>
@@ -161,15 +163,15 @@ function Dashboard() {
         <div className='modal'>
         <div className='overlay'></div>
         <div className="ir-modal-content" >
-        <h1>FINAL Review (Final report form)</h1>
+        <h1 className='text-xl font-bold mb-10'>FINAL Review (Final report form)</h1>
         <div className='require'>
         <p><strong>1. HAU-IRB FORM 3.7(A): Final Report Form</strong> <em>(this signals the completion of the study and its 
           acceptance by the HAU-IRB).</em>This should be forwarded to the board not later than 8 weeks after 
           the end of the study.</p>
         </div>
         <div>
-        <button className='continue-button'>Continue</button>
-        <button onClick={toggleModal3} className='ir-close-modal'>Close</button>
+        <button className='continue-button items-center justify-center flex'>Continue</button>
+        <button onClick={toggleModal3} className='ir-close-modal items-center justify-center flex'>Close</button>
         </div>
         <p></p>
         </div>
@@ -177,7 +179,8 @@ function Dashboard() {
   )}
 
 </div>
+</Adminsidebar>
   )
 }
 
-export default Dashboard;
+export default AdminDashboard;
