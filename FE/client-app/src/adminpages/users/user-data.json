@@ -1,0 +1,17 @@
+[
+    {
+    "id": 1,
+    "fullName": "Crisa M. Sarte",
+    "Role": "Chair"
+    },
+    {
+    "id": 2,
+    "fullName": "Jehan D. Bulanadi",
+    "Role": "Scientist"
+    },
+    {
+    "id": 3,
+    "fullName": "Avigail P. Magbag",
+    "Role": "Scientist"
+    }
+  ]

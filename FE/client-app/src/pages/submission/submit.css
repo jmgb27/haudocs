@@ -1,0 +1,73 @@
+.sub-container {
+    background-color: white;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 1700px;
+    height: 793px;
+    padding: 30px;
+    
+}
+hr {
+    height: 1px;
+    border: 1px solid gray;
+    margin-top: 12px;
+}
+   
+.fu{
+    border: 1px solid gray;
+    padding: 5px;
+    width: 102px;
+}
+.form{
+    border: 1px solid gray;
+    padding: 5px;
+    width: 1640px;
+    height: 580px;
+}
+.upload{
+    padding: 7px;
+    font-size: 18px; 
+}
+.uf-btn{
+    background-color:rgba(241, 239, 239, 0.96); 
+    color: black;
+    padding: 1px 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border: 2px solid gray;
+}
+.ncip{
+    padding: 7px;
+    font-size: 18px; 
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
+}
+
+.submit-btn{
+    position: absolute;
+    right: 60px;
+    background-color:maroon; 
+    color: white;
+    padding: 14px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;  
+    border-radius: 5px;
+}
+.cancels-btn{
+    position: absolute;
+    right: 200px;
+    background-color:white; 
+    color: maroon;
+    padding: 14px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;  
+    border-radius: 5px  ;
+    border: 2px solid maroon;
+}
+.btns{
+    margin-top: 10px;
+    
+}
