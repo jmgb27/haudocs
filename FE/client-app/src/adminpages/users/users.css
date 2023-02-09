@@ -1,0 +1,77 @@
+.user-containers{
+    background-color: white;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 1700px;
+    height: 793px;
+    padding: 30px;
+    
+    
+}
+.add-btn{
+        position: absolute;
+        right: 267px;
+        background-color:maroon; 
+        border-radius: 12px;
+        color: white;
+        padding: 14px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 23px; 
+        font-family: 'Times New Roman', Times, serif;
+
+}
+
+.user-table{
+    margin-top: 5% ;
+    margin-right: 100px;
+    margin-left: 100px;
+    border: 2px solid #000000;
+}
+td{
+    text-align: center;
+}
+
+tr {
+   align-items: center;
+   border: 2px solid #000000;
+   width: 10px;
+   height: 65px;
+   font-size: 23px;
+   font-family: 'Times New Roman', Times, serif;
+}
+
+thead tr th  {
+    padding: 19px 10px;
+}
+table tr {
+    white-space: nowrap;
+}
+
+td {
+
+    position: relative;
+   
+}
+
+table {
+    user-select: none;
+    width: 80%;
+    font-size: 13px;
+    border-collapse: collapse;
+    
+}
+
+thead {
+    background-color: maroon;
+    font-size: 23px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+  
+}
+
+
+
+
+
