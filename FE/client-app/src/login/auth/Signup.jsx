@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/Authvalue";
 import { db } from "../../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore/lite";
+import bgimage from "../../assets/bg.jpg"
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -81,8 +82,19 @@ function Signup() {
     email=== errorMessages.email && (
       <p className="error_msg">{errorMessages.message}</p>
     );
-    
+
+  const myStyle={
+    backgroundImage:`url(${bgimage})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
+    height: '100%',
+    position: 'fixed'
+  };
+
   return (
+    <div style={myStyle}>
     <Card>
     <h1 className="title">Sign Up for HAUDOCS <p>Create a free account</p> </h1>
     <form onSubmit={handleSubmit}>
@@ -136,6 +148,7 @@ function Signup() {
       </div>
     </form>
   </Card>
+  </div>
   );
 };
 

@@ -3,6 +3,7 @@ import Card from '../../components/card/Card';
 import { Link } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
+import bgimage from "../../assets/bg.jpg"
 
 const Forgotpassword = () => {
     const [email, setEmail] = useState("");
@@ -25,9 +26,20 @@ const Forgotpassword = () => {
         setError(error.message);
       });
     };
+
+    const myStyle={
+      backgroundImage:`url(${bgimage})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      width: '100%',
+      height: '100%',
+      position: 'fixed'
+    };
     
 
   return (
+    <div style={myStyle}>
     <Card>
     <h1 className="title">Reset Password</h1>
     <form onSubmit={handleSubmit}>
@@ -64,6 +76,7 @@ const Forgotpassword = () => {
       </div>
     </form>
   </Card>
+  </div>
   );
 };
 export default Forgotpassword
