@@ -84,6 +84,7 @@ import bgimage from "../../assets/bg.jpg"
     height: '100%',
     position: 'fixed'
   };
+  
   return (
     <div style={myStyle}>
     <Card>
