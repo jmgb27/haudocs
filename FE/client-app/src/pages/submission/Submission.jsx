@@ -38,9 +38,9 @@ const Submission = () => {
                 <button className='uf-btn'>Upload File</button>
               </article>
             </div>
-            <div className='btns'>
-            <button className='cancels-btn' style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>Cancel</button>
-            <button className='submit-btn' style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>Submit</button>
+            <div className='btns flex justify-end mb-8'>
+            <button className='cancels-btn mr-[9rem] items-center flex'>Cancel</button>
+            <button className='submit-btn items-center flex'>Submit</button>
             </div>
            
           </div>

@@ -3,12 +3,12 @@ import './edit.css';
 
 const EditableRows = ({editFormData, handlEditFormChange, handleCancelClick}) => {
   return (
-   <tr>
+   <tr className='items-center flex'>
     <td>
 
     </td>
     <td>
-        <input type="text" 
+        <input type="text" className='mr-5'
         required="required"
          placeholder='Enter a Role...' 
          name="Role" 
@@ -17,7 +17,7 @@ const EditableRows = ({editFormData, handlEditFormChange, handleCancelClick}) =>
           />
     </td>
     <td>
-        <input type="text" required="required"
+        <input type="text" required="required" className='mr-5'
          placeholder='Enter a Name...' 
          name="fullName" 
          value={editFormData.fullName}
@@ -25,8 +25,8 @@ const EditableRows = ({editFormData, handlEditFormChange, handleCancelClick}) =>
           />
           </td>
           <td>
-            <button type="submit" className='save-btn'>Save</button>
-            <button type="button" onClick={handleCancelClick} className='cancel-btn'>Cancel</button>
+            <button type="submit" className='save-btn flex flex-col justify-center mr-5'>Save</button>
+            <button type="button" onClick={handleCancelClick} className='cancel-btn flex flex-col justify-center'>Cancel</button>
           </td>
    </tr>
   )

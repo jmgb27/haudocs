@@ -1,13 +1,11 @@
 .user-containers{
-    background-color: white;
-    justify-content: center;
-    margin-top: 3rem;
-    width: 1700px;
-    height: 793px;
-    padding: 30px;
-    
-    
+    margin-top: 5rem;
 }
+
+.tablecont {
+    margin-top: 5rem;
+}
+
 .add-btn{
         position: absolute;
         right: 267px;
@@ -18,9 +16,7 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 23px; 
-        font-family: 'Times New Roman', Times, serif;
-
+        align-items: center;
 }
 
 .user-table{
@@ -39,7 +35,6 @@ tr {
    width: 10px;
    height: 65px;
    font-size: 23px;
-   font-family: 'Times New Roman', Times, serif;
 }
 
 thead tr th  {
@@ -67,7 +62,7 @@ thead {
     background-color: maroon;
     font-size: 23px;
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    align-items: center;
   
 }
 

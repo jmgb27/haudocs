@@ -75,11 +75,11 @@ const AdminUsers = () => {
     <Adminsidebar>
       <div className='user-containers'>
         <div className='user-title'>
-          <h1 class="text-3xl font-bold">User Management</h1>
+          <h1 class="text-3xl text-center font-bold">User Management</h1>
         </div>
-        <button className='add-btn' style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>+ Add New</button>
+        <button className='add-btn mt-5' style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>+ Add New</button>
 
-        <div>
+        <div className='tablecont'>
           <form onSubmit={handlEditFormSubmit}>
             <table className="user-table">
               <thead>
