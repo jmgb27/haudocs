@@ -9,6 +9,7 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { useAuthValue } from "../../context/Authvalue";
 import { FaUnlockAlt } from "react-icons/fa"
+import bgimage from "../../assets/bg.jpg"
 
   function Signin () {
     const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ import { FaUnlockAlt } from "react-icons/fa"
       password: "Invalid password",
       noUsername: "Please enter your username",
       noPassword: "Please enter your password",
+      
     };
 
     const Login = async (e) => {
@@ -59,7 +61,7 @@ import { FaUnlockAlt } from "react-icons/fa"
         return;
       }
     };
-  
+
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
@@ -73,8 +75,17 @@ import { FaUnlockAlt } from "react-icons/fa"
       navigate('/dashboard');
     }
   }, [user]); */
-
+  const myStyle={
+    backgroundImage:`url(${bgimage})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
+    height: '100%',
+    position: 'fixed'
+  };
   return (
+    <div style={myStyle}>
     <Card>
     <h1 className="title">Welcome to HAUDOCS!</h1>
     <form onSubmit={Login}>
@@ -126,7 +137,7 @@ import { FaUnlockAlt } from "react-icons/fa"
       </div>
     </form>
   </Card> 
-  
+  </div>
   )
 };
 

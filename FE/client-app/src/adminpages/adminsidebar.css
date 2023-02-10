@@ -17,8 +17,8 @@ body {
     background: #800000;;
     color: #fff;
     position: fixed;
-    height: 88.2vh;
     margin-top: 6rem;
+    height: 100%;
 }
 
 .top_section{
@@ -47,7 +47,7 @@ body {
 }
 
 .admin-bottom_section{
-    padding-top: 15rem;
+    padding-top: 12rem;
 }
 .auth-multi-layout {
     position: relative;

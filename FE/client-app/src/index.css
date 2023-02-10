@@ -1,5 +1,6 @@
 :root {
   --speed: 500ms;
+  --bodyColor: white;
 }
 
 body {
@@ -9,7 +10,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   background-image: url("./assets/bg.jpg");
+  /* background-image: url("./assets/bg.jpg"); */
+   height: 100%;
+   background-color: var(--bodyColor);
 }
 
 code {
