@@ -3,7 +3,9 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
-import { doc, setDoc, collection, onSnapshot } from 'firebase/firestore/lite';
+import {  collection, addDoc, serverTimestamp } from 'firebase/firestore/lite';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,4 +30,22 @@ export const auth = getAuth(app);
 
 export const db = getFirestore(app);
 
+export const storage = getStorage(app);
+
+export const registerWithEmailAndPassword = async (name, email, password) => {
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password, name);
+    const user = res.user;
+    await addDoc(collection(db, "users"), {
+      createdAt: serverTimestamp(),
+      uid: user.uid,
+      name,
+      authProvider: "local",
+      email,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 

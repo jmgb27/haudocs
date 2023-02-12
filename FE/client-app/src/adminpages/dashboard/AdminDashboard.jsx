@@ -71,7 +71,7 @@ function AdminDashboard() {
 {modal && (
       <div className='modal'>
       <div className='overlay'></div>
-      <div className="modal-content" >
+      <div className="cr-modal-content" >
       <h1 className='text-xl font-bold mb-10'>CONTINUING Review (Post-approval reports)</h1>
     
       <p>Upon issuance of ethical clearance <em>(approval letter is valid for 1 year),</em> the researcher 
@@ -113,7 +113,7 @@ function AdminDashboard() {
         follows approved protocol beyond period of initial ethical clearance and up to the end of study).</em>
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
-      <div>
+      <div className='mt-2 mb-10'>
       <button className='continue-button items-center justify-center flex'>Continue</button>
       <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>
