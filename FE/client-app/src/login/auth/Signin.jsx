@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import '../LoginForm.css';
 import Card from "../../components/card/Card";
 import '../../index.css'
 import { useNavigate, Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 import GoogleButton from 'react-google-button'
-import { auth } from "../../firebase";
-import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthValue } from "../../context/Authvalue";
 import { FaUnlockAlt } from "react-icons/fa"
 import bgimage from "../../assets/bg.jpg"
+import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore/lite";
 
   function Signin () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const { signIn } = UserAuth();
-    const [errorMessages, setErrorMessages] = useState(null);
-    const { googleSignIn, user} = UserAuth();  
+    const [errorMessages, setErrorMessages] = useState(null);  
     const {setTimeActive} = useAuthValue()
     const errors = {
       email: "Invalid email",
@@ -62,13 +62,28 @@ import bgimage from "../../assets/bg.jpg"
       }
     };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const googleProvider = new GoogleAuthProvider();
+    const signInWithGoogle = async () => {
+      try {
+        const res = await signInWithPopup(auth, googleProvider);
+        const user = res.user;
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const docs = await getDocs(q);
+        if (docs.docs.length === 0) {
+          await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            name: user.displayName,
+            authProvider: "google",
+            email: user.email,
+            createdAt: serverTimestamp(),
+            role: "Admin"
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        alert(err.message);
+      }
+    };
   
 /*   useEffect(() => {
     if (user != null) {
@@ -134,7 +149,7 @@ import bgimage from "../../assets/bg.jpg"
           <p className=' text-lg absolute text-white bg-[#800000]'>or</p>
         </div>
       <div className="bottom-buttons">
-        <GoogleButton className="items-center justify-center ml-10" onClick={handleGoogleSignIn}/>
+        <GoogleButton className="items-center justify-center ml-10" onClick={signInWithGoogle}/>
       </div>
     </form>
   </Card> 

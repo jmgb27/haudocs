@@ -1,22 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import "../LoginForm.css";
 import Card from "../../components/card/Card";
 import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { sendEmailVerification } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/Authvalue";
-import { db } from "../../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore/lite";
 import bgimage from "../../assets/bg.jpg"
+import { registerWithEmailAndPassword } from "../../firebase";
 
 function Signup() {
   const [email, setEmail] = useState("");
-  const [userName, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState("");
   const navigate = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
   const {setTimeActive} = useAuthValue()
+  const [name, setName] = useState("");
 
   const validatePassword = () => {
     let isValid = true
@@ -29,7 +28,7 @@ function Signup() {
     return isValid
   }
 
-  const createUser = async () => {
+/*   const createUser = async () => {
     const usersCollectionRef = collection(db, "users")
     await addDoc(usersCollectionRef, { 
       email: email,
@@ -37,7 +36,7 @@ function Signup() {
       user: userName,
       role: "",
     });
-  };
+  }; */
 
   const errors = {
     email: "Invalid email",
@@ -46,7 +45,7 @@ function Signup() {
     noPassword: "Please enter your password",
   };
 
-  const handleSubmit = e => {
+/*   const handleSubmit = e => {
     // Prevent page from reloading
     e.preventDefault();
     if(validatePassword()) {
@@ -60,6 +59,34 @@ function Signup() {
         }).catch(err => setErrorMessages(err.message))
     }
     setUser('')
+    setEmail('')
+    setPassword('')
+    setConfirmPassword('')
+
+    if (!email) {
+      // Username input is empty
+      setErrorMessages({ email: "noUsername", message: errors.noUsername });
+      return;
+    }
+
+    if (!password) {
+      // Password input is empty
+      setErrorMessages({ email: "noPassword", message: errors.noPassword });
+      return;
+    }
+  }; */
+
+  const register = () => {
+    if (validatePassword()) {;
+    registerWithEmailAndPassword(name, email, password)
+    .then(() => {
+      sendEmailVerification(auth.currentUser) 
+      .then(() => {
+        setTimeActive(true)  
+        navigate('/verifyemail')}).catch((err) => alert(err.message))
+    }).catch(err => setErrorMessages(err.message))
+    }
+    setName('')
     setEmail('')
     setPassword('')
     setConfirmPassword('')
@@ -97,7 +124,6 @@ function Signup() {
     <div style={myStyle}>
     <Card>
     <h1 className="title">Sign Up for HAUDOCS <p>Create a free account</p> </h1>
-    <form onSubmit={handleSubmit}>
       <div className="inputs_container">
       <hr className='hrline'></hr>
       <p className='text-base mb-4 mt-6 text-white'>Welcome! Please Enter your details</p>
@@ -107,8 +133,8 @@ function Signup() {
           required
           type="text"
           placeholder="Name"
-          value={userName}
-          onChange={(e) => setUser(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       <p className="text-base text-white">Your Email:</p>
         <input
@@ -142,11 +168,10 @@ function Signup() {
         {renderErrorMsg("password")}
         {renderErrorMsg("noPassword")}
       </div>
-      <input onClick={createUser} type="submit" value="Signup" className="login_button" />
+      <input onClick={register} type="submit" value="Signup" className="login_button" />
       <div className='w-full flex items-center justify-center'>
         <p className='text-sm font-normal text-white mt-5'>Already have an account? <Link to= "/Signin"><a className='font-semibold underline underline-offset-2 cursor-pointer'>Login here</a></Link></p>
       </div>
-    </form>
   </Card>
   </div>
   );

@@ -12,6 +12,7 @@ import { Navigate } from "react-router-dom";
 import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
 import Forgotpassword from "./login/auth/Forgotpassword";
+import Addusers from "./adminpages/users/components/Addusers";
 import { AdminDashboard, AdminApplication, AdminArchiving, AdminTracking, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
     <BrowserRouter>
     <Routes>
-    <Route exact path ="/"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+    <Route exact path ="/"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
     <Route path="/Signin" element={
             !currentUser?.emailVerified 
             ? <Signin/>
@@ -57,6 +58,7 @@ function App() {
     <Route path ="/admintracking"element={<ProtectedRoute><AdminTracking/></ProtectedRoute>}/>
     <Route path ="/admintransfer"element={<ProtectedRoute><AdminTransfer/></ProtectedRoute>}/>
     <Route path ="/adminusers"element={<ProtectedRoute><AdminUsers/></ProtectedRoute>}/>
+    <Route path ="/adminusers/addusers"element={<ProtectedRoute><Addusers/></ProtectedRoute>}/>
     <Route path ="/adminsettings"element={<ProtectedRoute><AdminSettings/></ProtectedRoute>}/>
     <Route path ="/adminlogout"element={<ProtectedRoute><AdminLogout/></ProtectedRoute>}/>
     </Routes>

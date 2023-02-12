@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useRef, useContext} from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 import './navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/haulogo.png';
-import user from '../../assets/user.png';
 import edit from '../../assets/edit.png';
 import envelope from '../../assets/envelope.png';
 import signout from '../../assets/log-out.png';
