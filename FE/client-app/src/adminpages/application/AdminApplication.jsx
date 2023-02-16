@@ -30,7 +30,7 @@ const AdminApplication = () => {
         </thead>
         <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class="px-6 py-4 text-gray-900 text-base whitespace-nowrap dark:text-white">
                     #124567890
                 </th>
                 <td class="px-6 py-4 text-sm font-semibold">

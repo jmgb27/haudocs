@@ -115,7 +115,7 @@ function AdminDashboard() {
         follows approved protocol beyond period of initial ethical clearance and up to the end of study).</em>
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
-      <div>
+      <div className='space-x-[31rem]'>
       <button className='continue-button items-center justify-center flex'>Continue</button>
       <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>
@@ -152,7 +152,7 @@ function AdminDashboard() {
     <p>Please be reminded that students/researchers cannot proceed with any form of data
       collection <em>(pilot testing included)</em> unless issued an ethical clearance.</p>
 
-    <div className='mt-2 mb-10'>
+    <div className='mt-2 mb-10 space-x-[31rem]'>
     <button onClick={() => navigate('/download')} className='continue-button items-center justify-center flex'>Continue</button>
     <button onClick={toggleModal2} className='ir-close-modal items-center justify-center flex'>Close</button>
     </div>
@@ -171,7 +171,7 @@ function AdminDashboard() {
           acceptance by the HAU-IRB).</em>This should be forwarded to the board not later than 8 weeks after 
           the end of the study.</p>
         </div>
-        <div>
+        <div className='space-x-[31rem]'>
         <button className='continue-button items-center justify-center flex'>Continue</button>
         <button onClick={toggleModal3} className='ir-close-modal items-center justify-center flex'>Close</button>
         </div>

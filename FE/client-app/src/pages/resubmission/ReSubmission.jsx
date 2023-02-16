@@ -35,7 +35,7 @@ const ReSubmission = () => {
     }, []);
   return (
     <Sidebar>
-      <div className='sub-container'>
+      <div className='sub-container mt-4'>
         <div className='sub-title'>
           <h1 class="text-lg font-bold">Initial Process</h1>
           <hr />

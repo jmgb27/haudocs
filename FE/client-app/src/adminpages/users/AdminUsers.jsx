@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Adminsidebar from '../Adminsidebar'
 import './users.css';
 import { db } from "../../firebase"
@@ -13,7 +13,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./adminusers.css"
 import {Button, Modal, Label, TextInput} from "flowbite-react"
 import { registerWithEmailAndPassword } from "../../firebase";
-import { useNavigate } from 'react-router-dom';
 
 
 const AdminUsers = () => {
@@ -24,7 +23,6 @@ const AdminUsers = () => {
   const [errorMessages, setErrorMessages] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
      const fetchData = async () => {
@@ -133,13 +131,12 @@ const AdminUsers = () => {
     <div className="datatable">
       <div className="datatableTitle">
         <h1 className='text-2xl font-bold text-black'>Users Management</h1>
-        <React.Fragment>
+  <React.Fragment>
   <Button className='bg-maroon hover:bg-red-800' onClick={handleModalOpen}>
     Add New
   </Button>
   <Modal
     show={modalIsOpen}
-    size="md"
     popup={true}
     onClose={() => setVisible(false)}
   >
