@@ -25,7 +25,7 @@
     padding: 0px 100px;
 }
 
-.link {
+.link-sidebar {
     display: flex;
     color: #fff;
     padding: 10px 15px;
@@ -35,19 +35,19 @@
     align-items: center;
 }
 
-.link:hover{
-    background: #FFDB58;
+.link-sidebar:hover{
+    background: white;
     color: #000;
     transition: all 0.5s;
 }
 
 .active{
-    background: #FFDB58;
+    background: white;
     color: #000;
 }
 
 .bottom_section{
-    padding-top: 20rem;
+    padding-top: 34rem;
 }
 .auth-multi-layout {
     position: relative;
@@ -123,6 +123,20 @@
     font-size: 13px;
     margin-top: 2px;
 }
+
+@media (max-height: 1050px) {
+    .bottom_section{
+        padding-top: 35rem;
+    }
+}
+
+@media (max-height: 900px) {
+    .bottom_section{
+        padding-top: 16rem;
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+

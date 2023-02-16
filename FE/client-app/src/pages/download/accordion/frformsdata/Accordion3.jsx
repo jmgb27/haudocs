@@ -26,7 +26,7 @@ function Accordion3 ({title3, frform}) {
           <div>{title3}</div>
         </div>
         <div>
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {frform}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {frform}</button></div>}
         </div>
       </div>
   )
