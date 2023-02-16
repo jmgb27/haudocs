@@ -17,14 +17,14 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
           icon: <FaTh/>
         },
         {
-          path:'/adminusers',
-          name:"Users",
-          icon: <FaUserAlt/>
+          path:'/adminapplication',
+          name:"Review Status",
+          icon: <AiOutlineFileSync/>
         },
         {
-          path:'/adminapplication',
-          name:"Application Status",
-          icon: <AiOutlineFileSync/>
+          path:'/adminsubmissions',
+          name:"Submissions",
+          icon: <ImLocation2/>
         },
         {
           path:'/admintransfer',
@@ -32,14 +32,14 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
           icon: <RiFileTransferFill/>
         },
         {
-          path:'/admintracking',
-          name:"Tracking Number",
-          icon: <ImLocation2/>
-        },
-        {
           path:'/adminarchiving',
           name:"Archiving",
           icon: <BsFillArchiveFill/>
+        },
+        {
+          path:'/adminusers',
+          name:"Users",
+          icon: <FaUserAlt/>
         },
       ]
       const Setting = [
@@ -65,8 +65,8 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
       </div>
       {
         AdminsidenavItem.map((item, index)=>(
-          <NavLink to={item.path} key={index} className="link" activeclassName="active">
-            <div className="icon">{item.icon}</div>
+          <NavLink to={item.path} key={index} className="link-adminsidebar" activeclassName="active">
+            <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))
@@ -74,8 +74,8 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
     <div className='admin-bottom_section'>
         {
         Setting.map((item, index)=>(
-          <NavLink to={item.path} key={index} className="link" activeclassName="active">
-            <div className="icon">{item.icon}</div>
+          <NavLink to={item.path} key={index} className="link-adminsidebar" activeclassName="active">
+            <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))
@@ -83,8 +83,8 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
         
         {
         BottomnavItem.map((item, index)=>(
-          <NavLink to={item.path} key={index} className="link" onClick={()=>setIsSignin(false)}>
-            <div className="icon">{item.icon}</div>
+          <NavLink to={item.path} key={index} className="link-adminsidebar" onClick={()=>setIsSignin(false)}>
+            <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))

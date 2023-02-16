@@ -33,13 +33,13 @@ function Accordion2 ({title2, crform, crform2, crform3, crform4,
           <div>{title2}</div>
         </div>
         <div>
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {crform}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX2_FILE_URL)}}><IoMdDownload/> {crform2}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX3_FILE_URL)}}><IoMdDownload/> {crform3}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX4_FILE_URL)}}><IoMdDownload/> {crform4}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX5_FILE_URL)}}><IoMdDownload/> {crform5}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX6_FILE_URL)}}><IoMdDownload/> {crform6}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX7_FILE_URL)}}><IoMdDownload/> {crform7}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {crform}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX2_FILE_URL)}}><IoMdDownload/> {crform2}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX3_FILE_URL)}}><IoMdDownload/> {crform3}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX4_FILE_URL)}}><IoMdDownload/> {crform4}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX5_FILE_URL)}}><IoMdDownload/> {crform5}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX6_FILE_URL)}}><IoMdDownload/> {crform6}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX7_FILE_URL)}}><IoMdDownload/> {crform7}</button></div>}
         </div>
       </div>
   )

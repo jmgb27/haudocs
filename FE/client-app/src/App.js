@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Dashboard, Application, Download, Setting, Submission, Logout } from "./pages";
+import { Dashboard, Application, Download, Setting, Submission, Logout, ReSubmission } from "./pages";
 import { AuthContextProvider } from "./context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
@@ -13,7 +13,7 @@ import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
 import Forgotpassword from "./login/auth/Forgotpassword";
 import Addusers from "./adminpages/users/components/Addusers";
-import { AdminDashboard, AdminApplication, AdminArchiving, AdminTracking, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
+import { AdminDashboard, AdminApplication, AdminArchiving, Adminsubmissions, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -29,7 +29,7 @@ function App() {
     <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
     <BrowserRouter>
     <Routes>
-    <Route exact path ="/"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
+    <Route exact path ="/"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
     <Route path="/Signin" element={
             !currentUser?.emailVerified 
             ? <Signin/>
@@ -49,13 +49,14 @@ function App() {
     <Route path ="/download"element={<ProtectedRoute><Download/></ProtectedRoute>}/>
     <Route path ="/setting"element={<ProtectedRoute><Setting/></ProtectedRoute>}/>
     <Route path ="/submission"element={<ProtectedRoute><Submission/></ProtectedRoute>}/>
+    <Route path ="/resubmission"element={<ProtectedRoute><ReSubmission/></ProtectedRoute>}/>
     <Route path ="/logout"element={<ProtectedRoute><Logout/></ProtectedRoute>}/>
   </Routes>
     <Routes>
     <Route path ="/admindashboard"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
     <Route path ="/adminapplication"element={<ProtectedRoute><AdminApplication/></ProtectedRoute>}/>
     <Route path ="/adminarchiving"element={<ProtectedRoute><AdminArchiving/></ProtectedRoute>}/>
-    <Route path ="/admintracking"element={<ProtectedRoute><AdminTracking/></ProtectedRoute>}/>
+    <Route path ="/adminsubmissions"element={<ProtectedRoute><Adminsubmissions/></ProtectedRoute>}/>
     <Route path ="/admintransfer"element={<ProtectedRoute><AdminTransfer/></ProtectedRoute>}/>
     <Route path ="/adminusers"element={<ProtectedRoute><AdminUsers/></ProtectedRoute>}/>
     <Route path ="/adminusers/addusers"element={<ProtectedRoute><Addusers/></ProtectedRoute>}/>

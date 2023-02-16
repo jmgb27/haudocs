@@ -33,45 +33,47 @@ function AdminDashboard() {
   <Adminsidebar>
   <div className='db-bg'>
     <div className='db-containers'>
-      <div className='db-title'>
-         <h1 class="text-3xl font-bold">HAU-Institutional Review Board</h1>
-      </div>
-  <div className='db-ir-head'>
-    <button onClick={toggleModal2} classname="btn-modal" class="db-ir">
-      <div className='db-logo-container'>
-        <div class="inline-block align-middle">
-        <AiFillFileText size={100}/>
+    <h1 className='flex text-center flex-col text-3xl'>HAU-Institutional Review Board</h1>
+  <div className='db-ir-head flex-col items-center flex'>
+    <div onClick={toggleModal2} class="db-ir">
+      <div className='db-logo-container container mx-auto flex items-center ml-3'>
+        <div class="flex items-start ">
+        <AiFillFileText size={50}/>
         </div>
+        <h1 className='font-bold'>Initial Process Application</h1>
       </div>
-      <h1 className='font-bold mt-16 text-lg'>Initial Review</h1>
-    </button>
-  </div>
-  <div className='db-cr-head'>
-    <button onClick={toggleModal} className="btn-modal" class="db-ir">
-      <div className='db-logo-container'>
-       <div class="inline-block align-middle">
-        <IoSyncCircleSharp size={100}/>
-      </div>
+ {/*      <h1 className='font-semibold text-center'>REQUIREMENTS for Ethics Review Initial application</h1> */}
     </div>
-    <h1 className='font-bold mt-16 text-lg'>Continuing Review</h1>
-   </button>
   </div>
-  <div className='db-fr-head'>
-    <button onClick={toggleModal3} class="db-ir">
-    <div className='db-logo-container'>
-       <div class='inline-block align-middle'>
-        <BsFillFileEarmarkCheckFill size={100}/>
+  <div className='db-cr-head flex-col items-center flex'>
+    <div onClick={toggleModal} class="db-cr">
+      <div className='db-logo-container container mx-auto flex items-center ml-3'>
+       <div class="flex items-start">
+        <IoSyncCircleSharp size={50}/>
       </div>
+      <h1 className='font-bold text-lg text-center'>Continuing Review</h1>
     </div>
-    <h1 className="font-bold mt-16 text-lg">Final Review</h1>
-    </button>
+{/*     <h1 className='font-semibold text-center'>REQUIREMENTS for Continuing Review</h1> */}
+   </div>
+  </div>
+  <div className='db-fr-head flex-col items-center flex'>
+    <div onClick={toggleModal3} class="db-fr">
+    <div className='db-logo-container container mx-auto flex items-center ml-3'>
+       <div class='flex flex-col items-center justify-center'>
+        <BsFillFileEarmarkCheckFill size={50}/>
+      </div>
+      <h1 className="font-bold text-lg text-center">Final Review</h1>
+    </div>
+    </div>
+  </div>
   </div>
 </div>
+
 
 {modal && (
       <div className='modal'>
       <div className='overlay'></div>
-      <div className="cr-modal-content" >
+      <div className="ir-modal-content" >
       <h1 className='text-xl font-bold mb-10'>CONTINUING Review (Post-approval reports)</h1>
     
       <p>Upon issuance of ethical clearance <em>(approval letter is valid for 1 year),</em> the researcher 
@@ -113,7 +115,7 @@ function AdminDashboard() {
         follows approved protocol beyond period of initial ethical clearance and up to the end of study).</em>
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
-      <div className='mt-2 mb-10'>
+      <div>
       <button className='continue-button items-center justify-center flex'>Continue</button>
       <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>
@@ -151,7 +153,7 @@ function AdminDashboard() {
       collection <em>(pilot testing included)</em> unless issued an ethical clearance.</p>
 
     <div className='mt-2 mb-10'>
-    <button onClick={() => navigate('/download/accordion')} className='continue-button items-center justify-center flex'>Continue</button>
+    <button onClick={() => navigate('/download')} className='continue-button items-center justify-center flex'>Continue</button>
     <button onClick={toggleModal2} className='ir-close-modal items-center justify-center flex'>Close</button>
     </div>
     <p></p>
@@ -177,8 +179,6 @@ function AdminDashboard() {
         </div>
       </div>
   )}
-
-</div>
 </Adminsidebar>
   )
 }

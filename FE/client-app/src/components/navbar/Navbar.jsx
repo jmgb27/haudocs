@@ -7,6 +7,7 @@ import envelope from '../../assets/envelope.png';
 import signout from '../../assets/log-out.png';
 import { UserAuth } from '../../context/AuthContext';
 
+
 function Navbar() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false);

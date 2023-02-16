@@ -28,9 +28,9 @@ function Accordion ({ title, form1, form2, form3}) {
           <div>{title}</div>
         </div>
         <div className=''>
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {form1}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX2_FILE_URL)}}><IoMdDownload/> {form2}</button></div>}
-        {isActive && <div className="accordion-content"><button onClick={()=>{downloadFileAtURL(DOCX3_FILE_URL)}}><IoMdDownload/> {form3}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX_FILE_URL)}}><IoMdDownload/> {form1}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX2_FILE_URL)}}><IoMdDownload/> {form2}</button></div>}
+        {isActive && <div className="accordion-content"><button className='flex items-center' onClick={()=>{downloadFileAtURL(DOCX3_FILE_URL)}}><IoMdDownload/> {form3}</button></div>}
         </div>
       </div>
     );

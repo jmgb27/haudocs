@@ -1,7 +1,7 @@
 import React from 'react'
 import './sidebar.css';
 import {FaTh} from "react-icons/fa";
-import {AiOutlineFileSync, AiFillSetting, AiOutlineFileAdd} from "react-icons/ai";
+import {AiOutlineFileSync, AiFillSetting, AiOutlineFileAdd, AiOutlineFileExclamation} from "react-icons/ai";
 import {FiDownload, FiLogOut} from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import './navbar/navbar.css'
@@ -16,7 +16,7 @@ const Sidebar = ({children},{setIsSignin}) => {
     },
     {
       path:'/application',
-      name:"Application Status",
+      name:"Review Status",
       icon: <AiOutlineFileSync/>
     },
     {
@@ -28,6 +28,11 @@ const Sidebar = ({children},{setIsSignin}) => {
       path:'/submission',
       name:"Submission",
       icon: <AiOutlineFileAdd/>
+    },
+    {
+      path:'/resubmission',
+      name:"Re Submission",
+      icon: <AiOutlineFileExclamation/>
     },
   ]
   const Setting = [
@@ -53,8 +58,8 @@ const Sidebar = ({children},{setIsSignin}) => {
         </div>
         {
           SidenavItem.map((item, index)=>(
-            <NavLink to={item.path} key={index} className="link" activeclassName="active">
-              <div className="icon">{item.icon}</div>
+            <NavLink to={item.path} key={index} className="link-sidebar" activeclassName="active">
+              <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
           ))
@@ -62,8 +67,8 @@ const Sidebar = ({children},{setIsSignin}) => {
       <div className='bottom_section'>
           {
           Setting.map((item, index)=>(
-            <NavLink to={item.path} key={index} className="link" activeclassName="active">
-              <div className="icon">{item.icon}</div>
+            <NavLink to={item.path} key={index} className="link-sidebar" activeclassName="active">
+              <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
           ))
@@ -71,8 +76,8 @@ const Sidebar = ({children},{setIsSignin}) => {
           
           {
           BottomnavItem.map((item, index)=>(
-            <NavLink to={item.path} key={index} className="link" onClick={()=>setIsSignin(false)}>
-              <div className="icon">{item.icon}</div>
+            <NavLink to={item.path} key={index} className="link-sidebar" onClick={()=>setIsSignin(false)}>
+              <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
           ))

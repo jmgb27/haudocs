@@ -6,6 +6,7 @@
 
 .container {
     display: flex;
+    height: 100%;
 }
 
 body {
@@ -14,11 +15,12 @@ body {
 
 
 .sidebar{
-    background: #800000;;
+    background: #800000;
     color: #fff;
     position: fixed;
-    margin-top: 6rem;
     height: 100%;
+    margin-top: 6rem;
+    padding-top: 20px;
 }
 
 .top_section{
@@ -27,27 +29,29 @@ body {
     padding: 0px 100px;
 }
 
-.link {
+.link-adminsidebar {
     display: flex;
     color: #fff;
     padding: 10px 15px;
     gap: 15px;
     line-height: 2rem;
     transition: all 0.5s;
+    align-items: center;
 }
 
-.link:hover{
-    background: #FFDB58;
+.link-adminsidebar:hover{
+    background: white;
     color: #000;
     transition: all 0.5s;
 }
 
 .active{
+    background: white;
     color: #000;
 }
 
 .admin-bottom_section{
-    padding-top: 12rem;
+    padding-top: 30rem;
 }
 .auth-multi-layout {
     position: relative;
@@ -122,4 +126,16 @@ body {
     color: red;
     font-size: 13px;
     margin-top: 2px;
+}
+
+@media (max-height: 1050px) {
+    .admin-bottom_section{
+        padding-top: 25rem;
+    }
+}
+
+@media (max-height: 900px) {
+    .admin-bottom_section{
+        padding-top: 12rem;
+    }
 }
