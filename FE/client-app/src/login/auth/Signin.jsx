@@ -4,13 +4,13 @@ import Card from "../../components/card/Card";
 import '../../index.css'
 import { useNavigate, Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
-import GoogleButton from 'react-google-button'
 import { auth, db } from "../../firebase";
 import { signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthValue } from "../../context/Authvalue";
 import { FaUnlockAlt } from "react-icons/fa"
 import bgimage from "../../assets/bg.jpg"
 import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore/lite";
+
 
   function Signin () {
     const [email, setEmail] = useState("");
@@ -108,15 +108,6 @@ import { collection, query, where, getDocs, addDoc, serverTimestamp } from "fire
       <div className="inputs_container">
       <hr className='hrline'></hr>
       <p className="subtitle mb-6">Login to your account</p>
-      {errorMessages && (
-    <div className="mb-4 bg-red-100 border border-red-400 text-red-700 p-4 rounded-lg">
-      {errorMessages.message === "The email address is badly formatted."
-      ? "Please enter a valid email address."
-      : errorMessages.message === "The password is invalid or the user does not have a password."
-      ? "Invalid password. Please try again."
-      : errorMessages.message}
-      </div>
-      )}
       <p className="text-base text-white">Enter your email:</p>
         <input
           type="text"
@@ -149,7 +140,7 @@ import { collection, query, where, getDocs, addDoc, serverTimestamp } from "fire
           <p className=' text-lg absolute text-white bg-[#800000]'>or</p>
         </div>
       <div className="bottom-buttons">
-        <GoogleButton className="items-center justify-center ml-10" onClick={signInWithGoogle}/>
+        <input type="submit" value="Google Signin" className="google_button" onClick={signInWithGoogle} />
       </div>
     </form>
   </Card> 

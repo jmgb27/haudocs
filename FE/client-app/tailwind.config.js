@@ -3,7 +3,8 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx}", "./node_modules/flowbite/**/*.js" ],
   theme: {
     colors: {
-      'maroon': '#800000'
+      'maroon': '#800000',
+      'mustard': '#FFDB58'
     },
     extend: {},
   },

@@ -1,0 +1,13 @@
+.trans {
+    display: flex;
+    width: 55%;
+    background-color: maroon;
+    border: 0;
+    border-radius: 0;
+}
+
+/* @media (max-height: 1050px) {
+    .review{
+        height: 50%;
+    }
+} */

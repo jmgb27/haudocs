@@ -5,7 +5,6 @@ import crformsdata from './accordion/crformsdata/crformsdata';
 import Accordion2 from './accordion/crformsdata/Accordion2';
 import Accordion3 from './accordion/frformsdata/Accordion3';
 import frformsdata from './accordion/frformsdata/frformsdata';
-import './download.css';
 import Sidebar from '../../components/Sidebar';
 
 const Download = () => {

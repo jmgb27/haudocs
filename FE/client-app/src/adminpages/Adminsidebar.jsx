@@ -3,11 +3,11 @@ import {FaTh, FaUserAlt} from "react-icons/fa";
 import {AiOutlineFileSync, AiFillSetting} from "react-icons/ai";
 import { FiLogOut} from "react-icons/fi";
 import { RiFileTransferFill } from "react-icons/ri";
-import { ImLocation2 } from "react-icons/im";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import './adminsidebar.css';
 import Navbar from '../components/navbar/Navbar';
+import {GoFileSymlinkDirectory} from "react-icons/go"
 
 const Adminsidebar = ({children}, {setIsSignin}) => {
     const AdminsidenavItem = [
@@ -24,7 +24,7 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
         {
           path:'/adminsubmissions',
           name:"Submissions",
-          icon: <ImLocation2/>
+          icon: <GoFileSymlinkDirectory/>
         },
         {
           path:'/admintransfer',
@@ -74,7 +74,7 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
     <div className='admin-bottom_section'>
         {
         Setting.map((item, index)=>(
-          <NavLink to={item.path} key={index} className="link-adminsidebar" activeclassName="active">
+          <NavLink to={item.path} key={index} className="link-adminsidebar flex items-center" activeclassName="active">
             <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
@@ -83,7 +83,7 @@ const Adminsidebar = ({children}, {setIsSignin}) => {
         
         {
         BottomnavItem.map((item, index)=>(
-          <NavLink to={item.path} key={index} className="link-adminsidebar" onClick={()=>setIsSignin(false)}>
+          <NavLink to={item.path} key={index} className="link-adminsidebar flex items-center" onClick={()=>setIsSignin(false)}>
             <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
