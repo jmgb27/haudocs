@@ -37,7 +37,7 @@ function Submission () {
   }, []);
   const tabs = [
     { label: 'Initial Process', content: 
-    <div className='sub-container'>
+    <div className='sub-containerr'>
     <div className='sub-title'>
       <h1 class="text-lg font-bold">Initial Process</h1>
       <hr />
@@ -150,7 +150,7 @@ function Submission () {
     </div>
   </div>},
     { label: 'Continuing Review', content:
-    <div className='sub-container'>
+    <div className='sub-containerr'>
     <div className='sub-title'>
       <h1 class="text-lg font-bold">Continuing Review</h1>
       <hr />
@@ -245,7 +245,9 @@ function Submission () {
       </div>
     </div>
   </div>},
-    { label: 'Final Review', content:     <div className='sub-container'>
+    { label: 'Final Review',
+    content:
+    <div className='sub-containerr'>
     <div className='sub-title'>
       <h1 class="text-lg font-bold">Final Review</h1>
       <hr />
@@ -284,7 +286,7 @@ function Submission () {
 
   return (
     <Sidebar>
-          <div className='mt-[5rem] '>
+      <div className='mt-[5rem] ml-[15rem]'>
       <div className='flex justify-center items-center'>
         {tabs.map((tab, index) => (
           <button

@@ -31,7 +31,7 @@ function Dashboard() {
   const navigate = useNavigate()
   return (
   <Sidebar>
-  <div className='db-bg'>
+  <div className='db-bg ml-[15rem] flex items-center justify-center flex-col'>
     <div className='db-containers'>
     <h1 className='flex text-center flex-col text-3xl'>HAU-Institutional Review Board</h1>
   <div className='db-ir-head flex-col items-center flex'>
@@ -113,7 +113,7 @@ function Dashboard() {
         follows approved protocol beyond period of initial ethical clearance and up to the end of study).</em>
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
-      <div className='space-x-[31rem]'>
+      <div className='mt-2 mb-10 space-x-[35rem]'>
       <button className='continue-button items-center justify-center flex'>Continue</button>
       <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>

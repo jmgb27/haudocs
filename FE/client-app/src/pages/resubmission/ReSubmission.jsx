@@ -8,6 +8,7 @@ import {
   } from "firebase/storage";
   import { storage } from "../../firebase";
   import { v4 } from "uuid";
+  import "./resubmission.css"
 
 const ReSubmission = () => {
     const [fileUpload, setfileUpload] = useState(null);
@@ -35,10 +36,8 @@ const ReSubmission = () => {
     }, []);
   return (
     <Sidebar>
-      <div className='sub-container mt-4'>
+      <div className='sub-container'>
         <div className='sub-title'>
-          <h1 class="text-lg font-bold">Initial Process</h1>
-          <hr />
           <br />
           <div className='files'>
             <div className='form'>
@@ -71,6 +70,17 @@ const ReSubmission = () => {
                  onChange={(event) => {
                 setfileUpload(event.target.files[0]);
                 }}/>
+              <article className='upload'>
+                <label class="block mb-5 text-lg font-medium text-gray-900 dark:text-white" for="file_input">3. Others</label>
+                <input
+                class='block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'
+                id="multiple_files"
+                 type="file"
+                 multiple
+                 onChange={(event) => {
+                setfileUpload(event.target.files[0]);
+                }}/>
+              </article>
               </article>
               <form>
               <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">

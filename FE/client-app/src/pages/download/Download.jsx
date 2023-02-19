@@ -10,7 +10,7 @@ import Sidebar from '../../components/Sidebar';
 const Download = () => {
   return (
     <Sidebar>
-    <div className='head'>
+    <div className='head ml-[15rem]'>
       <div className="accordion">
         {formsdata.map(({ title, form1, form2, form3 }) => (
           <Accordion title={title} form1={form1} form2={form2} form3={form3} />

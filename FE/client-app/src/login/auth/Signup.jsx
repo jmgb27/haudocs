@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/Authvalue";
 import bgimage from "../../assets/bg.jpg"
 import { registerWithEmailAndPassword } from "../../firebase";
+import TextField from '@mui/material/TextField';
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -124,44 +125,68 @@ function Signup() {
     <div style={myStyle}>
     <Card>
     <h1 className="title">Sign Up for HAUDOCS <p>Create a free account</p> </h1>
-      <div className="inputs_container">
+      <div className="signup-inputs_container">
       <hr className='hrline'></hr>
-      <p className='text-base mb-4 mt-6 text-white'>Welcome! Please Enter your details</p>
+      <p className='text-base mb-4 mt-6 text-black'>Welcome! Please Enter your details</p>
       {errorMessages && <div className='auth__error'>{errorMessages}</div>}
-      <p className="text-base text-white">Your Name:</p>
-        <input
+        <TextField
+          label="Name" 
+          className="textfield"
           required
-          type="text"
-          placeholder="Name"
+          variant="outlined"
+          fullWidth
+          id="name"
+          name="name"
+          margin="normal"
+          autoComplete="name"
+          autoFocus
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-      <p className="text-base text-white">Your Email:</p>
-        <input
+
+        <TextField
+          label="Email Address"
+          className="textfield"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="email"
+          name="email"
+          autoComplete="email"
           required
-          type="text"
-          placeholder="Email Address"
+          autoFocus
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         {renderErrorMsg("username")}
         {renderErrorMsg("noUsername")}
-        <p className="text-base text-white">Your Password:</p>
-        <input
+
+        <TextField
+          className="textfield"
+          margin="normal"
+          label="Password"
+          fullWidth
           required
+          name="password"
           type="password"
-          placeholder="Password"
+          id="password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         {renderErrorMsg("password")}
         {renderErrorMsg("noPassword")}
 
-        <p className="text-base text-white">Confirm Password:</p>
-        <input
+        <TextField
+          className="textfield"
+          margin="normal"
+          label="Confirm Password"
+          fullWidth
           required
+          name="password"
           type="password"
-          placeholder="Password"
+          id="password"
+          autoComplete="current-password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
@@ -170,7 +195,7 @@ function Signup() {
       </div>
       <input onClick={register} type="submit" value="Signup" className="login_button" />
       <div className='w-full flex items-center justify-center'>
-        <p className='text-sm font-normal text-white mt-5'>Already have an account? <Link to= "/Signin"><a className='font-semibold underline underline-offset-2 cursor-pointer'>Login here</a></Link></p>
+        <p className='text-sm font-normal text-black mt-5'>Already have an account? <Link to= "/Signin"><a className='font-semibold underline underline-offset-2 cursor-pointer'>Login here</a></Link></p>
       </div>
   </Card>
   </div>

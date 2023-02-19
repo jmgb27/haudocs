@@ -96,6 +96,10 @@ h3 span{
     cursor: pointer;
 }
 
+.icon {
+    
+}
+
 .dropdownItem {
     display: flex;
     margin: 10px auto;

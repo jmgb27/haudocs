@@ -11,18 +11,41 @@ import {
 } from "firebase/firestore/lite";
 import { DataGrid } from "@mui/x-data-grid";
 import "./adminusers.css"
-import {Button, Modal, Label, TextInput} from "flowbite-react"
 import { registerWithEmailAndPassword } from "../../firebase";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 
 const AdminUsers = () => {
   const [data, setData] = useState([]);
-  const [modalIsOpen, setVisible] = useState(false)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 2,
+    borderRadius:'5px'
+  };
 
   useEffect(() => {
      const fetchData = async () => {
@@ -73,11 +96,12 @@ const AdminUsers = () => {
 
   const addusers = () => {
     if (validatePassword()) {;
-    registerWithEmailAndPassword(name, email, password)
+    registerWithEmailAndPassword(name, email, password, role)
     .then((userCredential) => {
       console.log(userCredential.user);
     }).catch(err => setErrorMessages(err.message))
     }
+    setRole('')
     setName('')
     setEmail('')
     setPassword('')
@@ -122,105 +146,96 @@ const AdminUsers = () => {
     },
   ];
 
-  const handleModalOpen = () =>{
-    setVisible(true)
-  }
-
   return (
     <Adminsidebar>
     <div className="datatable">
       <div className="datatableTitle">
         <h1 className='text-2xl font-bold text-black'>Users Management</h1>
-  <React.Fragment>
-  <Button className='bg-maroon hover:bg-red-800' onClick={handleModalOpen}>
-    Add New
-  </Button>
-  <Modal
-    show={modalIsOpen}
-    popup={true}
-    onClose={() => setVisible(false)}
-  >
-    <Modal.Header />
-    <Modal.Body>
-    {errorMessages && <div className='auth__error'>{errorMessages}</div>}
-      <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-          Add new reviewers and admins
-        </h3>
         <div>
-        <div className="mb-2 block">
-            <Label
-              htmlFor="name"
-              value="Name"
-            />
-          </div>
-          <TextInput
-            value={name}
-            id="text"
-            type="text"
-            placeholder="name"
-            required={true}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="mail"
-              value="Email"
-            />
-          </div>
-          <TextInput
-            type="email"
-            id="email"
-            placeholder="name@company.com"
-            required={true}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="password"
-              value="Password"
-            />
-          </div>
-          <TextInput
-            id="password"
-            type="password"
-            required={true}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="password"
-              value="Password"
-            />
-          </div>
-          <TextInput
-            id="password"
-            type="password"
-            required={true}
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        
-        <div className="flex justify-between">
-        </div>
-        <div className="w-full items-center justify-center flex">
-          <Button className='bg-maroon hover:bg-red-800' type="submit" value="Signup" onClick={addusers}>
-            Create new user
-          </Button>
-        </div>
-      </div>
-    </Modal.Body>
-  </Modal>
-</React.Fragment>
+      <Button onClick={handleOpen}>Add users</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+      >
+        <Box sx={style}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography sx={{ mb: 5 }} component="h1" variant="h5">
+            User Management
+          </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="Name"
+                  required
+                  fullWidth
+                  id="Name"
+                  label="Name"
+                  value={name}
+                  autoFocus
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="role"
+                  label="Role"
+                  name="role"
+                  value={role}
+                  autoComplete="role-name"
+                  onChange={(e) => setRole(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  value={email}
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  value={password}
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={addusers}
+            >
+              Add Users
+            </Button>
+        </Box>
+      </Container>
+        </Box>
+      </Modal>
+    </div>
       </div>
       <DataGrid
         className="datagrid"

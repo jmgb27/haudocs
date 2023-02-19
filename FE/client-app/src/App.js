@@ -12,6 +12,7 @@ import { Navigate } from "react-router-dom";
 import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
 import Forgotpassword from "./login/auth/Forgotpassword";
+import { ReviewerDashboard, Reviewstatus, ProtocolsIR, ProtocolsCR, ProtocolsFR, Reviewerlogout, Reviewersettings } from "./reviewerpage";
 import { AdminDashboard, AdminApplication, AdminArchiving, Adminsubmissions, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
     <Route path='/verifyemail' element={<VerifyEmail/>} /> 
     <Route path='/forgotpassword' element={<Forgotpassword/>} /> 
     </Routes>
+
+{/* APPLICANTS ROUTES */}
     <Routes>
     <Route path ="/dashboard"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
     <Route path ="/application"element={<ProtectedRoute><Application/></ProtectedRoute>}/>
@@ -51,6 +54,8 @@ function App() {
     <Route path ="/resubmission"element={<ProtectedRoute><ReSubmission/></ProtectedRoute>}/>
     <Route path ="/logout"element={<ProtectedRoute><Logout/></ProtectedRoute>}/>
   </Routes>
+
+{/* ADMIN ROUTES */}
     <Routes>
     <Route path ="/admindashboard"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
     <Route path ="/adminapplication"element={<ProtectedRoute><AdminApplication/></ProtectedRoute>}/>
@@ -60,6 +65,17 @@ function App() {
     <Route path ="/adminusers"element={<ProtectedRoute><AdminUsers/></ProtectedRoute>}/>
     <Route path ="/adminsettings"element={<ProtectedRoute><AdminSettings/></ProtectedRoute>}/>
     <Route path ="/adminlogout"element={<ProtectedRoute><AdminLogout/></ProtectedRoute>}/>
+    </Routes>
+
+{/* REVIEWER ROUTES */}
+    <Routes>
+    <Route path ="/reviewerdashboard"element={<ProtectedRoute><ReviewerDashboard/></ProtectedRoute>}/>
+    <Route path ="/reviewerstatus"element={<ProtectedRoute><Reviewstatus/></ProtectedRoute>}/>
+    <Route path ="/protocolsIR"element={<ProtectedRoute><ProtocolsIR/></ProtectedRoute>}/>
+    <Route path ="/protocolsCR"element={<ProtectedRoute><ProtocolsCR/></ProtectedRoute>}/>
+    <Route path ="/protocolsFR"element={<ProtectedRoute><ProtocolsFR/></ProtectedRoute>}/>
+    <Route path ="/reviewersettings"element={<ProtectedRoute><Reviewersettings/></ProtectedRoute>}/>
+    <Route path ="/reviewerlogout"element={<ProtectedRoute><Reviewerlogout/></ProtectedRoute>}/>
     </Routes>
   </BrowserRouter>
   </AuthProvider>
