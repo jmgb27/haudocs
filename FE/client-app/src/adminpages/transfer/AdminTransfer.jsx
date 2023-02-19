@@ -66,7 +66,6 @@ function AdminTransfer () {
       <h1 className='text-white ml-[1.3rem] mr-[6rem]'>Type of review:</h1>
       <select id="review" class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon">
       <option selected>Choose type of review</option>
-      <option value="SC">Exempt from review</option>
       <option value="NS">Full board review</option>
       <option value="NS">expedited review</option>
       </select>

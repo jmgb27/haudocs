@@ -32,7 +32,7 @@ const Sidebar = ({children},{setIsSignin}) => {
     },
     {
       path:'/resubmission',
-      name:"Re Submission",
+      name:"ReSubmission",
       icon: <AiOutlineFileExclamation/>
     },
   ]
