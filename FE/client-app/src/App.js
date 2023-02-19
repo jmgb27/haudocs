@@ -29,7 +29,7 @@ function App() {
     <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
     <BrowserRouter>
     <Routes>
-    <Route exact path ="/"element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+    <Route exact path ="/"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
     <Route path="/Signin" element={
             !currentUser?.emailVerified 
             ? <Signin/>

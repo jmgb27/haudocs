@@ -11,7 +11,7 @@ import { Dashboard } from '../pages';
 const Sidebar = ({children},{setIsSignin}) => {
   const SidenavItem = [
     {
-      path:'/dashboard', element: <Dashboard/>,
+      path:'/dashboard',
       name:"Dashboard",
       icon: <FaTh/>
     },
