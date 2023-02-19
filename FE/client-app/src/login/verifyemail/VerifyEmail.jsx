@@ -12,7 +12,7 @@ function VerifyEmail() {
   const [time, setTime] = useState(60)
   const {timeActive, setTimeActive} = useAuthValue()
   const navigate = useNavigate()
-  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [setButtonDisabled] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {

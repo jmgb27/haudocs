@@ -6,6 +6,8 @@ import edit from '../../assets/edit.png';
 import envelope from '../../assets/envelope.png';
 import signout from '../../assets/log-out.png';
 import { UserAuth } from '../../context/AuthContext';
+import Badge from '@mui/material/Badge';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 
 function Navbar() {
@@ -46,7 +48,10 @@ function Navbar() {
                 <img src={logo} alt="logo"/>
             </div>
         </div>
-        <div className='icons'>
+        <div className='icons flex flex-row items-center justify-center'>
+        <Badge badgeContent={4} color="primary">
+          <NotificationsNoneOutlinedIcon style={{ color: "maroon" }} />
+          </Badge>
           <div className="menu-container" ref={menuRef}>
             <div className="menu-trigger" onClick={() => {setOpen(!open)}}>
               <img src={user.photoURL}></img>

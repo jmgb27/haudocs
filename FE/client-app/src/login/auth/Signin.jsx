@@ -10,7 +10,8 @@ import { useAuthValue } from "../../context/Authvalue";
 import { FaUnlockAlt } from "react-icons/fa"
 import bgimage from "../../assets/bg.jpg"
 import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore/lite";
-
+import TextField from '@mui/material/TextField';
+import {FcGoogle} from "react-icons/fc"
 
   function Signin () {
     const [email, setEmail] = useState("");
@@ -76,7 +77,7 @@ import { collection, query, where, getDocs, addDoc, serverTimestamp } from "fire
             authProvider: "google",
             email: user.email,
             createdAt: serverTimestamp(),
-            role: "Admin"
+            role: ""
           });
         }
       } catch (err) {
@@ -108,21 +109,43 @@ import { collection, query, where, getDocs, addDoc, serverTimestamp } from "fire
       <div className="inputs_container">
       <hr className='hrline'></hr>
       <p className="subtitle mb-6">Login to your account</p>
-      <p className="text-base text-white">Enter your email:</p>
-        <input
-          type="text"
-          placeholder="Username"
+      <TextField label="Email Address" className="textfield text-white" 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
-        <p className="text-base text-white">Enter your password:</p>
-        <input
-          type="password"
-          placeholder="Password"
+/*           sx={{
+            "& .MuiInputLabel-root": {color: 'black'},//styles the label
+            "& .MuiOutlinedInput-root": {
+              "& > fieldset": { borderColor: "black" },
+            },
+          }}  */  
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          name="email"
+          autoComplete="email"
+          autoFocus/>
+
+      <TextField label="Password" className="textfield text-white" 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="text-white underline underline-offset-2 items-center justify-end flex">
+/*             sx={{
+            "& .MuiInputLabel-root": {color: 'black',},//styles the label
+            "& .MuiOutlinedInput-root": {
+            "& > fieldset": { borderColor: "black" },
+            },
+            }}  */ 
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+            />
+
+        <div className="text-black underline underline-offset-2 items-center justify-end flex">
         <FaUnlockAlt/>
        <Link to="/forgotpassword">
         Forgot Password?</Link>
@@ -131,19 +154,22 @@ import { collection, query, where, getDocs, addDoc, serverTimestamp } from "fire
 
       <input type="submit" value="Login" className="login_button" />
       <div className="hau-signup">
-      <div>
-      Dont have an account? Click <Link className="text-white font-semibold underline underline-offset-2 cursor-pointer" to="/signup">here</Link> to register
+      <div className="text-black">
+      Dont have an account? Click <Link className="text-black font-semibold underline underline-offset-2 cursor-pointer" to="/signup">here</Link> to register
       </div>
       </div>
       <div className='w-full flex items-center justify-center relative py-6'>
-          <div className='w-full h-[1px] bg-white'></div>
-          <p className=' text-lg absolute text-white bg-[#800000]'>or</p>
+          <div className='w-full h-[1px] bg-black'></div>
+          <p className='or text-lg absolute'>or</p>
         </div>
-      <div className="bottom-buttons">
-        <input type="submit" value="Google Signin" className="google_button" onClick={signInWithGoogle} />
+      <div>
+        <button type="submit" className="google_button" onClick={signInWithGoogle}>
+          <div className="flex items-start justify-start"><FcGoogle size={25}/></div>
+          <div className="text-center">Continue With Google</div>
+        </button>
       </div>
-    </form>
-  </Card> 
+      </form>
+  </Card>
   </div>
   )
 };

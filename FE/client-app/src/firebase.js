@@ -23,7 +23,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
@@ -32,9 +31,9 @@ export const db = getFirestore(app);
 
 export const storage = getStorage(app);
 
-export const registerWithEmailAndPassword = async (name, email, password) => {
+export const registerWithEmailAndPassword = async (name, email, password, role) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password, name);
+    const res = await createUserWithEmailAndPassword(auth, email, password, name, role);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       createdAt: serverTimestamp(),
@@ -42,7 +41,7 @@ export const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
-      role: ""
+      role,
     });
   } catch (err) {
     console.error(err);

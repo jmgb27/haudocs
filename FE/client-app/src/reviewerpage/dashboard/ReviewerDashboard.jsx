@@ -1,15 +1,13 @@
 import React, {useState} from 'react'
+import Reviewersidebar from '../Reviewersidebar'
 import './dashboard.css';
 import { useNavigate } from 'react-router-dom';
 import {AiFillFileText} from 'react-icons/ai';
 import {IoSyncCircleSharp} from 'react-icons/io5';
 import {BsFillFileEarmarkCheckFill} from 'react-icons/bs'
 import './modals.css'
-import Adminsidebar from '../Adminsidebar'
 
-
-function AdminDashboard() {
-
+const ReviewerDashboard = () => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
@@ -30,7 +28,7 @@ function AdminDashboard() {
 
   const navigate = useNavigate()
   return (
-  <Adminsidebar>
+    <Reviewersidebar>
   <div className='db-bg ml-[15rem] flex items-center justify-center flex-col'>
     <div className='db-containers'>
     <h1 className='flex text-center flex-col text-3xl'>HAU-Institutional Review Board</h1>
@@ -179,8 +177,8 @@ function AdminDashboard() {
         </div>
       </div>
   )}
-</Adminsidebar>
+    </Reviewersidebar>
   )
 }
 
-export default AdminDashboard;
+export default ReviewerDashboard

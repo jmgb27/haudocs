@@ -6,11 +6,12 @@ import {FiDownload, FiLogOut} from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import './navbar/navbar.css'
 import Navbar from './navbar/Navbar';
+import { Dashboard } from '../pages';
 
 const Sidebar = ({children},{setIsSignin}) => {
   const SidenavItem = [
     {
-      path:'/dashboard',
+      path:'/dashboard', element: <Dashboard/>,
       name:"Dashboard",
       icon: <FaTh/>
     },

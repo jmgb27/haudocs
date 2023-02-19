@@ -134,7 +134,7 @@ const AdminTransfer = () => {
   ];
   return (
     <Adminsidebar>
-    <div className="container mx-auto mt-[4rem]">
+    <div className="flex ml-[15rem] mt-[4rem]">
       <AdminTabs tabs={tabs} defaultActiveTab={0} />
     </div>
     </Adminsidebar>

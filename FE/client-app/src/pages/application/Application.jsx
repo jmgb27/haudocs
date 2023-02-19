@@ -27,7 +27,7 @@ function Application() {
 
   return (
     <Sidebar>
-    <div className='mt-[5rem]'>
+    <div className='mt-[5rem] ml-[15rem]'>
     <h3 className='text-2xl font-bold text-left ml-7'>Application Status</h3>
     <div className='application-container'>
       <div className="status flex items center flex-col justify-center">

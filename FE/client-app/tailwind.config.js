@@ -6,6 +6,9 @@ module.exports = {
       'maroon': '#800000',
       'mustard': '#FFDB58'
     },
+    fontFamily: {
+      'fontfamily': ["ColfaxAI"],
+    },
     extend: {},
   },
   plugins: [
