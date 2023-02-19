@@ -3,28 +3,10 @@ import Adminsidebar from '../Adminsidebar'
 import AdminTabs from './AdminTabs'
 import './transfer.css'
 import {Card} from "flowbite-react"
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
-const AdminTransfer = () => {
-  const [state, setState] = React.useState({
-    Almond: true,
-    Myra: false,
-    Steph: false,
-  });
 
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
+function AdminTransfer () {
 
-  const { almond, myra, steph } = state;
   const tabs = [
     {
       title: 'Applicants',
@@ -36,10 +18,11 @@ const AdminTransfer = () => {
         <input class="ml-4 mt-5 block text-sm text-white cursor-pointer dark:text-gray-400 focus:outline-none dark:placeholder-gray-400" id="multiple_files" type="file" multiple />
         <div className='flex items-center justify-start mt-5 space-x-2'>
         <h1 className='text-white ml-4 mr-[6rem]'>Type of review:</h1>
-        <select id="review" class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon">
+        <select id="review" class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 pl-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon">
         <option selected>Choose type of review</option>
-        <option value="SC">Scientist</option>
-        <option value="NS">Non-Scientist</option>
+        <option value="SC">Exempt from review</option>
+        <option value="NS">Full board review</option>
+        <option value="NS">expedited review</option>
         </select>
         </div>
         <div className='flex items-center mt-5 space-x-2'>
@@ -83,38 +66,24 @@ const AdminTransfer = () => {
       <h1 className='text-white ml-[1.3rem] mr-[6rem]'>Type of review:</h1>
       <select id="review" class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon">
       <option selected>Choose type of review</option>
-      <option value="SC">Scientist</option>
-      <option value="NS">Non-Scientist</option>
+      <option value="SC">Exempt from review</option>
+      <option value="NS">Full board review</option>
+      <option value="NS">expedited review</option>
       </select>
       </div>
+
       <div className='text-white '>
-      <Box sx={{ display: 'flex' }}>
-      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-        <FormLabel component="legend"><div className='text-white'>Assign to:</div></FormLabel>
-        <FormGroup className='ml-[12.8rem]'>
-          <FormControlLabel className='outline-white'
-            control={
-              <Checkbox checked={almond} onChange={handleChange} name="almond" />
-            }
-            label="Almond Rosos"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={myra} onChange={handleChange} name="myra" />
-            }
-            label="Myra Cuyagbo"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={steph} onChange={handleChange} name="steph" />
-            }
-            label="Stephanie David"
-          />
-        </FormGroup>
-      </FormControl>      
-    </Box>
-    <form>
-        <h1 className='text-white ml-4 mr-[6rem]'>Comments:</h1>
+      <div className='flex items-center justify-start mt-5 space-x-2'>
+      <h1 className='text-white ml-[1.3rem] mr-[8.1rem]'>Assign To:</h1>
+      <select id="review" class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 pl-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon">
+      <option selected>Choose the reviewer</option>
+      <option value="SC">Almond Rosos</option>
+      <option value="NS">Myra Cuyagbo</option>
+      <option value="NS">Stephanie David</option>
+      </select>
+      </div>
+      <form>
+        <h1 className='text-white mt-6 ml-5 mr-[6rem]'>Comments:</h1>
         <div class="w-half mb-2 mr-2 ml-[9rem] border border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
         <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
         <label for="comment" class="sr-only">Your comment</label>
