@@ -136,6 +136,13 @@
     }
 }
 
+@media (max-height: 700px) {
+    .bottom_section{
+        padding-top: 13rem;
+    }
+}
+  
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,11 +1,15 @@
 import React, {useState} from 'react'
 import './dashboard.css';
 import { useNavigate } from 'react-router-dom';
-import {AiFillFileText} from 'react-icons/ai';
-import {IoSyncCircleSharp} from 'react-icons/io5';
-import {BsFillFileEarmarkCheckFill} from 'react-icons/bs'
 import './modals/modal.css';
 import Sidebar from '../../components/Sidebar';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Initial from "../../assets/initial.png"
 
 
 function Dashboard() {
@@ -34,37 +38,70 @@ function Dashboard() {
   <div className='db-bg ml-[15rem] flex items-center justify-center flex-col'>
     <div className='db-containers'>
     <h1 className='flex text-center flex-col text-3xl'>HAU-Institutional Review Board</h1>
-  <div className='db-ir-head flex-col items-center flex'>
-    <div onClick={toggleModal2} class="db-ir">
-      <div className='db-logo-container container mx-auto flex items-center ml-3'>
-        <div class="flex items-start ">
-        <AiFillFileText size={50}/>
-        </div>
-        <h1 className='font-bold'>Initial Process Application</h1>
-      </div>
+    <div className='card-item flex items-center justify-center space-x-[1rem] mt-[3rem]'>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image={Initial}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Initial Review
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        REQUIREMENTS for Ethics Review Initial application:
+        Research Proposal (with the following sections)
+        Introduction, RRL and Methods section- with “Ethical Considerations” section...
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={toggleModal2} size="small">See More</Button>
+      </CardActions>
+    </Card>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image={Initial}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Continuing Review
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        Upon issuance of ethical clearance (approval letter is valid for 1 year), 
+        the researcher has the responsibility to the submission of the following post-approval 
+        reports during the conduct of the study...
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={toggleModal} size="small">See More</Button>
+      </CardActions>
+    </Card>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image={Initial}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Final Review
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        1. HAU-IRB FORM 3.7(A): Final Report Form (this signals the completion of the study and its acceptance by the HAU-IRB).This should be forwarded to the board not later than 8 weeks after the end of the study.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={toggleModal3} size="small">See More</Button>
+      </CardActions>
+    </Card>
     </div>
-  </div>
-  <div className='db-cr-head flex-col items-center flex'>
-    <div onClick={toggleModal} class="db-cr">
-      <div className='db-logo-container container mx-auto flex items-center ml-3'>
-       <div class="flex items-start">
-        <IoSyncCircleSharp size={50}/>
-      </div>
-      <h1 className='font-bold text-lg text-center'>Continuing Review</h1>
-    </div>
-   </div>
-  </div>
-  <div className='db-fr-head flex-col items-center flex'>
-    <div onClick={toggleModal3} class="db-fr">
-    <div className='db-logo-container container mx-auto flex items-center ml-3'>
-       <div class='flex flex-col items-center justify-center'>
-        <BsFillFileEarmarkCheckFill size={50}/>
-      </div>
-      <h1 className="font-bold text-lg text-center">Final Review</h1>
-    </div>
-    </div>
-  </div>
-  </div>
+</div>
 </div>
 
 
@@ -113,7 +150,7 @@ function Dashboard() {
         follows approved protocol beyond period of initial ethical clearance and up to the end of study).</em>
         This should be applied least 4 weeks before the expiration of the ethical clearance of a protocol.
       </p>
-      <div className='mt-2 mb-10 space-x-[35rem]'>
+      <div className='mt-2 mb-10 space-x-[34rem]'>
       <button className='continue-button items-center justify-center flex'>Continue</button>
       <button onClick={toggleModal} className='close-modal items-center justify-center flex'>Close</button>
       </div>
@@ -150,7 +187,7 @@ function Dashboard() {
     <p>Please be reminded that students/researchers cannot proceed with any form of data
       collection <em>(pilot testing included)</em> unless issued an ethical clearance.</p>
 
-    <div className='mt-2 mb-10 space-x-[31rem]'>
+    <div className='mt-2 mb-10 space-x-[34rem]'>
     <button onClick={() => navigate('/download')} className='continue-button items-center justify-center flex'>Continue</button>
     <button onClick={toggleModal2} className='ir-close-modal items-center justify-center flex'>Close</button>
     </div>
@@ -169,7 +206,7 @@ function Dashboard() {
           acceptance by the HAU-IRB).</em>This should be forwarded to the board not later than 8 weeks after 
           the end of the study.</p>
         </div>
-        <div className='space-x-[31rem]'>
+        <div className='space-x-[34rem]'>
         <button className='continue-button items-center justify-center flex'>Continue</button>
         <button onClick={toggleModal3} className='fr-close-modal items-center justify-center flex'>Close</button>
         </div>

@@ -1,78 +1,53 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Reviewersidebar from '../Reviewersidebar'
-import { Pagination } from 'flowbite-react'
-import "./reviewerstatus.css"
+import Button from '@mui/material/Button';
+import { DataGrid } from '@mui/x-data-grid';
 
 const Reviewstatus = () => {
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-
-      // Sample data
-  const sampleData = [
-    { Protocolnumber: "", Duedate: "", Status: "" },
+   // Sample data
+   const columns = [
+    { field: 'id', headerName: 'ID', width: 305 },
+    { field: 'protocolnumber', headerName: 'Protocol Number', width: 310 },
+    {
+      field: 'duedate',
+      headerName: 'Due Date',
+      width: 320,
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
+    },
   ];
 
-  useEffect(() => {
-    // Load data
-    setData(sampleData);
-  }, []);
+  const rows = [
+    { id: 1, protocolnumber: '032323name', duedate: "04/04/23", status:"" },
+  ];
 
-// Handle page change
-
-const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+  const buttonStyle = {
+    backgroundColor: 'maroon',
+    color: 'white',
   };
-
-// Calculate number of pages
-const totalPages = Math.ceil(data.length / itemsPerPage);
-
-// Get data for current page
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <Reviewersidebar>
-    <div className='ml-[15rem]'>
-    <h1 className='mt-[5rem] text-center text-2xl font-bold'>Review Status</h1>
-    <div class="flex flex-col justify-center items-center overflow-x-auto mt-[2rem]">
-    <table class="border-t-0 text-sm text-center text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-white uppercase bg-maroon dark:text-gray-400">
-        <tr>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Protocol
-            </th>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Due Date
-            </th>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Status
-            </th>
-            </tr>
-        </thead>
-        <tbody>
-            {currentData.map((item) => (
-            <tr className='text-base' key={item.id}>
-              <td>{item.Protocolnumber}</td>
-              <td>{item.Duedate}</td>
-              <td>{item.Status}</td>
-            </tr>
-          ))}
-        </tbody>
-          </table>
-          <div className='flex justify-center items-center mt-1'>
-            <Pagination
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              layout="table"
-              totalPages={totalPages}
-            />
-        </div>
+    <div className='datatable'>
+    <h1 className='mt-[3rem] text-center text-2xl font-bold'>Review Status</h1>
+    <div className='flex items-end justify-end'>
+    <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
     </div>
-    </div>
+    <div className='ml-[2rem] mt-[2rem]' style={{ height: 500, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>    
+      </div>  
     </Reviewersidebar>
   )
 }
 
 export default Reviewstatus
+
