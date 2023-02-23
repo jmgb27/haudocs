@@ -1,81 +1,55 @@
-import React, {useState, useEffect} from 'react'
-import Adminsidebar from '../Adminsidebar'
-import './application.css'
-import { Pagination } from 'flowbite-react'
+import React from 'react'
+import Adminsidebar from '../Adminsidebar';
+import Button from '@mui/material/Button';
+import { DataGrid } from '@mui/x-data-grid';
 
 const AdminApplication = () => {
-    const [data, setData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(5);
-  
-    // Sample data
-    const sampleData = [
-      { classification: "null", documentname: "HAU-INITIAL-REVIEW", datesent: "03/23/23", action: "done" },
-    ];
+   // Sample data
+   const columns = [
+    { field: 'id', headerName: 'ID', width: 270 },
+    { field: 'classification', headerName: 'Classification', width: 270 },
+    {
+      field: 'documentname',
+      headerName: 'Document Name',
+      width: 280,
+    },
+    {
+      field: 'datesent',
+      headerName: 'Date Sent',
+      width: 280,
+    },
+    {
+      field: 'action',
+      headerName: 'Action',
+    },
+  ];
 
-    useEffect(() => {
-        // Load data
-        setData(sampleData);
-      }, []);
-  
-    // Handle page change
+  const rows = [
+    { id: 1, classification: '', documentname: "", datesent: "", action: ""},
+  ];
 
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-      };
-  
-    // Calculate number of pages
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-  
-    // Get data for current page
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
-    
+  const buttonStyle = {
+    backgroundColor: 'maroon',
+    color: 'white',
+  };
+
   return (
     <Adminsidebar>
-    <div className='ml-[15rem]'>
-    <h1 className='mt-[5rem] text-center text-2xl font-bold'>Review Status</h1>
-    <div class="flex flex-col justify-center items-center overflow-x-auto mt-[2rem]">
-    <table class="border-t-0 text-sm text-center text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-white uppercase bg-maroon dark:text-gray-400">
-        <tr>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Classification
-            </th>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Document Name
-            </th>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Date Sent
-            </th>
-            <th scope="col" class="px-6 py-3 text-sm">
-            Action
-            </th>
-            </tr>
-        </thead>
-        <tbody>
-            {currentData.map((item) => (
-            <tr className='text-base' key={item.id}>
-              <td>{item.classification}</td>
-              <td>{item.documentname}</td>
-              <td>{item.datesent}</td>
-              <td>{item.action}</td>
-            </tr>
-          ))}
-        </tbody>
-          </table>
-          <div className='flex justify-center items-center mt-1'>
-            <Pagination
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              layout="table"
-              totalPages={totalPages}
-            />
-        </div>
+    <div className='datatable'>
+    <h1 className='mt-[3rem] text-center text-2xl font-bold'>Review Status</h1>
+    <div className='flex items-end justify-end'>
+    <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
     </div>
-
-    </div>
+    <div className='ml-[2rem] mt-[2rem]' style={{ height: 500, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>    
+      </div>  
     </Adminsidebar>
   )
 }

@@ -1,19 +1,19 @@
 export const userColumns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "id", headerName: "ID", width: 240 },
     {
       field: "name",
       headerName: "Name",
-      width: 230,
+      width: 260,
     },
     {
       field: "email",
       headerName: "Email",
-      width: 230,
+      width: 260,
     },
   
     {
       field: "role",
       headerName: "Role",
-      width: 150,
+      width: 260,
     },
   ];

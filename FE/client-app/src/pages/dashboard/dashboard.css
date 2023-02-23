@@ -106,6 +106,17 @@ main {
     }
 }
 
+@media (max-width: 1440px) {
+    .db-containers{
+        margin-left: 2rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .card-item{
+        gap: 20px;
+    }
+}
 
 @tailwind base;
 @tailwind components;
