@@ -104,19 +104,45 @@ main {
     .db-containers{
         margin-left: 0.5rem;
     }
+    .db-bg {
+        margin-left: 15rem;
+    }
+    .card-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 1440px) {
     .db-containers{
         margin-left: 2rem;
     }
+    .card-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 @media (min-width: 1920px) {
     .card-item{
         gap: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
+
+/* @media (max-width: 768px) {
+    .db-bg {
+        width: 1000px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+} */
 
 @tailwind base;
 @tailwind components;

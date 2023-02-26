@@ -141,6 +141,12 @@
         padding-top: 13rem;
     }
 }
+
+/* @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+} */
   
 
 @tailwind base;

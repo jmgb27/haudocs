@@ -4,9 +4,7 @@ import {FaTh} from "react-icons/fa";
 import {AiOutlineFileSync, AiFillSetting, AiOutlineFileAdd, AiOutlineFileExclamation} from "react-icons/ai";
 import {FiDownload, FiLogOut} from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
-import './navbar/navbar.css'
 import Navbar from './navbar/Navbar';
-import { Dashboard } from '../pages';
 
 const Sidebar = ({children},{setIsSignin}) => {
   const SidenavItem = [
@@ -32,7 +30,7 @@ const Sidebar = ({children},{setIsSignin}) => {
     },
     {
       path:'/resubmission',
-      name:"Re Submission",
+      name:"ReSubmission",
       icon: <AiOutlineFileExclamation/>
     },
   ]
@@ -54,7 +52,7 @@ const Sidebar = ({children},{setIsSignin}) => {
   return (
     <div className='container'>
       <div className='sidebar'>
-      <Navbar />
+        <Navbar/>
         <div className='top_section'>
         </div>
         {

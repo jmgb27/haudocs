@@ -51,7 +51,7 @@ body {
 }
 
 .reviewer-bottom_section{
-    padding-top: 35rem;
+    padding-top: 40rem;
 }
 .auth-multi-layout {
     position: relative;
@@ -130,12 +130,12 @@ body {
 
 @media (max-height: 1050px) {
     .reviewer-bottom_section{
-        padding-top: 33rem;
+        padding-top: 40rem;
     }
 }
 
 @media (max-height: 900px) {
     .reviewer-bottom_section{
-        padding-top: 16rem;
+        padding-top: 23rem;
     }
 }

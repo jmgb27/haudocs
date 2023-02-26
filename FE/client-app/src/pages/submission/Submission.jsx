@@ -35,6 +35,10 @@ function Submission () {
       });
     });
   }, []);
+
+  const chooseStyle = {
+    backgroundColor: "maroon"
+  }
   const tabs = [
     { label: 'Initial Process', content: 
     <div className='sub-containerr'>
