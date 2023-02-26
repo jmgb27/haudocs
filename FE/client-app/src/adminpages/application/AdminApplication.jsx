@@ -6,40 +6,46 @@ import { DataGrid } from '@mui/x-data-grid';
 const AdminApplication = () => {
    // Sample data
    const columns = [
-    { field: 'id', headerName: 'ID', width: 270 },
-    { field: 'classification', headerName: 'Classification', width: 270 },
+    { field: 'id', headerName: 'ID', width: 180},
+    { field: 'protocolnumber', headerName: 'Protocol Number', width: 190 },
+    { field: 'classification', headerName: 'Classification', width: 190 },
     {
       field: 'documentname',
       headerName: 'Document Name',
-      width: 280,
+      width: 190,
     },
     {
       field: 'datesent',
       headerName: 'Date Sent',
-      width: 280,
+      width: 190,
     },
     {
-      field: 'action',
-      headerName: 'Action',
+      field: 'sentby',
+      headerName: 'Sent By',
+      width: 190,
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
     },
   ];
 
   const rows = [
-    { id: 1, classification: '', documentname: "", datesent: "", action: ""},
+    { id: 1, protocolnumber: "", classification: '', documentname: "", datesent: "", sentby: "", action: ""},
   ];
 
-  const buttonStyle = {
+/*   const buttonStyle = {
     backgroundColor: 'maroon',
     color: 'white',
-  };
+  }; */
 
   return (
     <Adminsidebar>
     <div className='datatable'>
     <h1 className='mt-[3rem] text-center text-2xl font-bold'>Review Status</h1>
-    <div className='flex items-end justify-end'>
+{/*     <div className='flex items-end justify-end'>
     <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
-    </div>
+    </div> */}
     <div className='ml-[2rem] mt-[2rem]' style={{ height: 500, width: '100%' }}>
       <DataGrid
         rows={rows}

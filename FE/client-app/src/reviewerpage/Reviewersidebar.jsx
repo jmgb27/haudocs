@@ -22,11 +22,11 @@ const Reviewersidebar = ({children}, {setIsSignin}) => {
           icon: <AiOutlineFileSync/>
         },
         {
-          path:'/protocolsIR',
-          name:"Protocols for Initial",
+          path:'/assignedprotocol',
+          name:"Assigned Protocol",
           icon: <GoFileSymlinkDirectory/>
         },
-        {
+/*         {
           path:'/protocolsCR',
           name:"Protocols for Continuing",
           icon: <RiFileTransferFill/>
@@ -35,7 +35,7 @@ const Reviewersidebar = ({children}, {setIsSignin}) => {
           path:'/protocolsFR',
           name:"Protocols for Final",
           icon: <BsFillArchiveFill/>
-        },
+        }, */
       ]
       const Setting = [
         {

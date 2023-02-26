@@ -20,6 +20,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 
 const AdminUsers = () => {
@@ -33,6 +35,7 @@ const AdminUsers = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [deleteopen, deletesetOpen] = useState(false);
 
   const style = {
     position: 'absolute',
@@ -74,6 +77,7 @@ const AdminUsers = () => {
     } catch (err) {
       console.log(err);
     }
+    setOpen(false);
   };
 
   const validatePassword = () => {
@@ -125,6 +129,7 @@ const AdminUsers = () => {
     email=== errorMessages.email && (
       <p className="error_msg">{errorMessages.message}</p>
     );
+    
 
   const actionColumn = [
     {
@@ -134,17 +139,40 @@ const AdminUsers = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <div
+            <Button
+              startIcon={<DeleteIcon />}
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              variant='outlined'
+              style={deleteStyle}
+              onClick={() => deletesetOpen(true)}
             >
               Delete
-            </div>
+            </Button>
+        <Dialog open={deleteopen} onClose={() => deletesetOpen(false)}>
+        <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          Are you sure you want to delete this item?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => deletesetOpen(false)}>Cancel</Button>
+          <Button style={deleteStyle} onClick={() => handleDelete(params.row.id)} color="secondary">Delete</Button>
+        </DialogActions>
+        </Dialog>
           </div>
         );
       },
     },
   ];
+
+  const deleteStyle = {
+    color: "maroon",
+    borderColor: "maroon"
+  }
+
+  const buttonStyle = {
+    backgroundColor: 'maroon',
+    color: 'white',
+  };
 
   return (
     <Adminsidebar>
@@ -152,7 +180,7 @@ const AdminUsers = () => {
       <div className="datatableTitle">
         <h1 className='text-2xl font-bold text-black'>Users Management</h1>
         <div>
-      <Button onClick={handleOpen}>Add users</Button>
+      <Button style={buttonStyle} variant='contained' onClick={handleOpen}>Add users</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -224,6 +252,7 @@ const AdminUsers = () => {
             </Grid>
             <Button
               type="submit"
+              style={buttonStyle}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

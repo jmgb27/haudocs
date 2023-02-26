@@ -12,7 +12,7 @@ import { Navigate } from "react-router-dom";
 import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
 import Forgotpassword from "./login/auth/Forgotpassword";
-import { ReviewerDashboard, Reviewstatus, ProtocolsIR, ProtocolsCR, ProtocolsFR, Reviewerlogout, Reviewersettings } from "./reviewerpage";
+import { ReviewerDashboard, Reviewstatus, ProtocolsIR, ProtocolsCR, ProtocolsFR, Reviewerlogout, Reviewersettings, AssignedProtocol } from "./reviewerpage";
 import { AdminDashboard, AdminApplication, AdminArchiving, Adminsubmissions, AdminTransfer, AdminUsers, AdminLogout, AdminSettings } from "./adminpages";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
     <BrowserRouter>
     <Routes>
-    <Route exact path ="/"element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
+    <Route exact path ="/"element={<ProtectedRoute><ReviewerDashboard/></ProtectedRoute>}/>
     <Route path="/Signin" element={
             !currentUser?.emailVerified 
             ? <Signin/>
@@ -71,9 +71,10 @@ function App() {
     <Routes>
     <Route path ="/reviewerdashboard"element={<ProtectedRoute><ReviewerDashboard/></ProtectedRoute>}/>
     <Route path ="/reviewerstatus"element={<ProtectedRoute><Reviewstatus/></ProtectedRoute>}/>
-    <Route path ="/protocolsIR"element={<ProtectedRoute><ProtocolsIR/></ProtectedRoute>}/>
+    <Route path ="/assignedprotocol"element={<ProtectedRoute><AssignedProtocol/></ProtectedRoute>}/>
+{/*     <Route path ="/protocolsIR"element={<ProtectedRoute><ProtocolsIR/></ProtectedRoute>}/>
     <Route path ="/protocolsCR"element={<ProtectedRoute><ProtocolsCR/></ProtectedRoute>}/>
-    <Route path ="/protocolsFR"element={<ProtectedRoute><ProtocolsFR/></ProtectedRoute>}/>
+    <Route path ="/protocolsFR"element={<ProtectedRoute><ProtocolsFR/></ProtectedRoute>}/> */}
     <Route path ="/reviewersettings"element={<ProtectedRoute><Reviewersettings/></ProtectedRoute>}/>
     <Route path ="/reviewerlogout"element={<ProtectedRoute><Reviewerlogout/></ProtectedRoute>}/>
     </Routes>

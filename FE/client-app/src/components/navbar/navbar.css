@@ -20,9 +20,6 @@
     border-left:0;
     border-width: 15px;
 }
-hr.new4 {
-    border: 5px solid #800000;
-  }
 .hau_navbar-links_logo img{
     width: 140px;
     height: 45px;
@@ -96,10 +93,6 @@ h3 span{
     cursor: pointer;
 }
 
-.icon {
-    
-}
-
 .dropdownItem {
     display: flex;
     margin: 10px auto;
@@ -125,3 +118,9 @@ h3 span{
     transform: translateY(-20px);
     transition: var(--speed) ease;
 }
+
+/* @media screen and (max-width: 768px) {
+  .hau_navbar {
+    display: none;
+  }
+} */

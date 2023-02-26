@@ -1,4 +1,5 @@
 import React from 'react'
+import Reviewersidebar from '../Reviewersidebar'
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,13 +7,12 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Adminsidebar from "../Adminsidebar"
-import Applicantstab from './applicants/Applicantstab';
-import Reviewersstab from './applicants/Reviewerstab';
-
-function Adminsubmissions() {
+import Assignedcontinuing from './assigneddata/Assignedcontinuing';
+import Assignedfinal from './assigneddata/Assignedfinal';
+import Assignedinitial from './assigneddata/Assignedinitial';
+  
+function Assignedprotocol() {
     const [value, setValue] = React.useState(0); 
-
     function TabPanel(props) {
     const { children, value, index, ...other } = props;
       
@@ -65,60 +65,34 @@ function Adminsubmissions() {
             color: "white",
         },
       });
-    
-      const viewStyle = {
-        color: "maroon"
-      }
-      
-    function TabPanel(props) {
-        const { children, value, index, ...other } = props;
-      
-        return (
-          <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-          >
-            {value === index && (
-              <Box>
-                <Typography>{children}</Typography>
-              </Box>
-            )}
-          </div>
-        );
-      }
- 
-      TabPanel.propTypes = {
-        children: PropTypes.node,
-        index: PropTypes.number.isRequired,
-        value: PropTypes.number.isRequired,
-      };
       
   
   return (
-    <Adminsidebar>
+    <Reviewersidebar>
     <div className='flex ml-[15rem] mt-[5rem]'>
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <ThemeProvider theme={theme}>
         <CustomTabs value={value} onChange={handleChange}>
-          <Tab label="Applicants" {...a11yProps(0)} />
-          <Tab label="Reviewers" {...a11yProps(1)} />
+          <Tab label="Initial Review" {...a11yProps(0)} />
+          <Tab label="Continuing Review" {...a11yProps(1)} />
+          <Tab label="Final Review" {...a11yProps(2)} />
         </CustomTabs>
         </ThemeProvider>
       </Box>
       <TabPanel value={value} index={0}>
-      <Applicantstab/>
+        <Assignedinitial/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <Reviewersstab/>
+        <Assignedcontinuing/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Assignedfinal/>
       </TabPanel>
     </Box>
     </div>
-    </Adminsidebar>
+    </Reviewersidebar>
   )
 }
 
-export default Adminsubmissions
+export default Assignedprotocol
