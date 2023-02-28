@@ -18,15 +18,6 @@ main {
     align-items: center;
 }
 
-/* .db-logo-container{
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    border-top: 0;
-    border-left: 0;
-    border-bottom: 0;
-} */
-
 .db-ir{
     width: 70%;
     height: 100px;
@@ -105,7 +96,10 @@ main {
         margin-left: 0.5rem;
     }
     .db-bg {
-        margin-left: 15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 13rem;
     }
     .card-item {
         display: flex;
@@ -134,15 +128,10 @@ main {
     }
 }
 
-/* @media (max-width: 768px) {
-    .db-bg {
-        width: 1000px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-} */
+  @media (max-height: 700px) {
+      .db-bg {
+      }
+  }
 
 @tailwind base;
 @tailwind components;

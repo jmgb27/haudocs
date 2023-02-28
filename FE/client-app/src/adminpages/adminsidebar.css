@@ -139,3 +139,9 @@ body {
         padding-top: 12rem;
     }
 }
+
+@media (max-height: 700px) {
+    .admin-bottom_section {
+        padding-top: 7rem;
+    }
+}
