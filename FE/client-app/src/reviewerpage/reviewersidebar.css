@@ -139,3 +139,9 @@ body {
         padding-top: 23rem;
     }
 }
+
+@media (max-height: 700px) {
+    .reviewer-bottom_section {
+        padding-top: 17rem;
+    }
+}
