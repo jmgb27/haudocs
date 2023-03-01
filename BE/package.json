@@ -1,17 +1,11 @@
 {
-  "name": "be",
+  "name": "BE",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "dev": "nodemon index"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.279.0",
+    "aws-sdk": "^2.1324.0",
     "express": "^4.18.2",
     "nodemon": "^2.0.20"
   }
