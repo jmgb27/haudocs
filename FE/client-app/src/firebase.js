@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
-import {  collection, addDoc, serverTimestamp } from 'firebase/firestore/lite';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore/lite";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -18,7 +18,7 @@ const firebaseConfig = {
   storageBucket: "hau-docs-auth.appspot.com",
   messagingSenderId: "637327069553",
   appId: "1:637327069553:web:a8fdc9cfe5826b3885a6d0",
-  measurementId: "G-VTTRY7Z5DE"
+  measurementId: "G-VTTRY7Z5DE",
 };
 
 // Initialize Firebase
@@ -31,9 +31,20 @@ export const db = getFirestore(app);
 
 export const storage = getStorage(app);
 
-export const registerWithEmailAndPassword = async (name, email, password, role) => {
+export const registerWithEmailAndPassword = async (
+  name,
+  email,
+  password,
+  role
+) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password, name, role);
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+      name,
+      role
+    );
     const user = res.user;
     await addDoc(collection(db, "users"), {
       createdAt: serverTimestamp(),
@@ -41,11 +52,10 @@ export const registerWithEmailAndPassword = async (name, email, password, role) 
       name,
       authProvider: "local",
       email,
-      role,
+      role: "Applicants",
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
-
