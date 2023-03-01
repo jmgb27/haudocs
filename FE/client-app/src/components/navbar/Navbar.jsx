@@ -1,86 +1,56 @@
-import React, {useState, useEffect, useRef } from 'react'
-import './navbar.css';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/haulogo.png';
-import edit from '../../assets/edit.png';
-import envelope from '../../assets/envelope.png';
-import signout from '../../assets/log-out.png';
-import { UserAuth } from '../../context/AuthContext';
-import Badge from '@mui/material/Badge';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-
+import { useState, useEffect } from "react";
+import "./navbar.css";
+import logo from "../../assets/haulogo.png";
+import Badge from "@mui/material/Badge";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import { auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import userIcon from "../../assets/usericon.png";
 
 function Navbar() {
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false);
-  const { user, logout } = UserAuth();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate('/');
-      console.log('You are logged out')
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
-  let menuRef = useRef();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    let handler = (e) => {
-      if(!menuRef.current.contains(e.target)) {
-      setOpen(false);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
       }
-    };
-    document.addEventListener("mousedown", handler);
+    });
+    return () => unsubscribe();
+  }, [auth]);
 
-    return() => {
-      document.removeEventListener("mousedown", handler);
-    }
-  });
+  const isGoogleProvider =
+    user && user.providerData[0].providerId === "google.com";
 
   return (
     <div>
       <div className="hau_navbar">
         <div className="hau_navbar-links">
-            <div className="hau_navbar-links_logo">
-                <img src={logo} alt="logo"/>
-            </div>
+          <div className="hau_navbar-links_logo">
+            <img src={logo} alt="logo" />
+          </div>
         </div>
-        <div className='icons flex flex-row items-center justify-center'>
-        <Badge badgeContent={4} color="primary">
-          <NotificationsNoneOutlinedIcon style={{ color: "maroon" }} />
+        <div className="icons flex flex-row items-center justify-center">
+          <Badge badgeContent={4} color="primary">
+            <NotificationsNoneOutlinedIcon style={{ color: "maroon" }} />
           </Badge>
-          <div className="menu-container" ref={menuRef}>
-            <div className="menu-trigger" onClick={() => {setOpen(!open)}}>
-              <img src={user.photoURL}></img>
-            </div>
-            <div className={`dropdown-menu ${open? 'active' : 'inactive'}`}>
-              <h3 className='text-sm'>{user && user.displayName}<br/><span>Researcher</span></h3>
-              <ul>
-                <Link to = {"/dashboard"}>
-                <DropdownItem img = {edit} text = {"Edit Profile"}/>
-                </Link>
-                <DropdownItem img = {envelope} text = {"Inbox"}/>
-                <Link onClick={handleLogout}>
-                <DropdownItem img = {signout} text = {"Logout"}/>
-                </Link>
-              </ul>
+          <div className="menu-container">
+            <div className="menu-trigger">
+              {user ? (
+                <img
+                  src={isGoogleProvider ? user.photoURL : ""}
+                  alt="Profile"
+                />
+              ) : (
+                <img src={userIcon} alt="Default" />
+              )}
             </div>
           </div>
-       </div>
-      </div> 
+        </div>
       </div>
-  );
-}
-
-function DropdownItem(props) {
-  return(
-    <li className='dropdownItem'>
-      <img src={props.img}></img>
-      <a>{props.text}</a>
-    </li>
+    </div>
   );
 }
 
