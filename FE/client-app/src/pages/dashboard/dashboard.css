@@ -128,11 +128,6 @@ main {
     }
 }
 
-  @media (max-height: 700px) {
-      .db-bg {
-      }
-  }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

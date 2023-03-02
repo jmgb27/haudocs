@@ -47,7 +47,7 @@
 }
 
 .bottom_section{
-    padding-top: 34rem;
+    padding-top: 31rem;
 }
 .auth-multi-layout {
     position: relative;
@@ -126,19 +126,19 @@
 
 @media (max-height: 1050px) {
     .bottom_section{
-        padding-top: 35rem;
+        padding-top: 32rem;
     }
 }
 
 @media (max-height: 900px) {
     .bottom_section{
-        padding-top: 16rem;
+        padding-top: 13rem;
     }
 }
 
 @media (max-height: 700px) {
     .bottom_section{
-        padding-top: 11rem;
+        padding-top: 8rem;
     }
 }
 
