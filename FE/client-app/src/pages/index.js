@@ -5,3 +5,4 @@ export { default as Setting } from "./setting/Setting";
 export { default as Submission } from "./submission/Submission";
 export { default as Logout } from "./logout/Logout";
 export { default as ReSubmission } from "./resubmission/ReSubmission";
+export { default as Inbox } from "./inbox/Inbox";

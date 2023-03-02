@@ -9,6 +9,7 @@ import {
   Submission,
   Logout,
   ReSubmission,
+  Inbox,
 } from "./pages";
 import { AuthContextProvider } from "./context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
@@ -132,6 +133,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ReSubmission />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/inbox"
+              element={
+                <ProtectedRoute>
+                  <Inbox />
                 </ProtectedRoute>
               }
             />

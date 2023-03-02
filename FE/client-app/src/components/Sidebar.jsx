@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { BsFillInboxFill } from "react-icons/bs";
 
 const Sidebar = ({ children }) => {
   const { logout } = UserAuth();
@@ -52,6 +53,11 @@ const Sidebar = ({ children }) => {
       path: "/resubmission",
       name: "ReSubmission",
       icon: <AiOutlineFileExclamation />,
+    },
+    {
+      path: "/inbox",
+      name: "Inbox",
+      icon: <BsFillInboxFill />,
     },
   ];
   const Setting = [

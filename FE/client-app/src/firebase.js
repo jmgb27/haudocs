@@ -42,8 +42,7 @@ export const registerWithEmailAndPassword = async (
       auth,
       email,
       password,
-      name,
-      role
+      name
     );
     const user = res.user;
     await addDoc(collection(db, "users"), {
@@ -52,7 +51,7 @@ export const registerWithEmailAndPassword = async (
       name,
       authProvider: "local",
       email,
-      role: "Applicants",
+      role: role || "Applicants",
     });
   } catch (err) {
     console.error(err);
