@@ -322,7 +322,7 @@ function Dashboard() {
               </button>
               <button
                 onClick={toggleModal2}
-                className="ir-close-modal items-center justify-center flex"
+                className="fr-close-modal items-center justify-center flex"
               >
                 Close
               </button>

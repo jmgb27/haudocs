@@ -76,3 +76,13 @@ button {
     background-color: maroon;
     color: #fff;
   }
+
+#sub:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    
+#sub:enabled {
+            background-color: maroon;
+            cursor: pointer;
+        }

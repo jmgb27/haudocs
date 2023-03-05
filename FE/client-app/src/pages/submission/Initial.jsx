@@ -10,7 +10,7 @@ const Initial = () => {
   const [sixthFile, setSixthFile] = useState(null);
   const [seventhFile, setSeventhFile] = useState(null);
   const [eightFile, setEightFile] = useState(null);
-  const [ninethFile, setNinethFile] = useState(null);
+  const [ninthFile, setNinthFile] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,8 +40,8 @@ const Initial = () => {
     if (eightFile) {
       form.append("eightFile", eightFile);
     }
-    if (ninethFile) {
-      form.append("ninethFile", ninethFile);
+    if (ninthFile) {
+      form.append("ninethFile", ninthFile);
     }
 
     try {
@@ -204,7 +204,7 @@ const Initial = () => {
                   type="file"
                   multiple
                   onChange={(event) => {
-                    setNinethFile(event.target.files[0]);
+                    setNinthFile(event.target.files[0]);
                   }}
                 />
               </article>
@@ -222,8 +222,19 @@ const Initial = () => {
                 </div>
                 <div class="flex space-x-4 items-center justify-end px-3 py-2 border-t dark:border-gray-600">
                   <button
+                    id="sub"
                     type="submit"
-                    class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon hover:bg-red-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
+                    disabled={
+                      !firstFile ||
+                      !secondFile ||
+                      !thirdFile ||
+                      !fifthFile ||
+                      !sixthFile ||
+                      !seventhFile ||
+                      !eightFile ||
+                      !ninthFile
+                    }
+                    class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
                   >
                     Submit
                   </button>

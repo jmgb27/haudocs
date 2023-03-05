@@ -66,6 +66,8 @@ const Final = () => {
                 <div class="flex space-x-4 items-center justify-end px-3 py-2 border-t dark:border-gray-600">
                   <button
                     type="submit"
+                    id="sub"
+                    disabled={!firstFile}
                     class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon hover:bg-red-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
                   >
                     Submit
