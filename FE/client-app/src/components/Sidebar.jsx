@@ -81,24 +81,14 @@ const Sidebar = ({ children }) => {
         <Navbar />
         <div className="top_section"></div>
         {SidenavItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link-sidebar"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link-sidebar">
             <div className="icon-sidebar">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))}
         <div className="bottom_section">
           {Setting.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-sidebar"
-              activeclassName="active"
-            >
+            <NavLink to={item.path} key={index} className="link-sidebar">
               <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
