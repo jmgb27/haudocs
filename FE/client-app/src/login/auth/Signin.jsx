@@ -20,6 +20,8 @@ import {
   where,
   getDocs,
   addDoc,
+  doc,
+  setDoc,
   serverTimestamp,
 } from "firebase/firestore/lite";
 import TextField from "@mui/material/TextField";
@@ -69,13 +71,13 @@ function Signin() {
       const q = query(collection(db, "users"), where("uid", "==", user.uid));
       const docs = await getDocs(q);
       if (docs.docs.length === 0) {
-        await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, "users", user.uid), {
           uid: user.uid,
           name: user.displayName,
           authProvider: "google",
           email: user.email,
           createdAt: serverTimestamp(),
-          role: "",
+          role: "applicant",
         });
       }
     } catch (err) {
@@ -181,19 +183,19 @@ function Signin() {
             <div className="w-full h-[1px] bg-black"></div>
             <p className="or text-lg absolute">or</p>
           </div>
-          <div>
-            <button
-              type="submit"
-              className="google_button"
-              onClick={signInWithGoogle}
-            >
-              <div className="flex items-start justify-start">
-                <FcGoogle size={25} />
-              </div>
-              <div className="text-center">Continue With Google</div>
-            </button>
-          </div>
         </form>
+        <div>
+          <button
+            type="submit"
+            className="google_button"
+            onClick={signInWithGoogle}
+          >
+            <div className="flex items-start justify-start">
+              <FcGoogle size={25} />
+            </div>
+            <div className="text-center">Continue With Google</div>
+          </button>
+        </div>
       </Card>
     </div>
   );

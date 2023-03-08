@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,9 +7,8 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
   sendPasswordResetEmail,
-} from 'firebase/auth';
-import { auth } from '../firebase';
-
+} from "firebase/auth";
+import { auth } from "../firebase";
 
 const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
@@ -17,32 +16,38 @@ export const AuthContextProvider = ({ children }) => {
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider)
+    signInWithRedirect(auth, provider);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
+      setUser(currentUser);
     });
     return () => {
       unsubscribe();
-    }
+    };
   }, []);
 
   const createUser = (email, password, passwordconfirm, userName) => {
-    return createUserWithEmailAndPassword(auth, email, password, passwordconfirm, userName);
+    return createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+      passwordconfirm,
+      userName
+    );
   };
 
-   const signIn = (email, password, userName) =>  {
-    return signInWithEmailAndPassword(auth, email, password, userName)
-   }
+  const signIn = (email, password, userName) => {
+    return signInWithEmailAndPassword(auth, email, password, userName);
+  };
 
   const logout = () => {
-      return signOut(auth)
-  }
+    return signOut(auth);
+  };
   const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
-  }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -55,7 +60,9 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ forgotPassword, createUser, user, logout, signIn, googleSignIn }}>
+    <UserContext.Provider
+      value={{ forgotPassword, createUser, user, logout, signIn, googleSignIn }}
+    >
       {children}
     </UserContext.Provider>
   );

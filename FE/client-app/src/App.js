@@ -38,34 +38,64 @@ import {
   AdminLogout,
   AdminSettings,
 } from "./adminpages";
+import { db } from "./firebase";
+import { doc, getDoc } from "firebase/firestore/lite";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [timeActive, setTimeActive] = useState(false);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
+
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          console.log("userData:", userData);
+          setRole(userData.role);
+          console.log("role:", userData.role);
+        } else {
+          console.log("User document not found");
+        }
+      } else {
+        console.log("User not logged in");
+      }
     });
   }, []);
+
   return (
     <AuthContextProvider>
-      <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
+      <AuthProvider value={{ role, currentUser, timeActive, setTimeActive }}>
         <BrowserRouter>
           <Routes>
             <Route
               exact
               path="/"
               element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                ) : role === "reviewer" ? (
+                  <ProtectedRoute>
+                    <ReviewerDashboard />
+                  </ProtectedRoute>
+                ) : (
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                )
               }
             />
             <Route
               path="/Signin"
               element={
-                !currentUser?.emailVerified ? (
+                !currentUser || !currentUser.emailVerified ? (
                   <Signin />
                 ) : (
                   <Navigate to="/" replace />
@@ -75,7 +105,7 @@ function App() {
             <Route
               path="/Signup"
               element={
-                !currentUser?.emailVerified ? (
+                !currentUser || !currentUser.emailVerified ? (
                   <Signup />
                 ) : (
                   <Navigate to="/" replace />
@@ -84,10 +114,8 @@ function App() {
             />
             <Route path="/verifyemail" element={<VerifyEmail />} />
             <Route path="/forgotpassword" element={<Forgotpassword />} />
-          </Routes>
 
-          {/* APPLICANTS ROUTES */}
-          <Routes>
+            {/* APPLICANTS ROUTES */}
             <Route
               path="/dashboard"
               element={
@@ -152,10 +180,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-          </Routes>
 
-          {/* ADMIN ROUTES */}
-          <Routes>
+            {/* ADMIN ROUTES */}
             <Route
               path="/admindashboard"
               element={
@@ -220,10 +246,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-          </Routes>
 
-          {/* REVIEWER ROUTES */}
-          <Routes>
+            {/* REVIEWER ROUTES */}
             <Route
               path="/reviewerdashboard"
               element={

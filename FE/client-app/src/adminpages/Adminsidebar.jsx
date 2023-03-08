@@ -77,12 +77,7 @@ const Adminsidebar = ({ children }) => {
         <Navbar />
         <div className="top_section"></div>
         {AdminsidenavItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link-adminsidebar"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link-adminsidebar">
             <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
@@ -93,7 +88,6 @@ const Adminsidebar = ({ children }) => {
               to={item.path}
               key={index}
               className="link-adminsidebar flex items-center"
-              activeclassName="active"
             >
               <div className="icon-admin">{item.icon}</div>
               <div className="link_text">{item.name}</div>
