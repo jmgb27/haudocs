@@ -51,7 +51,7 @@ export const registerWithEmailAndPassword = async (
       name,
       authProvider: "local",
       email,
-      role: role || "Applicants",
+      role: role || "applicant",
     });
   } catch (err) {
     console.error(err);
