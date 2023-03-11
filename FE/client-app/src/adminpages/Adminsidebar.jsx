@@ -15,15 +15,6 @@ const Adminsidebar = ({ children }) => {
   const { logout } = UserAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/");
-      console.log("You are logged out");
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
   const AdminsidenavItem = [
     {
       path: "/admindashboard",
@@ -99,7 +90,6 @@ const Adminsidebar = ({ children }) => {
               to={item.path}
               key={index}
               className="link-adminsidebar flex items-center"
-              onClick={handleLogout}
             >
               <div className="icon-admin">{item.icon}</div>
               <div className="link_text">{item.name}</div>
