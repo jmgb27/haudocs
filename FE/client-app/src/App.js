@@ -1,7 +1,8 @@
-import React, { useEffect, useState, Suspense, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
+  Dashboard,
   Application,
   Download,
   Setting,
@@ -21,12 +22,14 @@ import VerifyEmail from "./login/verifyemail/VerifyEmail";
 import { AuthProvider } from "./context/Authvalue";
 import Forgotpassword from "./login/auth/Forgotpassword";
 import {
+  ReviewerDashboard,
   Reviewstatus,
   Reviewerlogout,
   Reviewersettings,
   AssignedProtocol,
 } from "./reviewerpage";
 import {
+  AdminDashboard,
   AdminApplication,
   AdminArchiving,
   Adminsubmissions,
@@ -38,23 +41,14 @@ import {
 import { db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore/lite";
 
-const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
-
-const ReviewerDashboard = lazy(() =>
-  import("./reviewerpage/dashboard/ReviewerDashboard")
-);
-
-const AdminDashboard = lazy(() =>
-  import("./adminpages/dashboard/AdminDashboard")
-);
-
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [timeActive, setTimeActive] = useState(false);
   const [role, setRole] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
 
       if (user) {
@@ -70,19 +64,25 @@ function App() {
       } else {
         console.log("User not logged in");
       }
+      setLoading(false);
     });
+    return unsubscribe;
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContextProvider>
       <AuthProvider value={{ role, currentUser, timeActive, setTimeActive }}>
         <BrowserRouter>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                currentUser && role ? (
                   role === "admin" ? (
                     <ProtectedRoute>
                       <AdminDashboard />
@@ -96,206 +96,207 @@ function App() {
                       <Dashboard />
                     </ProtectedRoute>
                   )
-                }
-              />
-              <Route
-                path="/Signin"
-                element={
-                  !currentUser || !currentUser.emailVerified ? (
-                    <Signin />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-              <Route
-                path="/Signup"
-                element={
-                  !currentUser || !currentUser.emailVerified ? (
-                    <Signup />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-              <Route path="/verifyemail" element={<VerifyEmail />} />
-              <Route path="/forgotpassword" element={<Forgotpassword />} />
+                ) : null
+              }
+            />
 
-              {/* APPLICANTS ROUTES */}
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/application"
-                element={
-                  <ProtectedRoute>
-                    <Application />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/download"
-                element={
-                  <ProtectedRoute>
-                    <Download />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/setting"
-                element={
-                  <ProtectedRoute>
-                    <Setting />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/submission"
-                element={
-                  <ProtectedRoute>
-                    <Submission />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/resubmission"
-                element={
-                  <ProtectedRoute>
-                    <ReSubmission />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/inbox"
-                element={
-                  <ProtectedRoute>
-                    <Inbox />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/logout"
-                element={
-                  <ProtectedRoute>
-                    <Logout />
-                  </ProtectedRoute>
-                }
-              />
+            <Route
+              path="/Signin"
+              element={
+                !currentUser || !currentUser.emailVerified ? (
+                  <Signin />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/Signup"
+              element={
+                !currentUser || !currentUser.emailVerified ? (
+                  <Signup />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route path="/verifyemail" element={<VerifyEmail />} />
+            <Route path="/forgotpassword" element={<Forgotpassword />} />
 
-              {/* ADMIN ROUTES */}
-              <Route
-                path="/admindashboard"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminapplication"
-                element={
-                  <ProtectedRoute>
-                    <AdminApplication />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminarchiving"
-                element={
-                  <ProtectedRoute>
-                    <AdminArchiving />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminsubmissions"
-                element={
-                  <ProtectedRoute>
-                    <Adminsubmissions />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admintransfer"
-                element={
-                  <ProtectedRoute>
-                    <AdminTransfer />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminusers"
-                element={
-                  <ProtectedRoute>
-                    <AdminUsers />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminsettings"
-                element={
-                  <ProtectedRoute>
-                    <AdminSettings />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/adminlogout"
-                element={
-                  <ProtectedRoute>
-                    <AdminLogout />
-                  </ProtectedRoute>
-                }
-              />
+            {/* APPLICANTS ROUTES */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/application"
+              element={
+                <ProtectedRoute>
+                  <Application />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/download"
+              element={
+                <ProtectedRoute>
+                  <Download />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/setting"
+              element={
+                <ProtectedRoute>
+                  <Setting />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/submission"
+              element={
+                <ProtectedRoute>
+                  <Submission />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/resubmission"
+              element={
+                <ProtectedRoute>
+                  <ReSubmission />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/inbox"
+              element={
+                <ProtectedRoute>
+                  <Inbox />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/logout"
+              element={
+                <ProtectedRoute>
+                  <Logout />
+                </ProtectedRoute>
+              }
+            />
 
-              {/* REVIEWER ROUTES */}
-              <Route
-                path="/reviewerdashboard"
-                element={
-                  <ProtectedRoute>
-                    <ReviewerDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/reviewerstatus"
-                element={
-                  <ProtectedRoute>
-                    <Reviewstatus />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/assignedprotocol"
-                element={
-                  <ProtectedRoute>
-                    <AssignedProtocol />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/reviewersettings"
-                element={
-                  <ProtectedRoute>
-                    <Reviewersettings />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/reviewerlogout"
-                element={
-                  <ProtectedRoute>
-                    <Reviewerlogout />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </Suspense>
+            {/* ADMIN ROUTES */}
+            <Route
+              path="/admindashboard"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminapplication"
+              element={
+                <ProtectedRoute>
+                  <AdminApplication />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminarchiving"
+              element={
+                <ProtectedRoute>
+                  <AdminArchiving />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminsubmissions"
+              element={
+                <ProtectedRoute>
+                  <Adminsubmissions />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admintransfer"
+              element={
+                <ProtectedRoute>
+                  <AdminTransfer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminusers"
+              element={
+                <ProtectedRoute>
+                  <AdminUsers />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminsettings"
+              element={
+                <ProtectedRoute>
+                  <AdminSettings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminlogout"
+              element={
+                <ProtectedRoute>
+                  <AdminLogout />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* REVIEWER ROUTES */}
+            <Route
+              path="/reviewerdashboard"
+              element={
+                <ProtectedRoute>
+                  <ReviewerDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reviewerstatus"
+              element={
+                <ProtectedRoute>
+                  <Reviewstatus />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/assignedprotocol"
+              element={
+                <ProtectedRoute>
+                  <AssignedProtocol />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reviewersettings"
+              element={
+                <ProtectedRoute>
+                  <Reviewersettings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reviewerlogout"
+              element={
+                <ProtectedRoute>
+                  <Reviewerlogout />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
         </BrowserRouter>
       </AuthProvider>
     </AuthContextProvider>

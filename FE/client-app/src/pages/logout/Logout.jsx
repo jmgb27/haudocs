@@ -1,11 +1,13 @@
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
+const Logout = async () => {
+  try {
+    await signOut(auth);
+    window.location.href = "/Signin"; // Redirect to login page
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-const Logout = () => {
-  signOut(auth).then(() => {
-    console.log('sign out successful')
-  }).catch(error => console.log(error));
-}
-
-export default Logout
+export default Logout;

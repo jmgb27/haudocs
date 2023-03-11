@@ -1,14 +1,13 @@
-import React from 'react'
-import Adminsidebar from '../Adminsidebar'
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
-const AdminLogout = () => {
-  return (
-    <Adminsidebar>
-    <div>
-      
-    </div>
-    </Adminsidebar>
-  )
-}
+const AdminLogout = async () => {
+  try {
+    await signOut(auth);
+    window.location.href = "/Signin"; // Redirect to login page
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export default AdminLogout
+export default AdminLogout;

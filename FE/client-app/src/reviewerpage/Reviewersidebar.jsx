@@ -16,7 +16,7 @@ const Reviewersidebar = ({ children }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/");
+      navigate("/Signin");
       console.log("You are logged out");
     } catch (e) {
       console.log(e.message);
