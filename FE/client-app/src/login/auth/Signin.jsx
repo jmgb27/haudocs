@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../LoginForm.css";
 import Card from "../../components/card/Card";
 import "../../index.css";
 import { useNavigate, Link } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
 import { auth, db } from "../../firebase";
 import {
   signInWithEmailAndPassword,
@@ -19,13 +18,16 @@ import {
   query,
   where,
   getDocs,
-  addDoc,
   doc,
   setDoc,
   serverTimestamp,
 } from "firebase/firestore/lite";
 import TextField from "@mui/material/TextField";
 import { FcGoogle } from "react-icons/fc";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import Checkbox from "@mui/material/Checkbox";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -33,11 +35,33 @@ function Signin() {
   const navigate = useNavigate();
   const { setTimeActive } = useAuthValue();
   const [errorMessages, setErrorMessages] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
 
   const Login = async (event) => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+      }
+
       if (!auth.currentUser.emailVerified) {
         sendEmailVerification(auth.currentUser).then(() => {
           setTimeActive(true);
@@ -86,11 +110,6 @@ function Signin() {
     }
   };
 
-  /*   useEffect(() => {
-    if (user != null) {
-      navigate('/dashboard');
-    }
-  }, [user]); */
   const myStyle = {
     backgroundImage: `url(${bgimage})`,
     backgroundPosition: "center",
@@ -125,12 +144,6 @@ function Signin() {
               className="textfield text-white"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              /*           sx={{
-            "& .MuiInputLabel-root": {color: 'black'},//styles the label
-            "& .MuiOutlinedInput-root": {
-              "& > fieldset": { borderColor: "black" },
-            },
-          }}  */
               variant="outlined"
               margin="normal"
               required
@@ -146,24 +159,45 @@ function Signin() {
               className="textfield text-white"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              /*             sx={{
-            "& .MuiInputLabel-root": {color: 'black',},//styles the label
-            "& .MuiOutlinedInput-root": {
-            "& > fieldset": { borderColor: "black" },
-            },
-            }}  */
               margin="normal"
               required
               fullWidth
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseDown={(e) => e.preventDefault()}
+                      edge="end"
+                    >
+                      {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
 
-            <div className="text-black underline underline-offset-2 items-center justify-end flex">
-              <FaUnlockAlt />
-              <Link to="/forgotpassword">Forgot Password?</Link>
+            <div className="flex space-x-10">
+              <div className="flex justify-start items-center">
+                <Checkbox
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  color="primary"
+                  className="remember-me"
+                  inputProps={{ "aria-label": "Remember Me" }}
+                />
+                <label htmlFor="remember-me" className="remember-me-label">
+                  Remember Me
+                </label>
+              </div>
+              <div className="text-black underline underline-offset-2 items-center justify-end flex">
+                <FaUnlockAlt />
+                <Link to="/forgotpassword">Forgot Password?</Link>
+              </div>
             </div>
           </div>
           <input type="submit" value="Login" className="login_button" />

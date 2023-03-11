@@ -8,6 +8,9 @@ import { useAuthValue } from "../../context/Authvalue";
 import bgimage from "../../assets/bg.jpg";
 import { registerWithEmailAndPassword } from "../../firebase";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -17,6 +20,8 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const { setTimeActive } = useAuthValue();
   const [name, setName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validatePassword = () => {
     let isValid = true;
@@ -29,16 +34,6 @@ function Signup() {
     return isValid;
   };
 
-  /*   const createUser = async () => {
-    const usersCollectionRef = collection(db, "users")
-    await addDoc(usersCollectionRef, { 
-      email: email,
-      createdAt: serverTimestamp(),
-      user: userName,
-      role: "",
-    });
-  }; */
-
   const errors = {
     email: "Invalid email",
     password: "Invalid password",
@@ -46,38 +41,13 @@ function Signup() {
     noPassword: "Please enter your password",
   };
 
-  /*   const handleSubmit = e => {
-    // Prevent page from reloading
-    e.preventDefault();
-    if(validatePassword()) {
-      // Create a new user with email and password using firebase
-        createUserWithEmailAndPassword(auth, email, password, userName)
-        .then(() => {
-          sendEmailVerification(auth.currentUser) 
-          .then(() => {
-            setTimeActive(true)  
-            navigate('/verifyemail')}).catch((err) => alert(err.message))
-        }).catch(err => setErrorMessages(err.message))
-    }
-    setUser('')
-    setEmail('')
-    setPassword('')
-    setConfirmPassword('')
-
-    if (!email) {
-      // Username input is empty
-      setErrorMessages({ email: "noUsername", message: errors.noUsername });
-      return;
-    }
-
-    if (!password) {
-      // Password input is empty
-      setErrorMessages({ email: "noPassword", message: errors.noPassword });
-      return;
-    }
-  }; */
-
   const register = () => {
+    if (!name || !email || !password || !confirmPassword) {
+      // Username or password input is empty
+      setErrorMessages("Please fill out all required fields.");
+      return;
+    }
+
     if (validatePassword()) {
       registerWithEmailAndPassword(name, email, password)
         .then(() => {
@@ -90,6 +60,7 @@ function Signup() {
         })
         .catch((err) => setErrorMessages(err.message));
     }
+
     setName("");
     setEmail("");
     setPassword("");
@@ -108,11 +79,18 @@ function Signup() {
     }
   };
 
-  // Render error messages
-  const renderErrorMsg = (email) =>
-    email === errorMessages.email && (
-      <p className="error_msg">{errorMessages.message}</p>
+  const renderErrorMsg = (name) =>
+    errorMessages &&
+    errorMessages[name] === "noUsername" && (
+      <p className="error_msg">{errors.noUsername}</p>
     );
+
+  {
+    renderErrorMsg("email");
+  }
+  {
+    renderErrorMsg("password");
+  }
 
   const myStyle = {
     backgroundImage: `url(${bgimage})`,
@@ -175,11 +153,24 @@ function Signup() {
             fullWidth
             required
             name="password"
-            type="password"
             id="password"
             autoComplete="current-password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={(e) => e.preventDefault()}
+                    edge="end"
+                  >
+                    {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           {renderErrorMsg("password")}
           {renderErrorMsg("noPassword")}
@@ -191,20 +182,39 @@ function Signup() {
             fullWidth
             required
             name="password"
-            type="password"
-            id="password"
+            id="confirmpassword"
             autoComplete="current-password"
+            type={showConfirmPassword ? "text" : "password"}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    onMouseDown={(e) => e.preventDefault()}
+                    edge="end"
+                  >
+                    {showConfirmPassword ? (
+                      <MdVisibilityOff />
+                    ) : (
+                      <MdVisibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           {renderErrorMsg("password")}
           {renderErrorMsg("noPassword")}
         </div>
         <input
           onClick={register}
+          id="sub"
           type="submit"
           value="Signup"
           className="login_button"
+          disabled={!name || !email || !password || !confirmPassword}
         />
         <div className="w-full flex items-center justify-center">
           <p className="text-sm font-normal text-black mt-5">

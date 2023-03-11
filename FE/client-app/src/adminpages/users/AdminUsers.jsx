@@ -15,12 +15,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 
 const AdminUsers = () => {
@@ -32,22 +32,10 @@ const AdminUsers = () => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [diaopen, diasetOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
-  const [deleteopen, deletesetOpen] = useState(false);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "1px solid #000",
-    boxShadow: 24,
-    p: 2,
-    borderRadius: "5px",
-  };
+  const handleOpen = () => setOpen(true);
+  const [deleteUserId, setDeleteUserId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +47,6 @@ const AdminUsers = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        console.log(list);
       } catch (err) {
         console.log(err);
       }
@@ -67,17 +54,71 @@ const AdminUsers = () => {
     fetchData();
   }, []);
 
-  console.log(data);
-
   const handleDelete = async (id) => {
+    setDeleteUserId(id);
+    diasetOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
     try {
-      await deleteDoc(doc(db, "users", id));
-      setData(data.filter((item) => item.id !== id));
+      await deleteDoc(doc(db, "users", deleteUserId));
+      setData(data.filter((item) => item.id !== deleteUserId));
     } catch (err) {
       console.log(err);
     }
-    setOpen(false);
+    diasetOpen(false);
+    setDeleteUserId(null);
   };
+
+  const handlediaClose = () => {
+    diasetOpen(false);
+  };
+
+  const renderDeleteConfirmationDialog = (handlediaClose) => {
+    return (
+      <Dialog open={diaopen} onClose={handlediaClose}>
+        <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this user?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              diasetOpen(false);
+              handlediaClose();
+            }}
+          >
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmDelete} sx={deleteStyle}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete{renderDeleteConfirmationDialog(handlediaClose)}
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
 
   const validatePassword = () => {
     let isValid = true;
@@ -124,32 +165,6 @@ const AdminUsers = () => {
     }
   };
 
-  // Render error messages
-  const renderErrorMsg = (email) =>
-    email === errorMessages.email && (
-      <p className="error_msg">{errorMessages.message}</p>
-    );
-
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
-
   const deleteStyle = {
     color: "maroon",
     borderColor: "maroon",
@@ -158,6 +173,19 @@ const AdminUsers = () => {
   const buttonStyle = {
     backgroundColor: "maroon",
     color: "white",
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "1px solid #000",
+    boxShadow: 24,
+    p: 2,
+    borderRadius: "5px",
   };
 
   return (
