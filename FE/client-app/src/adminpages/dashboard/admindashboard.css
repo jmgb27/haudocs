@@ -1,0 +1,11 @@
+@media (min-width: 1920px) {
+    main {
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 1600px) {
+   .size {
+        margin-left: 15rem;
+    }
+}

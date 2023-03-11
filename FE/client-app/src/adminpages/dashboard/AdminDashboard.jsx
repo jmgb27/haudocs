@@ -4,6 +4,7 @@ import Count from "./Count";
 import Protocolscount from "./Protocolscount";
 import Protocolsinsideoutside from "./Protocolsinsideoutside";
 import Research from "./Research";
+import "./admindashboard.css";
 
 function Box(props) {
   return (
@@ -24,12 +25,13 @@ function AdminDashboard() {
   return (
     <Adminsidebar>
       <div
+        className="size"
         style={{
           display: "flex",
           flexDirection: "column",
-          marginLeft: "15rem",
-          marginTop: "4rem",
+          marginTop: "5rem",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <div

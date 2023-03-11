@@ -4,6 +4,9 @@
     background-color: maroon;
     border: 0;
     border-radius: 0;
+    justify-content: center;
+    margin-left: 15rem;
+    margin-top: 5rem;
 }
 
 /* @media (max-height: 1050px) {

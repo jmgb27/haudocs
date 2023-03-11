@@ -24,6 +24,8 @@ function Navbar() {
   const isGoogleProvider =
     user && user.providerData[0].providerId === "google.com";
 
+  const hasPhotoURL = user && user.photoURL;
+
   return (
     <div>
       <div className="hau_navbar">
@@ -40,7 +42,7 @@ function Navbar() {
             <div className="menu-trigger">
               {user ? (
                 <img
-                  src={isGoogleProvider ? user.photoURL : ""}
+                  src={isGoogleProvider ? user.photoURL : userIcon}
                   alt="Profile"
                 />
               ) : (
