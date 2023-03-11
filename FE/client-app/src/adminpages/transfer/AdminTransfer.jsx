@@ -1,63 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import Adminsidebar from "../Adminsidebar";
-import AdminTabs from "./AdminTabs";
 import "./transfer.css";
-import { Card } from "flowbite-react";
 
-function AdminTransfer() {
+const AdminTransfer = () => {
+  const [file, setFile] = useState(null);
+  const [reviewType, setReviewType] = useState("");
+  const [sendTo, setSendTo] = useState("");
+  const [comment, setComment] = useState("");
+
+  const handleFileUpload = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleReviewTypeChange = (event) => {
+    setReviewType(event.target.value);
+  };
+
+  const handleSendToChange = (event) => {
+    setSendTo(event.target.value);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("File:", file);
+    console.log("Review type:", reviewType);
+    console.log("Send to:", sendTo);
+    console.log("Comment:", comment);
+  };
+
+  const submitStyle = {
+    color: "white",
+    backgroundColor: "maroon",
+  };
+
   return (
     <Adminsidebar>
-      <Card className="trans">
-        <input
-          class="ml-4 mt-5 block text-sm text-white cursor-pointer dark:text-gray-400 focus:outline-none dark:placeholder-gray-400"
-          id="multiple_files"
-          type="file"
-          multiple
-        />
-        <div className="flex items-center justify-start mt-5 space-x-2">
-          <h1 className="text-white ml-4 mr-[6rem]">Type of review:</h1>
-          <select
-            id="review"
-            class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 pl-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon"
-          >
-            <option selected>Choose type of review</option>
-            <option value="SC">Exempt from review</option>
-            <option value="NS">Full board review</option>
-            <option value="NS">expedited review</option>
-          </select>
-        </div>
-        <div className="flex items-center mt-5 space-x-2">
-          <h1 className="text-white ml-4 mr-[9rem]">Send to: </h1>
-          <input />
-        </div>
-        <form>
-          <h1 className="text-white ml-4 mt-[2rem] mr-[6rem]">Comments:</h1>
-          <div class="w-half mb-2 mr-2 ml-[9rem] mt-7 border border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-              <label for="comment" class="sr-only">
-                Your comment
-              </label>
-              <textarea
-                id="comment"
-                rows="4"
-                class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                placeholder="Write a comment..."
-                required
-              ></textarea>
-            </div>
-            <div class="flex space-x-4 items-center justify-end px-3 py-2 border-t dark:border-gray-600">
-              <button
+      <div className="transfer">
+        <Box sx={{ py: 10 }}>
+          <Box sx={{ maxWidth: "600px", margin: "0 auto", px: 2 }}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 2,
+                borderWidth: 2,
+                borderColor: "maroon",
+                borderRadius: 2,
+                p: 4,
+              }}
+            >
+              <InputLabel htmlFor="file-upload">Transfer Files</InputLabel>
+              <input
+                multiple
+                type="file"
+                id="file-upload"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileUpload}
+                style={{ width: "100%" }}
+              />
+
+              <FormControl sx={{ width: "100%" }}>
+                <InputLabel>Review Type</InputLabel>
+                <Select value={reviewType} onChange={handleReviewTypeChange}>
+                  <MenuItem value="Type A">Exempt from Review</MenuItem>
+                  <MenuItem value="Type A">Full Board Review</MenuItem>
+                  <MenuItem value="Type B">Expedited Review</MenuItem>
+                </Select>
+              </FormControl>
+
+              <TextField
+                label="Send To"
+                value={sendTo}
+                onChange={handleSendToChange}
+                sx={{ width: "100%" }}
+              />
+
+              <TextField
+                label="Comment"
+                multiline
+                rows={4}
+                value={comment}
+                onChange={handleCommentChange}
+                sx={{ width: "100%" }}
+              />
+
+              <Button
                 type="submit"
-                class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon hover:bg-red-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
+                variant="contained"
+                style={submitStyle}
+                sx={{ width: "100%", height: "3rem" }}
               >
-                Send
-              </button>
-            </div>
-          </div>
-        </form>
-      </Card>
+                Submit
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </div>
     </Adminsidebar>
   );
-}
+};
 
 export default AdminTransfer;

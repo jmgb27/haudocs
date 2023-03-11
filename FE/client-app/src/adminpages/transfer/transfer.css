@@ -9,8 +9,22 @@
     margin-top: 5rem;
 }
 
-/* @media (max-height: 1050px) {
-    .review{
-        height: 50%;
+@media (max-width: 1920px) {
+    .transfer{
+        margin-left: 34rem;
     }
-} */
+}
+
+@media (max-width: 1600px) {
+    .transfer {
+        margin-left: 14rem;
+
+    }
+}
+
+@media (max-width: 1440px) {
+    .transfer {
+        margin-left: 18rem;
+
+    }
+}
