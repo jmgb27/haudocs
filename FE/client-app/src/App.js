@@ -96,7 +96,9 @@ function App() {
                       <Dashboard />
                     </ProtectedRoute>
                   )
-                ) : null
+                ) : (
+                  <Signin />
+                )
               }
             />
 
