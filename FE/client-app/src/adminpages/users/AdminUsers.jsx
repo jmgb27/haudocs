@@ -190,7 +190,7 @@ const AdminUsers = () => {
 
   return (
     <Adminsidebar>
-      <div className="datatable">
+      <div className="usersdatatable">
         <div className="datatableTitle">
           <h1 className="text-2xl font-bold text-black">Users Management</h1>
           <div>

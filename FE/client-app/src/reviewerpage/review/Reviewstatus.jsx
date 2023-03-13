@@ -2,6 +2,7 @@ import React from "react";
 import Reviewersidebar from "../Reviewersidebar";
 import Button from "@mui/material/Button";
 import { DataGrid } from "@mui/x-data-grid";
+import "./reviewerstatus.css";
 
 const Reviewstatus = () => {
   // Sample data
@@ -41,7 +42,7 @@ const Reviewstatus = () => {
 
   return (
     <Reviewersidebar>
-      <div className="datatable">
+      <div className="reviewdatatable">
         <h1 className="mt-[3rem] text-center text-2xl font-bold">
           Review Status
         </h1>

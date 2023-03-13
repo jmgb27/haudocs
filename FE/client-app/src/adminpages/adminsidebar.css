@@ -131,3 +131,9 @@ body {
         padding-top: 7rem;
     }
 }
+
+@media (min-height: 1440px) {
+    .admin-bottom_section {
+        padding-top: 52rem;
+    }
+}

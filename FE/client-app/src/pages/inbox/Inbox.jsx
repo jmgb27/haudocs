@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar";
 import { DataGrid } from "@mui/x-data-grid";
+import "./inbox.css";
 
 const Inbox = () => {
   // Sample data
@@ -14,7 +15,7 @@ const Inbox = () => {
 
   return (
     <Sidebar>
-      <div className="datatable">
+      <div className="inbox-datatable">
         <h1 className="mt-[3rem] text-center text-2xl font-bold">Files</h1>
         <div
           className="ml-[2rem] mt-[2rem]"

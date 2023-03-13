@@ -119,13 +119,43 @@ main {
     }
 }
 
+@media (min-width: 1366px) {
+    .db-containers {
+        margin-left: 0.5rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .db-containers {
+        margin-left: 5rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .db-containers {
+        margin-left: 5rem;
+    }
+}
+
 @media (min-width: 1920px) {
     .db-containers {
-        margin-left: 30rem;
+        margin-left: 34rem;
+        width: 100%;
     }
-    .card-item{
+
+    .card-item {
         gap: 20px;
         display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 2560px) {
+    .db-containers {
+        margin-left: 74rem;
+        width: 100%;
+        display: block;
         align-items: center;
         justify-content: center;
     }
