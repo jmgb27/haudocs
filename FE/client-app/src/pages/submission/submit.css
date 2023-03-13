@@ -86,3 +86,41 @@ button {
     background-color: maroon;
     cursor: pointer;
 }
+
+@media (min-width: 1440px) {
+    .subtabs {
+        margin-left: 18rem;
+    }
+}
+
+@media (min-width: 1366px) {
+    .subtabs {
+        margin-left: 14rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .subtabs {
+        margin-left: 18rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .subtabs {
+        margin-left: 15.4rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .subtabs {
+        margin-left: 18rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .subtabs {
+        margin-left: 37rem;
+        width: 100%;
+    }
+}

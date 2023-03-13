@@ -29,7 +29,6 @@ function AdminDashboard() {
         style={{
           display: "flex",
           flexDirection: "column",
-          marginTop: "5rem",
           alignItems: "center",
           justifyContent: "center",
         }}

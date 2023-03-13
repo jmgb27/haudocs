@@ -1,0 +1,31 @@
+.assigned {
+    margin-left: 15rem;
+    display: flex;
+}
+
+@media (min-width: 1600px) {
+    .assigned {
+        margin-left: 15.4rem;
+        width: 85%;
+    }
+}
+
+@media (min-width: 1366px) {
+    .assigned {
+        margin-left: 15rem;
+        width: 85%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .assigned {
+        margin-left: 18.3rem;
+        width: 100%;
+    }
+}
+@media (min-width: 1440px) {
+    .assigned {
+        margin-left: 19rem;
+        width: 80%;
+    }
+}

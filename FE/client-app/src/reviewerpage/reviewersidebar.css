@@ -23,7 +23,7 @@ body {
     align-items: center;
 }
 
-.link-adminsidebar:hover{
+.link-reviewersidebar:hover{
     background: white;
     color: #000;
     transition: all 0.5s;

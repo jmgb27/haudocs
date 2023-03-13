@@ -1,41 +1,39 @@
-.archivingdatatable {
+.adminsubmit {
     width: 100%;
-    margin-top: 4rem;
     margin-left: 15rem;
+    margin-top: 5rem;
 }
 
 @media (min-width: 1366px) {
-    .archivingdatatable{
+    .adminsubmit {
         width: 85%;
     }
 }
 
 @media (min-width: 1440px) {
-    .archivingdatatable {
+    .adminsubmit {
         width: 90%;
         margin-left: 15.2rem;
     }
 }
 
-@media (min-width: 1440px) {
-    .archivingdatatable {
+@media (min-width: 1600px) {
+    .adminsubmit {
         width: 85%;
         margin-left: 15.5rem;
     }
 }
 
 @media (min-width: 1920px) {
-    .archivingdatatable {
+    .adminsubmit {
         width: 100%;
         margin-left: 18rem;
-        margin-top: 5rem;
     }
 }
 
 @media (min-width: 2560px) {
-    .archivingdatatable {
+    .adminsubmit {
         width: 100%;
-        margin-left: 36rem;
-        margin-top: 5rem;
+        margin-left: 37rem;
     }
 }

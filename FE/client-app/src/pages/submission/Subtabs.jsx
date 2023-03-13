@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./submit.css";
 
 const Subtabs = (props) => {
   const [activeTab, setActiveTab] = useState(props.defaultActiveTab);

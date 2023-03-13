@@ -10,3 +10,27 @@
     display: flex;
     margin-left: 2rem;
 }
+
+.application {
+    margin-left: 13rem;
+}
+
+@media (max-width: 1366px) {
+    .application {
+        margin-left: 10rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .application {
+        width: 100%;
+        margin-left: 16rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    .application {
+        width: 100%;
+        margin-left: 35rem;
+    }
+}

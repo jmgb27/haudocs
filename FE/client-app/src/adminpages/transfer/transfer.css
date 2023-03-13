@@ -24,7 +24,15 @@
 
 @media (max-width: 1440px) {
     .transfer {
-        margin-left: 18rem;
+        margin-left: 21rem;
+
+    }
+}
+
+@media (min-width: 2560px) {
+    .transfer {
+        margin-left: 38rem;
+        width: 100%;
 
     }
 }
