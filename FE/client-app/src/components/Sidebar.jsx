@@ -51,7 +51,7 @@ const Sidebar = ({ children }) => {
     },
     {
       path: "/resubmission",
-      name: "ReSubmission",
+      name: "Resubmission",
       icon: <AiOutlineFileExclamation />,
     },
     {
