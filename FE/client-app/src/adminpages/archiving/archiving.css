@@ -17,9 +17,9 @@
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
     .archivingdatatable {
-        width: 90%;
+        width: 85%;
         margin-left: 15.5rem;
     }
 }

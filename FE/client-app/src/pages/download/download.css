@@ -1,9 +1,30 @@
-.head {
-    margin-left: 13rem;
+.accordion {
+    margin-left: 15rem;
+    margin-top: 5rem;
+    text-align: center;
 }
 
-@media (max-width: 1366px) {
-    .head {
-        margin-left: 12rem;
+@media (min-width: 1366px) {
+    .accordion {
+        margin-left: 17rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .accordion {
+        margin-left: 21rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .accordion {
+        margin-left: 16rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    .accordion {
+        margin-left: 36rem;
+        width: 100%;
     }
 }

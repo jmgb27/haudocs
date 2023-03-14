@@ -17,13 +17,6 @@
     }
 }
 
-@media (min-width: 2560px) {
-    .inbox-datatable {
-        margin-left: 34rem;
-        width: 100%;
-    }
-}
-
 @media (min-width: 1600px) {
     .inbox-datatable {
         margin-left: 13.4rem;
@@ -34,6 +27,13 @@
 @media (min-width: 1920px) {
     .inbox-datatable {
         margin-left: 16.5rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .inbox-datatable {
+        margin-left: 35rem;
         width: 100%;
     }
 }

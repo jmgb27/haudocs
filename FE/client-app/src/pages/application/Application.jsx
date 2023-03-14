@@ -49,7 +49,7 @@ function Application() {
 
   return (
     <Sidebar>
-      <div className="application mt-[5rem]">
+      <div className="application mt-[4rem]">
         <h3 className="text-2xl font-bold text-center ml-7">
           Application Status
         </h3>

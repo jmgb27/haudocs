@@ -1,53 +1,84 @@
 import React from "react";
-import Accordion from "./accordion/irformsdata/Accordion";
-import formsdata from "./accordion/irformsdata/formsdata";
-import crformsdata from "./accordion/crformsdata/crformsdata";
-import Accordion2 from "./accordion/crformsdata/Accordion2";
-import Accordion3 from "./accordion/frformsdata/Accordion3";
-import frformsdata from "./accordion/frformsdata/frformsdata";
 import Sidebar from "../../components/Sidebar";
 import "./download.css";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Download = () => {
+  const initialgoogleDriveLink =
+    "https://drive.google.com/drive/folders/1Yspdco-rPZBfFFcodV4H-RD8yHCAGc4n?usp=share_link";
+
+  const continuinggoogleDriveLink =
+    "https://drive.google.com/drive/folders/1odBAMYIf46gbPyRkLbCH5A2XqBqFcwJk?usp=share_link";
+
+  const finalgoogleDriveLink =
+    "https://drive.google.com/drive/folders/13DrN_67A_cX56FYmSfjuqA3B3I9HZ1jJ?usp=share_link";
   return (
     <Sidebar>
-      <div className="head">
-        <div className="accordion">
-          {formsdata.map(({ title, form1, form2, form3 }) => (
-            <Accordion
-              title={title}
-              form1={form1}
-              form2={form2}
-              form3={form3}
-            />
-          ))}
-          {crformsdata.map(
-            ({
-              title2,
-              crform,
-              crform2,
-              crform3,
-              crform4,
-              crform5,
-              crform6,
-              crform7,
-            }) => (
-              <Accordion2
-                title2={title2}
-                crform={crform}
-                crform2={crform2}
-                crform3={crform3}
-                crform4={crform4}
-                crform5={crform5}
-                crform6={crform6}
-                crform7={crform7}
-              />
-            )
-          )}
-          {frformsdata.map(({ title3, frform }) => (
-            <Accordion3 title3={title3} frform={frform} />
-          ))}
-        </div>
+      <div className="accordion">
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>Initial Process Forms</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography sx={{ color: "maroon" }}>
+              <a
+                href={initialgoogleDriveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click Here To Download
+              </a>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography>Continuing Review Forms</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography sx={{ color: "maroon" }}>
+              <a
+                href={continuinggoogleDriveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click Here To Download
+              </a>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography>Final Review Form</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography sx={{ color: "maroon" }}>
+              <a
+                href={finalgoogleDriveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click Here To Download
+              </a>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </Sidebar>
   );
