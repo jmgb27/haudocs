@@ -10,7 +10,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Initial from "../../assets/hau.png";
-import Navbar from "../../components/navbar/Navbar";
 
 function Dashboard() {
   const [modal, setModal] = useState(false);
@@ -37,7 +36,7 @@ function Dashboard() {
           <h1 className="flex text-center flex-col text-3xl">
             HAU-Institutional Review Board
           </h1>
-          <div className="card-item flex items-center justify-center space-x-[1rem] mt-[2rem]">
+          <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[5rem]">
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 component="img"
@@ -53,11 +52,13 @@ function Dashboard() {
                   Requirements for Ethics Review Initial application
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button onClick={toggleModal2} size="small">
-                  See More
-                </Button>
-              </CardActions>
+              <div className="flex items-center justify-center">
+                <CardActions>
+                  <Button onClick={toggleModal2} size="small">
+                    read the instructions
+                  </Button>
+                </CardActions>
+              </div>
             </Card>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
@@ -74,11 +75,13 @@ function Dashboard() {
                   Requirements for Continuing Ethics Review upon issuance of ethical clearance
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button onClick={toggleModal} size="small">
-                  See More
-                </Button>
-              </CardActions>
+              <div className="flex items-center justify-center">
+                <CardActions>
+                  <Button onClick={toggleModal} size="small">
+                    read the instructions
+                  </Button>
+                </CardActions>
+              </div>
             </Card>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
@@ -95,11 +98,13 @@ function Dashboard() {
                   Requirements for Final Review upon completion of Continuing Review
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button onClick={toggleModal3} size="small">
-                  See More
-                </Button>
-              </CardActions>
+              <div className="flex items-center justify-center">
+                <CardActions>
+                  <Button onClick={toggleModal3} size="small">
+                    read the instructions
+                  </Button>
+                </CardActions>
+              </div>
             </Card>
           </div>
         </div>

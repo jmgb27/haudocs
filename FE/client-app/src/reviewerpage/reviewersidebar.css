@@ -3,24 +3,8 @@
     padding: 0;
     text-decoration: none;
 }
-
-.container {
-    display: flex;
-    height: 100%;
-}
-
 body {
     background-color: white;
-}
-
-
-.sidebar{
-    background: #800000;
-    color: #fff;
-    position: fixed;
-    height: 100%;
-    margin-top: 6rem;
-    padding-top: 20px;
 }
 
 .top_section{
@@ -39,7 +23,7 @@ body {
     align-items: center;
 }
 
-.link-adminsidebar:hover{
+.link-reviewersidebar:hover{
     background: white;
     color: #000;
     transition: all 0.5s;

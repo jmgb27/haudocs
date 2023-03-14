@@ -6,6 +6,7 @@ import { getFirestore } from "firebase/firestore/lite";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore/lite";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore/lite";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,13 +46,13 @@ export const registerWithEmailAndPassword = async (
       name
     );
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    await setDoc(doc(db, "users", user.uid), {
       createdAt: serverTimestamp(),
-      uid: user.uid,
       name,
       authProvider: "local",
       email,
-      role: role || "Applicants",
+      role: role || "applicant",
+      uid: user.uid,
     });
   } catch (err) {
     console.error(err);

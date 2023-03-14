@@ -16,7 +16,7 @@ const Reviewersidebar = ({ children }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/");
+      navigate("/Signin");
       console.log("You are logged out");
     } catch (e) {
       console.log(e.message);
@@ -61,12 +61,7 @@ const Reviewersidebar = ({ children }) => {
         <Navbar />
         <div className="top_section"></div>
         {ReviewersidenavItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link-reviewersidebar"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link-reviewersidebar">
             <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
@@ -77,7 +72,6 @@ const Reviewersidebar = ({ children }) => {
               to={item.path}
               key={index}
               className="link-reviewersidebar flex items-center"
-              activeclassName="active"
             >
               <div className="icon-admin">{item.icon}</div>
               <div className="link_text">{item.name}</div>

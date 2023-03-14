@@ -49,17 +49,14 @@ const AdminApplication = () => {
 
   return (
     <Adminsidebar>
-      <div className="datatable">
+      <div className="adminreviewdatatable">
         <h1 className="mt-[3rem] text-center text-2xl font-bold">
           Review Status
         </h1>
         {/*     <div className='flex items-end justify-end'>
     <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
     </div> */}
-        <div
-          className="review ml-[2rem] mt-[2rem]"
-          style={{ height: 500, width: "100%" }}
-        >
+        <div className="review mt-4" style={{ height: 500, width: "100%" }}>
           <DataGrid
             rows={rows}
             columns={columns}

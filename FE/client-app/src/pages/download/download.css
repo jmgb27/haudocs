@@ -1,0 +1,9 @@
+.head {
+    margin-left: 13rem;
+}
+
+@media (max-width: 1366px) {
+    .head {
+        margin-left: 12rem;
+    }
+}

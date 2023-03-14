@@ -7,13 +7,44 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { Card } from "flowbite-react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
 
 const Continuingtab = (props) => {
   const [open, setOpen] = useState(false);
   const { handleCloseModal } = props;
+  const [protocolNumber, setProtocolNumber] = React.useState("");
+  const [reviewType, setReviewType] = React.useState("");
+  const [isCheckedHau, setIsCheckedHau] = React.useState(false);
+  const [isCheckedOthers, setIsCheckedOthers] = React.useState(false);
+  const [assignTo, setAssignTo] = React.useState("");
 
+  const handleProtocolNumberChange = (event) => {
+    setProtocolNumber(event.target.value);
+  };
+
+  const handleReviewTypeChange = (event) => {
+    setReviewType(event.target.value);
+  };
+
+  const handleCheckboxChange = (event) => {
+    if (event.target.name === "Hau") {
+      setIsCheckedHau(event.target.checked);
+    } else if (event.target.name === "Others") {
+      setIsCheckedOthers(event.target.checked);
+    }
+  };
+
+  const handleAssignToChange = (event) => {
+    setAssignTo(event.target.value);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -26,10 +57,16 @@ const Continuingtab = (props) => {
     // logic to download data for the row with the specified ID
   }
 
-  function handleSubmit() {
-    // Add code here to submit the data
-    setOpen(false);
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({
+      protocolNumber,
+      reviewType,
+      assignTo,
+      isCheckedHau,
+      isCheckedOthers,
+    });
+  };
 
   const downloadStyle = {
     color: "maroon",
@@ -115,80 +152,52 @@ const Continuingtab = (props) => {
         rowsPerPageOptions={[5]}
         checkboxSelection
       />
-      <div className="review">
-        <Card className="reviewertab">
-          <div className="flex items-center mt-2 space-x-2">
-            <h1 className="text-white ml-[1.3rem]">
-              Enter your protocol number:
-            </h1>
-            <input></input>
-            <div class="flex items-center border-gray-200 rounded dark:border-gray-700">
-              <input
-                id="bordered-checkbox-1"
-                type="checkbox"
-                value=""
-                name="bordered-checkbox"
-                class="w-4 h-4 ml-[3rem] text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="bordered-checkbox-1"
-                class="w-full py-4 ml-2 text-sm font-medium text-white dark:text-gray-300"
-              >
-                HAU
-              </label>
-            </div>
-            <div class="flex items-center border-gray-200 rounded dark:border-gray-700">
-              <input
-                id="bordered-checkbox-1"
-                type="checkbox"
-                value=""
-                name="bordered-checkbox"
-                class="w-4 h-4 ml-[1rem] text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="bordered-checkbox-1"
-                class="w-full py-4 ml-2 text-sm font-medium text-white dark:text-gray-300"
-              >
-                Others
-              </label>
-            </div>
-          </div>
-          <input
-            class="ml-[1.3rem] mt-5 block text-sm text-white cursor-pointer dark:text-gray-400 focus:outline-none dark:placeholder-gray-400"
-            id="multiple_files"
-            type="file"
-            multiple
-          />
-          <div className="flex items-center justify-start mt-5 space-x-2">
-            <h1 className="text-white ml-[1.3rem] mr-[6rem]">
-              Type of review:
-            </h1>
-            <select
-              id="review"
-              class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon"
-            >
-              <option selected>Choose type of review</option>
-              <option value="NS">Full board review</option>
-              <option value="NS">expedited review</option>
-            </select>
-          </div>
-
-          <div className="text-white ">
-            <div className="flex items-center justify-start mt-5 space-x-2">
-              <h1 className="text-white ml-[1.3rem] mr-[8.1rem]">Assign To:</h1>
-              <select
-                id="review"
-                class="bg-gray-50 w-half border border-gray-300 text-gray-900 text-sm focus:ring-maroon focus:border-maroon p-1 pl-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maroon dark:focus:border-maroon"
-              >
-                <option selected>Choose the reviewer</option>
-                <option value="SC">Almond Rosos</option>
-                <option value="NS">Myra Cuyagbo</option>
-                <option value="NS">Stephanie David</option>
-              </select>
-            </div>
-          </div>
-        </Card>
-      </div>
+      <Box sx={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={isCheckedHau}
+              onChange={handleCheckboxChange}
+              name="Hau"
+            />
+          }
+          label="Hau"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={isCheckedOthers}
+              onChange={handleCheckboxChange}
+              name="Others"
+            />
+          }
+          label="Others"
+        />
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <TextField
+          label="Protocol Number"
+          value={protocolNumber}
+          onChange={handleProtocolNumberChange}
+        />
+        <Box sx={{ display: "flex", gap: "1rem" }}>
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel>Review Type</InputLabel>
+            <Select value={reviewType} onChange={handleReviewTypeChange}>
+              <MenuItem value="Type A">Full Board Review</MenuItem>
+              <MenuItem value="Type B">Expedited Review</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <FormControl sx={{ minWidth: 120, marginBottom: "2rem" }}>
+          <InputLabel>Assign To</InputLabel>
+          <Select value={assignTo} onChange={handleAssignToChange}>
+            <MenuItem value="Person A">Person A</MenuItem>
+            <MenuItem value="Person B">Person B</MenuItem>
+            <MenuItem value="Person C">Person C</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       <div className="flex items-end justify-end space-x-2 pb-[2rem]">
         <Button
           style={closeStyle}

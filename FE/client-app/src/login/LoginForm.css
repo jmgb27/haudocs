@@ -192,9 +192,13 @@
 }
 
 .auth__error{
-  padding: 10px 0;
-  background-color: hsl(0, 79%, 87%);
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid red;
+  border-radius: 4px;
 }
 
 .signup-inputs_container {
@@ -204,4 +208,27 @@
 
 .or {
   background-color: whitesmoke;
+}
+
+.error-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+
+.error-message {
+  flex-grow: 1;
+  margin-right: 8px;
+}
+
+.close-button {
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }

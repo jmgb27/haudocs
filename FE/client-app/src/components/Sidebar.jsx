@@ -10,24 +10,9 @@ import {
 import { FiDownload, FiLogOut } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
-import { UserAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { BsFillInboxFill } from "react-icons/bs";
 
 const Sidebar = ({ children }) => {
-  const { logout } = UserAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/");
-      console.log("You are logged out");
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
   const SidenavItem = [
     {
       path: "/dashboard",
@@ -81,36 +66,21 @@ const Sidebar = ({ children }) => {
         <Navbar />
         <div className="top_section"></div>
         {SidenavItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link-sidebar"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link-sidebar">
             <div className="icon-sidebar">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))}
         <div className="bottom_section">
           {Setting.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-sidebar"
-              activeclassName="active"
-            >
+            <NavLink to={item.path} key={index} className="link-sidebar">
               <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>
           ))}
 
           {BottomnavItem.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-sidebar"
-              onClick={handleLogout}
-            >
+            <NavLink to={item.path} key={index} className="link-sidebar">
               <div className="icon-sidebar">{item.icon}</div>
               <div className="link_text">{item.name}</div>
             </NavLink>

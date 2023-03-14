@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FormData from "form-data";
 
 const Initial = () => {
   const [firstFile, setFirstFile] = useState(null);
@@ -14,11 +13,12 @@ const Initial = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const form = new FormData();
+
     if (firstFile) {
       form.append("firstFile", firstFile);
     }
+
     if (secondFile) {
       form.append("secondFile", secondFile);
     }
@@ -45,9 +45,10 @@ const Initial = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/files", {
+      const response = await fetch("http://localhost:8080/files", {
         method: "POST",
         headers: {
+          // "Content-Type": "multipart/form-data",
           filefolder: "folder",
         },
         body: form,
@@ -224,16 +225,16 @@ const Initial = () => {
                   <button
                     id="sub"
                     type="submit"
-                    disabled={
-                      !firstFile ||
-                      !secondFile ||
-                      !thirdFile ||
-                      !fifthFile ||
-                      !sixthFile ||
-                      !seventhFile ||
-                      !eightFile ||
-                      !ninthFile
-                    }
+                    // disabled={
+                    //   !firstFile ||
+                    //   !secondFile ||
+                    //   !thirdFile ||
+                    //   !fifthFile ||
+                    //   !sixthFile ||
+                    //   !seventhFile ||
+                    //   !eightFile ||
+                    //   !ninthFile
+                    // }
                     class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
                   >
                     Submit

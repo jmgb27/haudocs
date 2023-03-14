@@ -1,0 +1,38 @@
+.inbox-datatable {
+    margin-left: 15rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 1920px) {
+    .inbox-datatable {
+        margin-left: 16rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1366px) {
+    .inbox-datatable {
+        margin-left: 9.8rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .inbox-datatable {
+        margin-left: 9rem;
+        width: 95%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .inbox-datatable {
+        margin-left: 34rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .inbox-datatable {
+        margin-left: 13.4rem;
+        width: 85%;
+    }
+}

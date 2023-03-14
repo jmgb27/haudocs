@@ -4,10 +4,35 @@
     background-color: maroon;
     border: 0;
     border-radius: 0;
+    justify-content: center;
+    margin-left: 15rem;
+    margin-top: 5rem;
 }
 
-/* @media (max-height: 1050px) {
-    .review{
-        height: 50%;
+@media (max-width: 1920px) {
+    .transfer{
+        margin-left: 34rem;
     }
-} */
+}
+
+@media (max-width: 1600px) {
+    .transfer {
+        margin-left: 14rem;
+
+    }
+}
+
+@media (max-width: 1440px) {
+    .transfer {
+        margin-left: 21rem;
+
+    }
+}
+
+@media (min-width: 2560px) {
+    .transfer {
+        margin-left: 38rem;
+        width: 100%;
+
+    }
+}

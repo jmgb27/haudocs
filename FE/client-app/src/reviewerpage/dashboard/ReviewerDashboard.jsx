@@ -23,25 +23,27 @@ function Box(props) {
 function ReviewerDashboard() {
   return (
     <Reviewersidebar>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginLeft: "15rem",
-          marginTop: "4rem",
-          alignItems: "center",
-        }}
-      >
+      <div className="reviewerdashboard">
         <div
-          className="space-x-4"
           style={{
             display: "flex",
-            flexDirection: "row",
-            textAlign: "center",
+            flexDirection: "column",
+            marginLeft: "15rem",
+            marginTop: "4rem",
+            alignItems: "center",
           }}
         >
-          <Box content={<Progress />} />
-          <Box content={<Completed />} />
+          <div
+            className="space-x-4"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              textAlign: "center",
+            }}
+          >
+            <Box content={<Progress />} />
+            <Box content={<Completed />} />
+          </div>
         </div>
       </div>
     </Reviewersidebar>

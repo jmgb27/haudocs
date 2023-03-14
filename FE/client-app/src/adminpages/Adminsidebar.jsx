@@ -15,15 +15,6 @@ const Adminsidebar = ({ children }) => {
   const { logout } = UserAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/");
-      console.log("You are logged out");
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
   const AdminsidenavItem = [
     {
       path: "/admindashboard",
@@ -77,12 +68,7 @@ const Adminsidebar = ({ children }) => {
         <Navbar />
         <div className="top_section"></div>
         {AdminsidenavItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link-adminsidebar"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link-adminsidebar">
             <div className="icon-admin">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>
@@ -93,7 +79,6 @@ const Adminsidebar = ({ children }) => {
               to={item.path}
               key={index}
               className="link-adminsidebar flex items-center"
-              activeclassName="active"
             >
               <div className="icon-admin">{item.icon}</div>
               <div className="link_text">{item.name}</div>
@@ -105,7 +90,6 @@ const Adminsidebar = ({ children }) => {
               to={item.path}
               key={index}
               className="link-adminsidebar flex items-center"
-              onClick={handleLogout}
             >
               <div className="icon-admin">{item.icon}</div>
               <div className="link_text">{item.name}</div>

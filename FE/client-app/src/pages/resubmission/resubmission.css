@@ -1,5 +1,38 @@
 .sub-container {
     width: 70%;
-    margin-left: 15rem;
+    margin-left: 13rem;
     margin-top: 1rem;
+}
+
+@media (min-width: 1366px) {
+    .sub-container {
+        margin-left: 18rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .sub-container {
+        margin-left: 20rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .sub-container {
+        margin-left: 17rem;
+        width: 80%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .sub-container {
+        margin-left: 18rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .sub-container {
+        margin-left: 37rem;
+        width: 100%;
+    }
 }

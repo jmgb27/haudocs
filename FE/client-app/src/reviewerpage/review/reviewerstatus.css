@@ -1,0 +1,32 @@
+.reviewdatatable {
+    width: 90%;
+    margin-left: 15rem;
+}
+
+@media (min-width: 1600px) {
+    .reviewdatatable {
+        margin-left: 13.4rem;
+        width: 85%;
+    }
+}
+
+@media (min-width: 1366px) {
+    .reviewdatatable {
+        margin-left: 13rem;
+        width: 85%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .reviewdatatable {
+        margin-left: 16.2rem;
+        width: 100%
+    }
+}
+
+@media (min-width: 1440px) {
+    .reviewdatatable {
+        margin-left: 13.2rem;
+        width: 90%;
+    }
+}
