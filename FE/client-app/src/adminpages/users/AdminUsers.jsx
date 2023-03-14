@@ -3,7 +3,15 @@ import Adminsidebar from "../Adminsidebar";
 import "./users.css";
 import { db } from "../../firebase";
 import { userColumns } from "./adminusersdata";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore/lite";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+  where,
+  query,
+} from "firebase/firestore/lite";
+
 import { DataGrid } from "@mui/x-data-grid";
 import "./adminusers.css";
 import { registerWithEmailAndPassword } from "../../firebase";
@@ -17,10 +25,13 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import {
   Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
   DialogTitle,
+  DialogContent,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  DialogActions,
 } from "@mui/material";
 
 const AdminUsers = () => {
@@ -31,18 +42,24 @@ const AdminUsers = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const [secondopen, secondsetOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [diaopen, diasetOpen] = React.useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const handleClose = () => setOpen(false);
+  const secondhandleClose = () => secondsetOpen(false);
   const handleOpen = () => setOpen(true);
-  const [deleteUserId, setDeleteUserId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       let list = [];
       try {
         const usersRef = collection(db, "users");
-        const querySnapshotRef = await getDocs(usersRef);
+        const querySnapshotRef = await getDocs(
+          query(
+            usersRef,
+            where("role", "in", ["admin", "scientist", "non-scientist"])
+          )
+        );
         querySnapshotRef.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
@@ -54,50 +71,28 @@ const AdminUsers = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
-    setDeleteUserId(id);
-    diasetOpen(true);
+  const handleEdit = (id) => {
+    setSelectedUserId(id);
+    secondsetOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const handleRoleChange = (event) => {
+    setRole(event.target.value);
+  };
+
+  const handleSave = async () => {
     try {
-      await deleteDoc(doc(db, "users", deleteUserId));
-      setData(data.filter((item) => item.id !== deleteUserId));
+      const userRef = doc(db, "users", selectedUserId);
+      await updateDoc(userRef, { role });
+      const updatedData = data.map((item) =>
+        item.id === selectedUserId ? { ...item, role } : item
+      );
+      setData(updatedData);
+      setSelectedUserId(null);
+      secondhandleClose();
     } catch (err) {
       console.log(err);
     }
-    diasetOpen(false);
-    setDeleteUserId(null);
-  };
-
-  const handlediaClose = () => {
-    diasetOpen(false);
-  };
-
-  const renderDeleteConfirmationDialog = (handlediaClose) => {
-    return (
-      <Dialog open={diaopen} onClose={handlediaClose}>
-        <DialogTitle>Confirm Deletion</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this user?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              diasetOpen(false);
-              handlediaClose();
-            }}
-          >
-            Cancel
-          </Button>
-          <Button onClick={handleConfirmDelete} sx={deleteStyle}>
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
   };
 
   const actionColumn = [
@@ -110,9 +105,9 @@ const AdminUsers = () => {
           <div className="cellAction">
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleEdit(params.row.id)}
             >
-              Delete{renderDeleteConfirmationDialog(handlediaClose)}
+              Edit Role
             </div>
           </div>
         );
@@ -165,7 +160,7 @@ const AdminUsers = () => {
     }
   };
 
-  const deleteStyle = {
+  const saveStyle = {
     color: "maroon",
     borderColor: "maroon",
   };
@@ -291,6 +286,33 @@ const AdminUsers = () => {
           rowsPerPageOptions={[9]}
           checkboxSelection
         />
+        <Dialog open={secondopen} onClose={secondhandleClose}>
+          <DialogTitle>Edit User Role</DialogTitle>
+          <DialogContent>
+            <FormControl sx={{ width: "100%" }}>
+              <InputLabel id="select-label">Role</InputLabel>
+              <Select
+                labelId="select-label"
+                id="simple-select"
+                value={role}
+                onChange={handleRoleChange}
+              >
+                <MenuItem value={"admin"}>Admin</MenuItem>
+                <MenuItem value={"scientist"}>Scientist</MenuItem>
+                <MenuItem value={"non-scientist"}>Non-Scientist</MenuItem>
+                <MenuItem value={"applicant"}>Applicant</MenuItem>
+              </Select>
+            </FormControl>
+          </DialogContent>
+          <DialogActions>
+            <Button style={saveStyle} onClick={secondhandleClose}>
+              Cancel
+            </Button>
+            <Button style={saveStyle} onClick={handleSave}>
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </Adminsidebar>
   );
