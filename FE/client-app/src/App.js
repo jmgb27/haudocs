@@ -87,7 +87,11 @@ function App() {
                     <ProtectedRoute>
                       <AdminDashboard />
                     </ProtectedRoute>
-                  ) : role === "reviewer" ? (
+                  ) : role === "scientist" ? (
+                    <ProtectedRoute>
+                      <ReviewerDashboard />
+                    </ProtectedRoute>
+                  ) : role === "non-scientist" ? (
                     <ProtectedRoute>
                       <ReviewerDashboard />
                     </ProtectedRoute>

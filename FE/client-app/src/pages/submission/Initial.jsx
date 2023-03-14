@@ -79,6 +79,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="multiple_files"
+                  accept=".pdf,.doc,.docx"
                   type="file"
                   multiple
                   onChange={(event) => {
@@ -96,6 +97,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSecondFile(event.target.files[0]);
@@ -113,6 +115,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setThirdFile(event.target.files[0]);
@@ -130,6 +133,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setFourthFile(event.target.files[0]);
@@ -149,6 +153,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setFifthFile(event.target.files[0]);
@@ -160,6 +165,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSixthFile(event.target.files[0]);
@@ -171,6 +177,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSeventhFile(event.target.files[0]);
@@ -187,6 +194,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setEightFile(event.target.files[0]);
@@ -203,6 +211,7 @@ const Initial = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setNinthFile(event.target.files[0]);
@@ -225,16 +234,16 @@ const Initial = () => {
                   <button
                     id="sub"
                     type="submit"
-                    // disabled={
-                    //   !firstFile ||
-                    //   !secondFile ||
-                    //   !thirdFile ||
-                    //   !fifthFile ||
-                    //   !sixthFile ||
-                    //   !seventhFile ||
-                    //   !eightFile ||
-                    //   !ninthFile
-                    // }
+                    disabled={
+                      !firstFile ||
+                      !secondFile ||
+                      !thirdFile ||
+                      !fifthFile ||
+                      !sixthFile ||
+                      !seventhFile ||
+                      !eightFile ||
+                      !ninthFile
+                    }
                     class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
                   >
                     Submit

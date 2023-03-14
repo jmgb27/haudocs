@@ -29,6 +29,13 @@
     }
 }
 
+@media (max-width: 1366px) {
+    .transfer {
+        margin-left: 15rem;
+
+    }
+}
+
 @media (min-width: 2560px) {
     .transfer {
         margin-left: 38rem;

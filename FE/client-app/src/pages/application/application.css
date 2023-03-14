@@ -15,9 +15,21 @@
     margin-left: 13rem;
 }
 
-@media (max-width: 1366px) {
+@media (min-width: 1366px) {
     .application {
-        margin-left: 10rem;
+        margin-left: 13.5rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .application {
+        margin-left: 18rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .application {
+        margin-left: 13rem;
     }
 }
 

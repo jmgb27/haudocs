@@ -95,13 +95,13 @@ button {
 
 @media (min-width: 1366px) {
     .subtabs {
-        margin-left: 14rem;
+        margin-left: 17rem;
     }
 }
 
 @media (min-width: 1440px) {
     .subtabs {
-        margin-left: 18rem;
+        margin-left: 22rem;
     }
 }
 
