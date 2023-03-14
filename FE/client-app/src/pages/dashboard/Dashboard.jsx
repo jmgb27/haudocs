@@ -48,7 +48,9 @@ function Dashboard() {
                 <Typography gutterBottom variant="h5" component="div">
                   Initial Review
                 </Typography>
-                <Typography variant="body2" color="text.secondary"></Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Requirements for Ethics Review Initial application
+                </Typography>
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
@@ -69,7 +71,9 @@ function Dashboard() {
                 <Typography gutterBottom variant="h5" component="div">
                   Continuing Review
                 </Typography>
-                <Typography variant="body2" color="text.secondary"></Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Requirements for Continuing Ethics Review upon issuance of ethical clearance
+                </Typography>
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
@@ -90,7 +94,9 @@ function Dashboard() {
                 <Typography gutterBottom variant="h5" component="div">
                   Final Review
                 </Typography>
-                <Typography variant="body2" color="text.secondary"></Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Requirements for Final Review upon completion of Continuing Review
+                </Typography>
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
@@ -231,61 +237,46 @@ function Dashboard() {
             <div className="require">
               <p>
                 <strong>
-                  REQUIREMENTS for Ethics Review Initial application:
+                  Requirements for Ethics Review Initial Application: 
+                  <br /><br />
+                  <em>(NOTE: Items in red color are not required, submit if it only applies to your field of study.)</em>
                 </strong>
               </p>
             </div>
-            <p>Research Proposal (with the following sections)</p>
-            <p>
-              Introduction, RRL and Methods section- with{" "}
-              <em>“Ethical Considerations” section</em>
+            <p><strong>1. Research Proposal with the following sections:</strong>
+              <li>Introduction</li>
+              <li>Review of Related Literature and Studies</li>
+              <li>Methods section - with <em>Ethical Considerations</em> section</li>
             </p>
             <p>
-              Informed consent/assent form <em>(separate document)</em>
+              <strong>2. Informed consent/assent form <em>(separate document)</em></strong>
             </p>
             <p>
-              Questionnaire/s/Tools (Quantitative), Interview Guide
-              (Qualitative)
+              <strong>3. Questionnaire/s/Tools (Quantitative), Interview Guide (Qualitative)</strong>
             </p>
             <div className="RED">
-              <p>NCIP clearance (for studies involving indigenous groups)</p>
+              <p><strong>4. NCIP clearance (for studies involving indigenous groups)</strong></p>
             </div>
-            <p>Accomplished HAU-IRB Forms</p>
             <p>
-              <li>
-                HAU-IRB FORM 2(B): <em>Registration and Application Form</em>
-              </li>
+              <strong>5. Accomplished HAU-IRB FORM 2(B): <em>Registration and Application Form</em></strong>
+              <li> section II should be signed and endorsed by URO Director<em> (for faculty researchers)</em></li>
+              <li>section III should be signed and endorsed by the dean/GPC<em> (for graduate school students)</em></li>
             </p>
             <p>
-              <li>
-                <strong>
-                  section II should be signed and endorsed by URO Director
-                </strong>
-                <em> (for faculty researchers)</em>
-              </li>
+                <strong>6. Accomplished HAU-IRB FORM 4.1(A): <em>Protocol Assessment Form</em></strong>
             </p>
             <p>
-              <li>
-                <strong>
-                  section III should be signed and endorsed by the dean/GPC
-                </strong>
-                <em> (for graduate school students) </em>
-              </li>
-            </p>
-            <p>
-              <li>
-                HAU-IRB FORM 4.1(A): <em>Protocol Assessment Form</em>
-              </li>
-            </p>
-            <p>
-              <li>
-                HAU-IRB FORM 4.1(B):{" "}
+              <strong>
+                7. Accomplished HAU-IRB FORM 4.1(B):{" "}
+              </strong>
                 <em>
-                  Informed Consent Assessment Form (the basis in filling out
+                  <strong>Informed Consent Assessment Form</strong> (the basis in filling out
                   this form should be the submitted informed consent document,
                   not the entire manuscript)
                 </em>
-              </li>
+            </p>
+            <p>
+              <strong>8. Curriculum Vitae</strong>
             </p>
 
             <p>
@@ -295,13 +286,13 @@ function Dashboard() {
                 maximum of 4 weeks is needed to process an expedited review,
               </strong>{" "}
               whereas{" "}
-              <em>6 weeks for a study needing full review by the board.</em>
+              <strong>6 weeks for a study needing full review by the board.</strong>
             </p>
 
             <p>
-              Please be reminded that students/researchers cannot proceed with
-              any form of data collection <em>(pilot testing included)</em>{" "}
-              unless issued an ethical clearance.
+              Please be reminded that students/researchers <strong>cannot proceed with
+              any form of data collection</strong> <em>(pilot testing included)</em>{" "}
+              <strong>unless issued an ethical clearance</strong>.
             </p>
 
             <div className="mt-2 mb-10 space-x-[34rem]">
