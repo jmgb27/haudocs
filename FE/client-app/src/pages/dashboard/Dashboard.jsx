@@ -36,7 +36,7 @@ function Dashboard() {
           <h1 className="flex text-center flex-col text-3xl">
             HAU-Institutional Review Board
           </h1>
-          <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[5rem]">
+          <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[3rem]">
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 component="img"

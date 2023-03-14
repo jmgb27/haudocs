@@ -129,3 +129,9 @@ body {
         padding-top: 17rem;
     }
 }
+
+@media (min-height: 1440px) {
+    .reviewer-bottom_section {
+        padding-top: 60rem;
+    }
+}

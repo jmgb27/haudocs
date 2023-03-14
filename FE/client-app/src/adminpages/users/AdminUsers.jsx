@@ -33,6 +33,9 @@ import {
   MenuItem,
   DialogActions,
 } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const AdminUsers = () => {
   const [data, setData] = useState([]);
@@ -48,6 +51,7 @@ const AdminUsers = () => {
   const handleClose = () => setOpen(false);
   const secondhandleClose = () => secondsetOpen(false);
   const handleOpen = () => setOpen(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -133,14 +137,17 @@ const AdminUsers = () => {
     noPassword: "Please enter your password",
   };
 
-  const addusers = () => {
+  const addusers = (e) => {
+    e.preventDefault();
     if (validatePassword()) {
       registerWithEmailAndPassword(name, email, password, role)
         .then((userCredential) => {
           console.log(userCredential.user);
+          secondhandleClose();
         })
         .catch((err) => setErrorMessages(err.message));
     }
+
     setRole("");
     setName("");
     setEmail("");
@@ -211,7 +218,7 @@ const AdminUsers = () => {
                       User Management
                     </Typography>
                     <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6}>
+                      <Grid item xs={12}>
                         <TextField
                           autoComplete="given-name"
                           name="Name"
@@ -224,17 +231,23 @@ const AdminUsers = () => {
                           onChange={(e) => setName(e.target.value)}
                         />
                       </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="role"
-                          label="Role"
-                          name="role"
-                          value={role}
-                          autoComplete="role-name"
-                          onChange={(e) => setRole(e.target.value)}
-                        />
+                      <Grid item xs={12}>
+                        <FormControl required fullWidth>
+                          <InputLabel id="role-label">Role</InputLabel>
+                          <Select
+                            labelId="role-label"
+                            id="role"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            autoComplete="role-name"
+                          >
+                            <MenuItem value="admin">Admin</MenuItem>
+                            <MenuItem value="scientist">Scientist</MenuItem>
+                            <MenuItem value="non-scientist">
+                              Non-Scientist
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
@@ -255,9 +268,26 @@ const AdminUsers = () => {
                           value={password}
                           name="password"
                           label="Password"
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           id="password"
                           autoComplete="new-password"
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  onMouseDown={(e) => e.preventDefault()}
+                                  edge="end"
+                                >
+                                  {showPassword ? (
+                                    <MdVisibilityOff />
+                                  ) : (
+                                    <MdVisibility />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </Grid>
@@ -267,10 +297,10 @@ const AdminUsers = () => {
                       style={buttonStyle}
                       fullWidth
                       variant="contained"
-                      sx={{ mt: 3, mb: 2 }}
+                      sx={{ mt: 3, mb: 8, height: "3rem" }}
                       onClick={addusers}
                     >
-                      Add Users
+                      Add User
                     </Button>
                   </Box>
                 </Container>
@@ -287,7 +317,7 @@ const AdminUsers = () => {
           checkboxSelection
         />
         <Dialog open={secondopen} onClose={secondhandleClose}>
-          <DialogTitle>Edit User Role</DialogTitle>
+          <DialogTitle sx={{ width: "30rem" }}>Edit User Role</DialogTitle>
           <DialogContent>
             <FormControl sx={{ width: "100%" }}>
               <InputLabel id="select-label">Role</InputLabel>

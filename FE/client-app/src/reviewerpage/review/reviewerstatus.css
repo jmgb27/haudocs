@@ -3,16 +3,24 @@
     margin-left: 15rem;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1366px) {
     .reviewdatatable {
-        margin-left: 13.4rem;
+        margin-left: 13rem;
         width: 85%;
     }
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1440px) {
     .reviewdatatable {
-        margin-left: 13rem;
+        margin-left: 13.2rem;
+        width: 90%;
+    }
+}
+
+
+@media (min-width: 1600px) {
+    .reviewdatatable {
+        margin-left: 13.5rem;
         width: 85%;
     }
 }
@@ -24,9 +32,9 @@
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 2560px) {
     .reviewdatatable {
-        margin-left: 13.2rem;
-        width: 90%;
+        margin-left: 35.2rem;
+        width: 100%
     }
 }

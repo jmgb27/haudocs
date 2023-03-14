@@ -3,13 +3,6 @@
     display: flex;
 }
 
-@media (min-width: 1600px) {
-    .assigned {
-        margin-left: 15.4rem;
-        width: 85%;
-    }
-}
-
 @media (min-width: 1366px) {
     .assigned {
         margin-left: 15rem;
@@ -27,5 +20,19 @@
     .assigned {
         margin-left: 19rem;
         width: 80%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .assigned {
+        margin-left: 15.4rem;
+        width: 85%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .assigned {
+        margin-left: 20rem;
+        width: 100%;
     }
 }
