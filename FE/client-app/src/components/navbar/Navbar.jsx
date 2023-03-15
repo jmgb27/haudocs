@@ -83,15 +83,20 @@ function Navbar() {
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const storageRef = ref(storage, `users/${user.uid}/profile_picture`);
-        getDownloadURL(storageRef)
-          .then((url) => {
-            setImageUrl(url);
-            localStorage.setItem("profileImageUrl", url);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        if (user.photoURL) {
+          setImageUrl(user.photoURL);
+          localStorage.setItem("profileImageUrl", user.photoURL);
+        } else {
+          const storageRef = ref(storage, `users/${user.uid}/profile_picture`);
+          getDownloadURL(storageRef)
+            .then((url) => {
+              setImageUrl(url);
+              localStorage.setItem("profileImageUrl", url);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       } else {
         setImageUrl(null);
         localStorage.removeItem("profileImageUrl");
