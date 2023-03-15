@@ -49,12 +49,10 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user);
-
       if (user) {
+        setCurrentUser(user);
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-
         if (userDoc.exists()) {
           const userData = userDoc.data();
           setRole(userData.role);
@@ -62,6 +60,8 @@ function App() {
           console.log("User document not found");
         }
       } else {
+        setCurrentUser(null);
+        setRole("");
         console.log("User not logged in");
       }
       setLoading(false);
@@ -72,7 +72,6 @@ function App() {
   if (loading) {
     return <div></div>;
   }
-
   return (
     <AuthContextProvider>
       <AuthProvider value={{ role, currentUser, timeActive, setTimeActive }}>
@@ -133,65 +132,97 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/application"
               element={
-                <ProtectedRoute>
-                  <Application />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Application />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/download"
               element={
-                <ProtectedRoute>
-                  <Download />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Download />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/setting"
               element={
-                <ProtectedRoute>
-                  <Setting />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Setting />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/submission"
               element={
-                <ProtectedRoute>
-                  <Submission />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Submission />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/resubmission"
               element={
-                <ProtectedRoute>
-                  <ReSubmission />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <ReSubmission />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/inbox"
               element={
-                <ProtectedRoute>
-                  <Inbox />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Inbox />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/logout"
               element={
-                <ProtectedRoute>
-                  <Logout />
-                </ProtectedRoute>
+                role === "applicant" ? (
+                  <ProtectedRoute>
+                    <Logout />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
 
@@ -199,65 +230,97 @@ function App() {
             <Route
               path="/admindashboard"
               element={
-                <ProtectedRoute>
-                  <AdminDashboard />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminapplication"
               element={
-                <ProtectedRoute>
-                  <AdminApplication />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminApplication />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminarchiving"
               element={
-                <ProtectedRoute>
-                  <AdminArchiving />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminArchiving />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminsubmissions"
               element={
-                <ProtectedRoute>
-                  <Adminsubmissions />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <Adminsubmissions />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/admintransfer"
               element={
-                <ProtectedRoute>
-                  <AdminTransfer />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminTransfer />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminusers"
               element={
-                <ProtectedRoute>
-                  <AdminUsers />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminUsers />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminsettings"
               element={
-                <ProtectedRoute>
-                  <AdminSettings />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminSettings />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/adminlogout"
               element={
-                <ProtectedRoute>
-                  <AdminLogout />
-                </ProtectedRoute>
+                role === "admin" ? (
+                  <ProtectedRoute>
+                    <AdminLogout />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
 
@@ -265,41 +328,61 @@ function App() {
             <Route
               path="/reviewerdashboard"
               element={
-                <ProtectedRoute>
-                  <ReviewerDashboard />
-                </ProtectedRoute>
+                role === "scientist" || role === "non-scientist" ? (
+                  <ProtectedRoute>
+                    <ReviewerDashboard />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/reviewerstatus"
               element={
-                <ProtectedRoute>
-                  <Reviewstatus />
-                </ProtectedRoute>
+                role === "scientist" || role === "non-scientist" ? (
+                  <ProtectedRoute>
+                    <Reviewstatus />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/assignedprotocol"
               element={
-                <ProtectedRoute>
-                  <AssignedProtocol />
-                </ProtectedRoute>
+                role === "scientist" || role === "non-scientist" ? (
+                  <ProtectedRoute>
+                    <AssignedProtocol />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/reviewersettings"
               element={
-                <ProtectedRoute>
-                  <Reviewersettings />
-                </ProtectedRoute>
+                role === "scientist" || role === "non-scientist" ? (
+                  <ProtectedRoute>
+                    <Reviewersettings />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route
               path="/reviewerlogout"
               element={
-                <ProtectedRoute>
-                  <Reviewerlogout />
-                </ProtectedRoute>
+                role === "scientist" || role === "non-scientist" ? (
+                  <ProtectedRoute>
+                    <Reviewerlogout />
+                  </ProtectedRoute>
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
           </Routes>
