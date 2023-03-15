@@ -1,18 +1,25 @@
+@media (min-width: 1280px) {
+    .reviewerdashboard {
+        margin-left: 10.4rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1366px) {
     .reviewerdashboard {
-        margin-left: 2rem;
+        margin-left: 13rem;
     }
 }
 
 @media (min-width: 1440px) {
     .reviewerdashboard {
-        margin-left: 7rem;
+        margin-left: 16rem;
     }
 }
 
 @media (min-width: 1600px) {
     .reviewerdashboard {
-        margin-left: 2rem;
+        margin-left: 15rem;
     }
 }
 

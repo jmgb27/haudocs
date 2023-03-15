@@ -4,6 +4,12 @@
     margin-top: 1rem;
 }
 
+@media (min-width: 1280px) {
+    .sub-container {
+        margin-left: 18rem;
+    }
+}
+
 @media (min-width: 1366px) {
     .sub-container {
         margin-left: 21rem;
@@ -18,7 +24,7 @@
 
 @media (min-width: 1600px) {
     .sub-container {
-        margin-left: 17rem;
+        margin-left: 18rem;
         width: 80%;
     }
 }

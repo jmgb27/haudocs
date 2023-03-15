@@ -3,6 +3,13 @@
     display: flex;
 }
 
+@media (min-width: 1280px) {
+    .assigned {
+        margin-left: 18.2rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1366px) {
     .assigned {
         margin-left: 15rem;

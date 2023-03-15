@@ -87,21 +87,24 @@ button {
     cursor: pointer;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .subtabs {
         margin-left: 18rem;
+        width: 70%;
     }
 }
 
 @media (min-width: 1366px) {
     .subtabs {
-        margin-left: 17rem;
+        margin-left: 15rem;
+        width: 85%;
     }
 }
 
 @media (min-width: 1440px) {
     .subtabs {
-        margin-left: 22rem;
+        margin-left: 17.4rem;
+        width: 85%;
     }
 }
 
