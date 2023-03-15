@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./dashboard.css";
-import { useNavigate } from "react-router-dom";
 import "./modals/modal.css";
 import Sidebar from "../../components/Sidebar";
 import Card from "@mui/material/Card";
@@ -9,7 +8,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Initial from "../../assets/hau.png";
+import haudocsinitial from "../../assets/haudocs-initial.png";
+import haudocscontinuing from "../../assets/haudocs-continuing.png";
+import haudocsfinal from "../../assets/haudocs-final.png";
 
 function Dashboard() {
   const [modal, setModal] = useState(false);
@@ -28,7 +29,32 @@ function Dashboard() {
     setModal3(!modal3);
   };
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setModal(false);
+        setModal2(false);
+        setModal3(false);
+      }
+    };
+    const handleOutsideClick = (event) => {
+      if (
+        event.target.classList.contains("modal") ||
+        event.target.classList.contains("overlay")
+      ) {
+        setModal(false);
+        setModal2(false);
+        setModal3(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <Sidebar>
       <div className="db-bg flex items-center justify-center flex-col">
@@ -38,23 +64,19 @@ function Dashboard() {
           </h1>
           <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[3rem]">
             <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                alt="green iguana"
-                height="140"
-                image={Initial}
-              />
+              <CardMedia component="img" height="140" image={haudocsinitial} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Initial Review
-                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Requirements for Ethics Review Initial application
                 </Typography>
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
-                  <Button onClick={toggleModal2} size="small">
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={toggleModal2}
+                    size="small"
+                  >
                     read the instructions
                   </Button>
                 </CardActions>
@@ -63,14 +85,10 @@ function Dashboard() {
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 component="img"
-                alt="green iguana"
                 height="140"
-                image={Initial}
+                image={haudocscontinuing}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Continuing Review
-                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Requirements for Continuing Ethics Review upon issuance of
                   ethical clearance
@@ -78,23 +96,19 @@ function Dashboard() {
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
-                  <Button onClick={toggleModal} size="small">
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={toggleModal}
+                    size="small"
+                  >
                     read the instructions
                   </Button>
                 </CardActions>
               </div>
             </Card>
             <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                alt="green iguana"
-                height="140"
-                image={Initial}
-              />
+              <CardMedia component="img" height="140" image={haudocsfinal} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Final Review
-                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Requirements for Final Review upon completion of Continuing
                   Review
@@ -102,7 +116,11 @@ function Dashboard() {
               </CardContent>
               <div className="flex items-center justify-center">
                 <CardActions>
-                  <Button onClick={toggleModal3} size="small">
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={toggleModal3}
+                    size="small"
+                  >
                     read the instructions
                   </Button>
                 </CardActions>
@@ -213,18 +231,6 @@ function Dashboard() {
               This should be applied least 4 weeks before the expiration of the
               ethical clearance of a protocol.
             </p>
-            <div className="mt-2 mb-10 space-x-[46rem]">
-              <button className="continue-button items-center justify-center flex">
-                Continue
-              </button>
-              <button
-                onClick={toggleModal}
-                className="close-modal items-center justify-center flex"
-              >
-                Close
-              </button>
-            </div>
-            <p></p>
           </div>
         </div>
       )}
@@ -326,21 +332,6 @@ function Dashboard() {
               <em>(pilot testing included)</em>{" "}
               <strong>unless issued an ethical clearance</strong>.
             </p>
-
-            <div className="mt-2 mb-10 space-x-[46rem]">
-              <button
-                onClick={() => navigate("/download")}
-                className="continue-button items-center justify-center flex"
-              >
-                Continue
-              </button>
-              <button
-                onClick={toggleModal2}
-                className="fr-close-modal items-center justify-center flex"
-              >
-                Close
-              </button>
-            </div>
             <p></p>
           </div>
         </div>
@@ -363,17 +354,6 @@ function Dashboard() {
                 This should be forwarded to the board not later than 8 weeks
                 after the end of the study.
               </p>
-            </div>
-            <div className="space-x-[46rem]">
-              <button className="continue-button items-center justify-center flex">
-                Continue
-              </button>
-              <button
-                onClick={toggleModal3}
-                className="fr-close-modal items-center justify-center flex"
-              >
-                Close
-              </button>
             </div>
             <p></p>
           </div>
