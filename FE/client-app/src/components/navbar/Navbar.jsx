@@ -18,10 +18,13 @@ import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 
-function Navbar({ imageUrlProp }) {
+function Navbar() {
   const [currentUser, setCurrentUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [imageUrl, setImageUrl] = useState(imageUrlProp);
+  const [imageUrl, setImageUrl] = useState(
+    localStorage.getItem("profileImageUrl") || null
+  );
+
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -78,22 +81,25 @@ function Navbar({ imageUrlProp }) {
   };
 
   useEffect(() => {
-    if (currentUser) {
-      const storageRef = ref(
-        storage,
-        `users/${currentUser.uid}/profile_picture`
-      );
-      getDownloadURL(storageRef)
-        .then((url) => {
-          setImageUrl(url);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setImageUrl(null);
-    }
-  }, [currentUser]);
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const storageRef = ref(storage, `users/${user.uid}/profile_picture`);
+        getDownloadURL(storageRef)
+          .then((url) => {
+            setImageUrl(url);
+            localStorage.setItem("profileImageUrl", url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        setImageUrl(null);
+        localStorage.removeItem("profileImageUrl");
+      }
+      setCurrentUser(user);
+    });
+    return unsubscribeAuth;
+  }, []);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -175,9 +181,8 @@ function Navbar({ imageUrlProp }) {
             <div className="menu-trigger">
               <img
                 src={
-                  currentUser && hasPhotoURL
-                    ? currentUser.photoURL
-                    : imageUrl || userIcon
+                  imageUrl ||
+                  (currentUser && hasPhotoURL ? currentUser.photoURL : userIcon)
                 }
                 alt="Profile"
               />
