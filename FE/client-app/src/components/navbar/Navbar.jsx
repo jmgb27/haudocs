@@ -18,10 +18,10 @@ import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 
-function Navbar() {
+function Navbar({ imageUrlProp }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(imageUrlProp);
   const [notifications, setNotifications] = useState([
     {
       id: 1,

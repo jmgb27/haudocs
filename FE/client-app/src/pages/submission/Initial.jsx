@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+} from "@mui/material";
 
 const Initial = () => {
   const [firstFile, setFirstFile] = useState(null);
@@ -10,6 +18,8 @@ const Initial = () => {
   const [seventhFile, setSeventhFile] = useState(null);
   const [eightFile, setEightFile] = useState(null);
   const [ninthFile, setNinthFile] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,13 +65,24 @@ const Initial = () => {
       });
       const data = await response.json();
       console.log(data);
+      setShowSuccess(true);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleConfirmSubmit = () => {
+    setShowConfirmation(false);
+    handleSubmit();
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setShowConfirmation(true);
+      }}
+    >
       <div className="sub-containerr">
         <div className="sub-title">
           <h1 class="text-lg font-bold">Initial Process</h1>
@@ -250,6 +271,48 @@ const Initial = () => {
                   </button>
                 </div>
               </div>
+              <Dialog
+                open={showConfirmation}
+                onClose={() => setShowConfirmation(false)}
+              >
+                <DialogTitle>Confirm Submit</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    Are you sure you want to submit the form?
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowConfirmation(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={handleConfirmSubmit}
+                    autoFocus
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog open={showSuccess} onClose={() => setShowSuccess(false)}>
+                <DialogTitle>Success</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    You have successfully submitted the form!
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowSuccess(false)}
+                  >
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
           </div>
         </div>
