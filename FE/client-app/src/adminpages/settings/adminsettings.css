@@ -1,0 +1,28 @@
+.password {
+    margin-left: 15rem;
+}
+
+@media (min-width: 1440px) {
+    .password {
+        margin-left: 22rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .password {
+        margin-left: 16rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .password {
+        margin-left: 33rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    .password {
+        margin-left: 37rem;
+        width: 100%;
+    }
+}

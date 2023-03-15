@@ -93,6 +93,7 @@ const AdminTransfer = () => {
 
               <TextField
                 label="Comment"
+                variant="outlined"
                 multiline
                 rows={4}
                 value={comment}
