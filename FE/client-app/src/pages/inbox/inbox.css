@@ -3,6 +3,13 @@
     margin-top: 1rem;
 }
 
+@media (min-width: 1280px) {
+    .inbox-datatable {
+        margin-left: 16rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1366px) {
     .inbox-datatable {
         margin-left: 13rem;

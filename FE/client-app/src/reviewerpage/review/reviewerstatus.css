@@ -3,6 +3,13 @@
     margin-left: 15rem;
 }
 
+@media (min-width: 1280px) {
+    .reviewdatatable {
+        margin-left: 16rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1366px) {
     .reviewdatatable {
         margin-left: 13rem;

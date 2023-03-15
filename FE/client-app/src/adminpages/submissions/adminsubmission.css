@@ -4,9 +4,17 @@
     margin-top: 5rem;
 }
 
+@media (min-width: 1280px) {
+    .adminsubmit {
+        width: 70%;
+        margin-left: 18rem;
+    }
+}
+
 @media (min-width: 1366px) {
     .adminsubmit {
-        width: 85%;
+        width: 80%;
+        margin-left: 17rem;
     }
 }
 

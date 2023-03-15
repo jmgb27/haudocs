@@ -4,21 +4,31 @@
     text-align: center;
 }
 
+@media (min-width: 1280px) {
+    .accordion {
+        margin-left: 16rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1366px) {
     .accordion {
-        margin-left: 17rem;
+        margin-left: 15rem;
+        width: 85%;
     }
 }
 
 @media (min-width: 1440px) {
     .accordion {
-        margin-left: 21rem;
+        margin-left: 17rem;
+        width: 85%;
     }
 }
 
 @media (min-width: 1600px) {
     .accordion {
-        margin-left: 16rem;
+        margin-left: 15.6rem;
+        width: 85%;
     }
 }
 
