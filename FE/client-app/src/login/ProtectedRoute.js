@@ -13,7 +13,12 @@ const ProtectedRoute = ({ children, role }) => {
     return <Navigate to="/" replace />;
   }
 
-  if (role === "reviewer" && currentUser.role !== "reviewer") {
+  if (role === "scientist" && currentUser.role !== "scientist") {
+    // user is not authorized to access reviewer route
+    return <Navigate to="/" replace />;
+  }
+
+  if (role === "non-scientist" && currentUser.role !== "non-scientist") {
     // user is not authorized to access reviewer route
     return <Navigate to="/" replace />;
   }
