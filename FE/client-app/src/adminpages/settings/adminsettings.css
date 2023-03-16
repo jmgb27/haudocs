@@ -2,6 +2,13 @@
     margin-left: 15rem;
 }
 
+@media (min-width: 1024px) {
+    .password {
+        margin-left: 16rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1280px) {
     .password {
         margin-left: 12rem;
@@ -22,7 +29,7 @@
 
 @media (min-width: 1600px) {
     .password {
-        margin-left: 16rem;
+        margin-left: 22rem;
     }
 }
 

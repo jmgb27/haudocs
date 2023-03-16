@@ -15,6 +15,13 @@
     margin-left: 13rem;
 }
 
+@media (min-width: 1024px) {
+    .application {
+        margin-left: 14rem;
+        width: 70%;
+    }
+}
+
 @media (min-width: 1280px) {
     .application {
         margin-left: 16rem;

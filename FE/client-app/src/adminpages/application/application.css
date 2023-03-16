@@ -10,6 +10,13 @@
     }
 }
 
+@media (min-width: 1024px) {
+    .adminreviewdatatable {
+        width: 65%;
+        margin-left: 17.7rem;
+    }
+}
+
 @media (min-width: 1280px) {
     .adminreviewdatatable {
         width: 70%;
