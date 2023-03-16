@@ -87,6 +87,13 @@ button {
     cursor: pointer;
 }
 
+@media (min-width: 1024px) {
+    .subtabs {
+        margin-left: 19rem;
+        width: 60%;
+    }
+}
+
 @media (min-width: 1280px) {
     .subtabs {
         margin-left: 18rem;

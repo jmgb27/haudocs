@@ -45,7 +45,7 @@ function Signin() {
   const [errorMessages, setErrorMessages] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const isMobile = window.innerWidth < 1100;
+  const isMobile = window.innerWidth < 1000;
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");

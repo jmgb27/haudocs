@@ -4,6 +4,13 @@
     margin-top: 5rem;
 }
 
+@media (min-width: 1024px) {
+    .adminsubmit {
+        width: 65%;
+        margin-left: 17.3rem;
+    }
+}
+
 @media (min-width: 1280px) {
     .adminsubmit {
         width: 70%;

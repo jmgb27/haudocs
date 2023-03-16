@@ -106,6 +106,16 @@ main {
     }
 }
 
+@media (min-width: 1024px) {
+    .db-containers {
+        width: 90%;
+    }
+
+    .card-item {
+        
+    }
+}
+
 @media (min-width: 1280px) {
     .db-containers {
         width: 90%;
