@@ -29,38 +29,38 @@ const Initial = (props) => {
     {
       id: "1",
       documentname: "Research Proposal",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "2",
       documentname: "Questionnaire/s/Tools",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "3",
       documentname: "Informed consent/assentform",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "4",
       documentname:
         "NCIP clearance (for studies involving indigenous groups)(if needed)",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "5",
       documentname: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "6",
       documentname: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];

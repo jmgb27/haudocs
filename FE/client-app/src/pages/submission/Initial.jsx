@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Button,
   Dialog,
@@ -7,8 +7,12 @@ import {
   DialogActions,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { StatusContext } from "../application/StatusContext";
 
-const Initial = () => {
+function Initial() {
+  const navigate = useNavigate();
+  const { handleStatusChange } = useContext(StatusContext);
   const [firstFile, setFirstFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
   const [thirdFile, setThirdFile] = useState(null);
@@ -19,7 +23,7 @@ const Initial = () => {
   const [eightFile, setEightFile] = useState(null);
   const [ninthFile, setNinthFile] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  /*   const [showSuccess, setShowSuccess] = useState(false); */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,7 +69,8 @@ const Initial = () => {
       });
       const data = await response.json();
       console.log(data);
-      setShowSuccess(true);
+      /*       setShowSuccess(true); */
+      /* navigate("/applicant"); */
     } catch (error) {
       console.error(error);
     }
@@ -73,6 +78,9 @@ const Initial = () => {
 
   const handleConfirmSubmit = () => {
     setShowConfirmation(false);
+    navigate("/application");
+    handleStatusChange("Your application is in process for initial review");
+    console.log("Status updated in Initial.jsx");
     handleSubmit();
   };
 
@@ -262,8 +270,7 @@ const Initial = () => {
                       !fifthFile ||
                       !sixthFile ||
                       !seventhFile ||
-                      !eightFile ||
-                      !ninthFile
+                      !eightFile
                     }
                     class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
                   >
@@ -297,7 +304,7 @@ const Initial = () => {
                   </Button>
                 </DialogActions>
               </Dialog>
-              <Dialog open={showSuccess} onClose={() => setShowSuccess(false)}>
+              {/*               <Dialog open={showSuccess} onClose={() => setShowSuccess(false)}>
                 <DialogTitle>Success</DialogTitle>
                 <DialogContent>
                   <Typography variant="body1">
@@ -312,13 +319,13 @@ const Initial = () => {
                     Close
                   </Button>
                 </DialogActions>
-              </Dialog>
+              </Dialog> */}
             </div>
           </div>
         </div>
       </div>
     </form>
   );
-};
+}
 
 export default Initial;

@@ -20,8 +20,8 @@ const AdminApplication = () => {
       width: 190,
     },
     {
-      field: "sentby",
-      headerName: "Sent By",
+      field: "sentto",
+      headerName: "Sent To",
       width: 190,
     },
     {
@@ -37,7 +37,7 @@ const AdminApplication = () => {
       classification: "",
       documentname: "",
       datesent: "",
-      sentby: "",
+      sentto: "",
       action: "",
     },
   ];

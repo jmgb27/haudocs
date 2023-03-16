@@ -16,8 +16,10 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
+import { useNavigate } from "react-router-dom";
 
 const Finaltab = (props) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { handleCloseModal } = props;
   const [protocolNumber, setProtocolNumber] = React.useState("");
@@ -35,10 +37,14 @@ const Finaltab = (props) => {
   };
 
   const handleCheckboxChange = (event) => {
-    if (event.target.name === "Hau") {
-      setIsCheckedHau(event.target.checked);
-    } else if (event.target.name === "Others") {
-      setIsCheckedOthers(event.target.checked);
+    const { name, checked } = event.target;
+
+    if (name === "Hau") {
+      setIsCheckedHau(checked);
+      setIsCheckedOthers(false); // uncheck Others checkbox
+    } else if (name === "Others") {
+      setIsCheckedOthers(checked);
+      setIsCheckedHau(false); // uncheck Hau checkbox
     }
   };
 
@@ -60,6 +66,7 @@ const Finaltab = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/adminapplication");
     console.log({
       protocolNumber,
       reviewType,
@@ -92,7 +99,7 @@ const Finaltab = (props) => {
     {
       id: "1",
       documentname: "HAU-IRB FORM 3.7(A): Final Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];

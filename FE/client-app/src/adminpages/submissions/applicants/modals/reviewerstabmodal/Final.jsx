@@ -29,7 +29,7 @@ const Final = (props) => {
     {
       id: "1",
       documentname: "HAU-IRB FORM 3.7(A): Final Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];

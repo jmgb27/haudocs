@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar";
 import "./application.css";
 import { FaSpinner, FaTimes } from "react-icons/fa";
 import { AiFillCheckCircle, AiOutlineFile } from "react-icons/ai";
+import { StatusContext } from "./StatusContext";
+import PendingIcon from "@mui/icons-material/Pending";
 
 function Application() {
-  const [status, setStatus] = useState(
-    <div className="text-lg font-semibold">
-      You have no pending submissions for review
-    </div>
-  );
-
-  const handleStatusChange = (newStatus) => {
-    setStatus(newStatus);
-  };
+  const { status } = useContext(StatusContext);
 
   const getStatusIcon = () => {
     switch (status) {
@@ -26,10 +20,40 @@ function Application() {
       case "Your application is in process for initial review":
         return (
           <div className="flex items-center flex-col">
-            <FaSpinner size={70} color="red" />
+            <PendingIcon sx={{ fontSize: 50 }} />
           </div>
         );
       case "Your application for initial review has been declined":
+        return (
+          <div className="flex items-center flex-col">
+            <FaTimes size={70} color="red" />
+          </div>
+        );
+      case "Your application for Continuing review has been declined":
+        return (
+          <div className="flex items-center flex-col">
+            <FaTimes size={70} color="red" />
+          </div>
+        );
+      case "Your application is in process for Continuing review":
+        return (
+          <div className="flex items-center flex-col">
+            <PendingIcon sx={{ fontSize: 50 }} />
+          </div>
+        );
+      case "Your application for Continuing review has been completed":
+        return (
+          <div className="flex items-center flex-col">
+            <FaTimes size={70} color="red" />
+          </div>
+        );
+      case "Your application is in process for Final review":
+        return (
+          <div className="flex items-center flex-col">
+            <PendingIcon sx={{ fontSize: 50 }} />
+          </div>
+        );
+      case "Your application for Final review has been completed":
         return (
           <div className="flex items-center flex-col">
             <FaTimes size={70} color="red" />
@@ -47,6 +71,10 @@ function Application() {
     }
   };
 
+  useEffect(() => {
+    console.log("Status updated:", status);
+  }, [status]);
+
   return (
     <Sidebar>
       <div className="application mt-[4rem]">
@@ -58,17 +86,6 @@ function Application() {
             {getStatusIcon()}
             <p>{status}</p>
           </div>
-          {/*       <div className="buttons">
-        <button onClick={() => handleStatusChange("Your application for initial review has been completed")}>
-          Accept
-        </button>
-        <button onClick={() => handleStatusChange("Your application is in process for initial review")}>
-          In Process
-        </button>
-        <button onClick={() => handleStatusChange("Your application for initial review has been declined")}>
-          Decline
-        </button>
-      </div> */}
         </div>
       </div>
     </Sidebar>

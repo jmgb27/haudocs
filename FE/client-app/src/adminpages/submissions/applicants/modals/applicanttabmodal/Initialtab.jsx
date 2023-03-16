@@ -11,14 +11,16 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
+import { useNavigate } from "react-router-dom";
 
 const Initialtab = (props) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { handleCloseModal } = props;
   const [protocolNumber, setProtocolNumber] = React.useState("");
   const [reviewType, setReviewType] = React.useState("");
-  const [isCheckedHau, setIsCheckedHau] = React.useState(false);
-  const [isCheckedOthers, setIsCheckedOthers] = React.useState(false);
+  const [isCheckedHau, setIsCheckedHau] = useState(false);
+  const [isCheckedOthers, setIsCheckedOthers] = useState(false);
   const [assignTo, setAssignTo] = React.useState("");
 
   const handleProtocolNumberChange = (event) => {
@@ -30,10 +32,14 @@ const Initialtab = (props) => {
   };
 
   const handleCheckboxChange = (event) => {
-    if (event.target.name === "Hau") {
-      setIsCheckedHau(event.target.checked);
-    } else if (event.target.name === "Others") {
-      setIsCheckedOthers(event.target.checked);
+    const { name, checked } = event.target;
+
+    if (name === "Hau") {
+      setIsCheckedHau(checked);
+      setIsCheckedOthers(false); // uncheck Others checkbox
+    } else if (name === "Others") {
+      setIsCheckedOthers(checked);
+      setIsCheckedHau(false); // uncheck Hau checkbox
     }
   };
 
@@ -55,6 +61,7 @@ const Initialtab = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/adminapplication");
     console.log({
       protocolNumber,
       reviewType,
@@ -88,38 +95,38 @@ const Initialtab = (props) => {
     {
       id: "1",
       documentname: "Research Proposal",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "2",
       documentname: "Questionnaire/s/Tools",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "3",
       documentname: "Informed consent/assentform",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "4",
       documentname:
         "NCIP clearance (for studies involving indigenous groups)(if needed)",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "5",
       documentname: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "6",
       documentname: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];
