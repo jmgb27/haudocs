@@ -16,8 +16,10 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
+import { useNavigate } from "react-router-dom";
 
 const Continuingtab = (props) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { handleCloseModal } = props;
   const [protocolNumber, setProtocolNumber] = React.useState("");
@@ -35,10 +37,14 @@ const Continuingtab = (props) => {
   };
 
   const handleCheckboxChange = (event) => {
-    if (event.target.name === "Hau") {
-      setIsCheckedHau(event.target.checked);
-    } else if (event.target.name === "Others") {
-      setIsCheckedOthers(event.target.checked);
+    const { name, checked } = event.target;
+
+    if (name === "Hau") {
+      setIsCheckedHau(checked);
+      setIsCheckedOthers(false); // uncheck Others checkbox
+    } else if (name === "Others") {
+      setIsCheckedOthers(checked);
+      setIsCheckedHau(false); // uncheck Hau checkbox
     }
   };
 
@@ -59,6 +65,7 @@ const Continuingtab = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/adminapplication");
     console.log({
       protocolNumber,
       reviewType,
@@ -92,44 +99,44 @@ const Continuingtab = (props) => {
     {
       id: "1",
       documentname: "HAU-IRB FORM 3.1(A): Progress Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "2",
       documentname: "HAU-IRB FORM 3.2(A): Early Termination Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "3",
       documentname: "HAU-IRB FORM 3.3(A): Amendment Review Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "4",
       documentname:
         "HAU-IRB FORM 3.4(A): Protocol Deviation/Violation Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "5",
       documentname: "HAU-IRB FORM 3.5(A): Serious Adverse Event Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "6",
       documentname: "HAU-IRB FORM 3.5(B): Reportable Negative Events Form ",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "7",
       documentname: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];

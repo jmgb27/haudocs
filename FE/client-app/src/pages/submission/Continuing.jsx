@@ -1,7 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import FormData from "form-data";
+import { useNavigate } from "react-router-dom";
+import { StatusContext } from "../application/StatusContext";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+} from "@mui/material";
 
 const Continuing = () => {
+  const navigate = useNavigate();
+  const { handleStatusChange } = useContext(StatusContext);
   const [firstFile, setFirstFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
   const [thirdFile, setThirdFile] = useState(null);
@@ -9,6 +21,8 @@ const Continuing = () => {
   const [fifthFile, setFifthFile] = useState(null);
   const [sixthFile, setSixthFile] = useState(null);
   const [seventhFile, setSeventhFile] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,8 +64,43 @@ const Continuing = () => {
       console.error(error);
     }
   };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmation(false);
+    navigate("/application");
+    handleStatusChange("Your application is in process for Continuing review");
+    handleSubmit();
+  };
+
+  useEffect(() => {
+    // Check if at least one file has been uploaded
+    const hasUploadedFile = [
+      firstFile,
+      secondFile,
+      thirdFile,
+      fourthFile,
+      fifthFile,
+      sixthFile,
+      seventhFile,
+    ].some((file) => file !== null);
+    setIsButtonDisabled(!hasUploadedFile);
+  }, [
+    firstFile,
+    secondFile,
+    thirdFile,
+    fourthFile,
+    fifthFile,
+    sixthFile,
+    seventhFile,
+  ]);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setShowConfirmation(true);
+      }}
+    >
       <div className="sub-containerr">
         <div className="sub-title">
           <h1 class="text-lg font-bold">Continuing Review</h1>
@@ -70,6 +119,7 @@ const Continuing = () => {
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="multiple_files"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setFirstFile(event.target.files[0]);
@@ -86,6 +136,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSecondFile(event.target.files[0]);
@@ -102,6 +153,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setThirdFile(event.target.files[0]);
@@ -119,6 +171,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setFourthFile(event.target.files[0]);
@@ -135,6 +188,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setFifthFile(event.target.files[0]);
@@ -151,6 +205,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSixthFile(event.target.files[0]);
@@ -167,6 +222,7 @@ const Continuing = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  accept=".pdf,.doc,.docx"
                   multiple
                   onChange={(event) => {
                     setSeventhFile(event.target.files[0]);
@@ -187,23 +243,43 @@ const Continuing = () => {
                 </div>
                 <div class="flex space-x-4 items-center justify-end px-3 py-2 border-t dark:border-gray-600">
                   <button
+                    className={`inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon hover:bg-red-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 ${
+                      isButtonDisabled ? "btn-disabled" : ""
+                    }`}
                     type="submit"
                     id="sub"
-                    disabled={
-                      !firstFile ||
-                      !secondFile ||
-                      !thirdFile ||
-                      !fourthFile ||
-                      !fifthFile ||
-                      !sixthFile ||
-                      !seventhFile
-                    }
-                    class="inline-flex items-center py-2.5 px-[3rem] text-xs font-medium text-center text-white bg-maroon hover:bg-red-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900"
+                    disabled={isButtonDisabled}
                   >
                     Submit
                   </button>
                 </div>
               </div>
+              <Dialog
+                open={showConfirmation}
+                onClose={() => setShowConfirmation(false)}
+              >
+                <DialogTitle>Confirm Submit</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    Are you sure you want to submit the form?
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowConfirmation(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={handleConfirmSubmit}
+                    autoFocus
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
           </div>
         </div>

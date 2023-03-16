@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormData from "form-data";
+import { useNavigate } from "react-router-dom";
+import { StatusContext } from "../application/StatusContext";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+} from "@mui/material";
 
 const Final = () => {
+  const navigate = useNavigate();
+  const { handleStatusChange } = useContext(StatusContext);
   const [firstFile, setFirstFile] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -25,8 +38,21 @@ const Final = () => {
       console.error(error);
     }
   };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmation(false);
+    navigate("/application");
+    handleStatusChange("Your application is in process for Final review");
+    handleSubmit();
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setShowConfirmation(true);
+      }}
+    >
       <div className="sub-containerr">
         <div className="sub-title">
           <h1 class="text-lg font-bold">Final Review</h1>
@@ -44,6 +70,7 @@ const Final = () => {
                 <input
                   class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="multiple_files"
+                  accept=".pdf,.doc,.docx"
                   type="file"
                   multiple
                   onChange={(event) => {
@@ -74,6 +101,32 @@ const Final = () => {
                   </button>
                 </div>
               </div>
+              <Dialog
+                open={showConfirmation}
+                onClose={() => setShowConfirmation(false)}
+              >
+                <DialogTitle>Confirm Submit</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    Are you sure you want to submit the form?
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowConfirmation(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={handleConfirmSubmit}
+                    autoFocus
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
           </div>
         </div>

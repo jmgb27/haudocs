@@ -29,44 +29,44 @@ const Continuing = (props) => {
     {
       id: "1",
       documentname: "HAU-IRB FORM 3.1(A): Progress Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "2",
       documentname: "HAU-IRB FORM 3.2(A): Early Termination Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "3",
       documentname: "HAU-IRB FORM 3.3(A): Amendment Review Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "4",
       documentname:
         "HAU-IRB FORM 3.4(A): Protocol Deviation/Violation Report Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "5",
       documentname: "HAU-IRB FORM 3.5(A): Serious Adverse Event Form",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "6",
       documentname: "HAU-IRB FORM 3.5(B): Reportable Negative Events Form ",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
       id: "7",
       documentname: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
-      sentby: "Bentong Rodriguez",
+      sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
   ];
