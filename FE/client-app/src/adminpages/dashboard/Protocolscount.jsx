@@ -10,15 +10,15 @@ const Protocolscount = () => {
       <div className="flex items-center justify-center space-x-10">
         <div className="text-5xl text-maroon">
           {exemptedcount}
-          <h1 className="text-xl text-black font-semibold">Exempted</h1>
+          <h1 className="text-xl text-black">Exempted</h1>
         </div>
         <div className="text-5xl text-maroon">
           {expeditecount}
-          <h1 className="text-xl text-black font-semibold">Expedite</h1>
+          <h1 className="text-xl text-black">Expedite</h1>
         </div>
         <div className="text-5xl text-maroon">
           {fullboardcount}
-          <h1 className="text-xl text-black font-semibold">FullBoard</h1>
+          <h1 className="text-xl text-black">FullBoard</h1>
         </div>
       </div>
     </div>

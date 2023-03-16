@@ -37,34 +37,6 @@ tr {
    font-size: 23px;
 }
 
-thead tr th  {
-    padding: 19px 10px;
-}
-table tr {
-    white-space: nowrap;
-}
-
-td {
-
-    position: relative;
-   
-}
-
-table {
-    user-select: none;
-    width: 80%;
-    font-size: 13px;
-    border-collapse: collapse;
-    
-}
-
-thead {
-    background-color: maroon;
-    font-size: 23px;
-    color: white;
-    align-items: center;
-  
-}
 
 
 

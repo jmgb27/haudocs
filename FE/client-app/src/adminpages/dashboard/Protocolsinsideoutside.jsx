@@ -6,9 +6,9 @@ const Protocolsinsideoutside = () => {
   return (
     <div className="space-y-4 mt-[2.5rem]">
       <div className="text-5xl text-maroon">{insidecount}</div>
-      <h1 className="text-xl font-semibold">Protocols Inside HAU</h1>
+      <h1 className="text-xl">Protocols Inside HAU</h1>
       <div className="text-5xl text-maroon">{outsidecount}</div>
-      <h1 className="text-xl font-semibold">Protocols Outside HAU</h1>
+      <h1 className="text-xl">Protocols Outside HAU</h1>
     </div>
   );
 };

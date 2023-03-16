@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   TextField,
@@ -7,6 +7,11 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
 } from "@mui/material";
 import Adminsidebar from "../Adminsidebar";
 import "./transfer.css";
@@ -16,6 +21,9 @@ const AdminTransfer = () => {
   const [reviewType, setReviewType] = useState("");
   const [sendTo, setSendTo] = useState("");
   const [comment, setComment] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const formRef = useRef(null);
 
   const handleFileUpload = (event) => {
     setFile(event.target.files[0]);
@@ -35,6 +43,9 @@ const AdminTransfer = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShowSuccess(true);
+    setShowConfirmation(false);
+    formRef.current.reset();
     console.log("File:", file);
     console.log("Review type:", reviewType);
     console.log("Send to:", sendTo);
@@ -52,8 +63,12 @@ const AdminTransfer = () => {
         <Box sx={{ py: 10 }}>
           <Box sx={{ maxWidth: "600px", margin: "0 auto", px: 2 }}>
             <Box
+              ref={formRef}
               component="form"
-              onSubmit={handleSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                setShowConfirmation(true);
+              }}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -68,6 +83,7 @@ const AdminTransfer = () => {
               <InputLabel htmlFor="file-upload">Transfer Files</InputLabel>
               <input
                 multiple
+                required
                 type="file"
                 id="file-upload"
                 accept=".pdf,.doc,.docx"
@@ -86,6 +102,7 @@ const AdminTransfer = () => {
 
               <TextField
                 label="Send To"
+                required
                 value={sendTo}
                 onChange={handleSendToChange}
                 sx={{ width: "100%" }}
@@ -109,6 +126,48 @@ const AdminTransfer = () => {
               >
                 Submit
               </Button>
+              <Dialog
+                open={showConfirmation}
+                onClose={() => setShowConfirmation(false)}
+              >
+                <DialogTitle>Confirm Submit</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    Are you sure you want to submit the form?
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowConfirmation(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={handleSubmit}
+                    autoFocus
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog open={showSuccess} onClose={() => setShowSuccess(false)}>
+                <DialogTitle>Success!</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1">
+                    You have successfully transferred the files.
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    sx={{ color: "maroon" }}
+                    onClick={() => setShowSuccess(false)}
+                  >
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Box>
           </Box>
         </Box>

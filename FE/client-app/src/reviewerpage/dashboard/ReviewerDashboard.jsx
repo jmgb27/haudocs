@@ -11,7 +11,7 @@ function Box(props) {
         backgroundColor: props.color,
         width: "500px",
         height: "300px",
-        border: "1px solid black",
+        border: "2px solid black",
         marginTop: "8rem",
       }}
     >

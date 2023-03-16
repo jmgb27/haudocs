@@ -6,7 +6,7 @@ const Count = () => {
   return (
     <div>
       <div className="text-5xl mt-[7rem] text-maroon">{count}</div>
-      <h1 className="text-xl font-semibold">Ongoing Protocols</h1>
+      <h1 className="text-xl">Ongoing Protocols</h1>
       {/*  <button onClick={() => setCount(count + 1)}>Increment</button> */}
     </div>
   );
