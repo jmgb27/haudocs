@@ -88,6 +88,7 @@ app.post("/files", upload.any(), (req, res) => {
                     res.send({
                         success: true,
                         message: "All files are uploaded successfully.",
+                        files: files,
                     });
                 }
             );
@@ -98,6 +99,7 @@ app.post("/files", upload.any(), (req, res) => {
             res.send({
                 success: true,
                 message: "All files are uploaded successfully.",
+                files: files,
             });
             deleteFiles(req.files);
         }
