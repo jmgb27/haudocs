@@ -10,6 +10,8 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../firebase";
 
 const Assignedmodalinitial = (props) => {
   const navigate = useNavigate();
@@ -54,24 +56,58 @@ const Assignedmodalinitial = (props) => {
   ];
 
   const rows = [
-    { id: "1", documentname: "Research Proposal" },
     {
-      id: "2",
-      documentname:
-        "Questionnaire/s/Tools (Quantitative), Interview Guide (Qualitative)",
+      id: "Research Proposal",
+      documentname: "Research Proposal",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
     },
-    { id: "3", documentname: "Informed consent/assent form" },
     {
-      id: "4",
+      id: "Questionnaires Tools",
+      documentname: "Questionnaire/s/Tools",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "Informed consent assent form",
+      documentname: "Informed consent/assentform",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "NCIP clearance",
       documentname:
         "NCIP clearance (for studies involving indigenous groups)(if needed)",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
     },
-    { id: "5", documentname: "Accomplished-IRB Forms" },
+    {
+      id: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
+      documentname: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
+      documentname: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
   ];
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
+
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -143,17 +179,17 @@ const Assignedmodalinitial = (props) => {
             disabled={!isSubmitEnabled}
             variant="contained"
           >
-            Submit
+            Forward
           </Button>
         </div>
         <Dialog
           open={showConfirmation}
           onClose={() => setShowConfirmation(false)}
         >
-          <DialogTitle>Confirm Submit</DialogTitle>
+          <DialogTitle>Confirm Forward</DialogTitle>
           <DialogContent>
             <Typography variant="body1">
-              Are you sure you want to forward the form?
+              Are you sure you want to forward the reviewed forms?
             </Typography>
           </DialogContent>
           <DialogActions>

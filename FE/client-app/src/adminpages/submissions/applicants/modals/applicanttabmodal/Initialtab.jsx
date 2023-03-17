@@ -19,6 +19,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
 import { useNavigate } from "react-router-dom";
 import "./applicantmodal.css";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../../firebase";
 
 const Initialtab = (props) => {
   const navigate = useNavigate();
@@ -33,45 +35,62 @@ const Initialtab = (props) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isAnyCheckboxSelected, setIsAnyCheckboxSelected] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
+
   const formRef = useRef(null);
 
   const rows = [
     {
-      id: "1",
+      id: "Research Proposal",
       documentname: "Research Proposal",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "2",
+      id: "Questionnaires Tools",
       documentname: "Questionnaire/s/Tools",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "3",
+      id: "Informed consent assent form",
       documentname: "Informed consent/assentform",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "4",
+      id: "NCIP clearance",
       documentname:
         "NCIP clearance (for studies involving indigenous groups)(if needed)",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "5",
+      id: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
       documentname: "HAU-IRB FORM 4.1(A) Protocol Assessment Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "6",
+      id: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
       documentname: "HAU-IRB FORM 4.1(B) Informed Consent Assessment Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
+    },
+  ];
+
+  const columns = [
+    { field: "documentname", headerName: "DocumentName", width: "180" },
+    { field: "sentby", headerName: "Sent By", width: "175" },
+    { field: "datesent", headerName: "Date Sent", width: "200" },
+    {
+      field: "action",
+      headerName: "Action",
+      width: "100",
+      renderCell: (params) => (
+        <Button style={downloadStyle} onClick={() => handleDownload(params.id)}>
+          Download
+        </Button>
+      ),
     },
   ];
 
@@ -128,9 +147,19 @@ const Initialtab = (props) => {
     checkFormValidity();
   };
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
+
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -159,21 +188,6 @@ const Initialtab = (props) => {
     color: "maroon",
   };
 
-  const columns = [
-    { field: "documentname", headerName: "DocumentName", width: "180" },
-    { field: "sentby", headerName: "Sent By", width: "175" },
-    { field: "datesent", headerName: "Date Sent", width: "200" },
-    {
-      field: "action",
-      headerName: "Action",
-      width: "100",
-      renderCell: (params) => (
-        <Button style={downloadStyle} onClick={() => handleDownload(params.id)}>
-          Download
-        </Button>
-      ),
-    },
-  ];
   const closeStyle = {
     color: "maroon",
     borderColor: "maroon",
@@ -183,6 +197,7 @@ const Initialtab = (props) => {
     color: "white",
     backgroundColor: "maroon",
   };
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid

@@ -1,13 +1,34 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../../firebase";
 
 const Final = (props) => {
   const { handleCloseModal } = props;
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
+
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const rows = [
+    {
+      id: "HAU-IRB FORM 3.7(A) Final Report Form",
+      documentname: "HAU-IRB FORM 3.7(A): Final Report Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+  ];
 
   const columns = [
     { field: "documentname", headerName: "DocumentName", width: "180" },
@@ -22,15 +43,6 @@ const Final = (props) => {
           Download
         </Button>
       ),
-    },
-  ];
-
-  const rows = [
-    {
-      id: "1",
-      documentname: "HAU-IRB FORM 3.7(A): Final Report Form",
-      sentby: "Stephanie David",
-      datesent: "January 28, 2023",
     },
   ];
 

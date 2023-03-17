@@ -18,6 +18,8 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "../tabmodal.css";
 import { useNavigate } from "react-router-dom";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../../firebase";
 
 const Continuingtab = (props) => {
   const navigate = useNavigate();
@@ -35,47 +37,63 @@ const Continuingtab = (props) => {
 
   const rows = [
     {
-      id: "1",
+      id: "HAU-IRB FORM 3.1(A) Progress Report Form",
       documentname: "HAU-IRB FORM 3.1(A): Progress Report Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "2",
+      id: "HAU-IRB FORM 3.2(A) Early Termination Report Form",
       documentname: "HAU-IRB FORM 3.2(A): Early Termination Report Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "3",
+      id: "HAU-IRB FORM 3.3(A) Amendment Review Form",
       documentname: "HAU-IRB FORM 3.3(A): Amendment Review Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "4",
+      id: "HAU-IRB FORM 3.4(A) Protocol DeviationViolation Report Form",
       documentname:
-        "HAU-IRB FORM 3.4(A): Protocol Deviation/Violation Report Form",
+        "HAU-IRB FORM 3.4(A): Protocol DeviationViolation Report Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "5",
+      id: "HAU-IRB FORM 3.5(A) Serious Adverse Event Form",
       documentname: "HAU-IRB FORM 3.5(A): Serious Adverse Event Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "6",
-      documentname: "HAU-IRB FORM 3.5(B): Reportable Negative Events Form ",
+      id: "HAU-IRB FORM 3.5(B) Reportable Negative Events Form",
+      documentname: "HAU-IRB FORM 3.5(B): Reportable Negative Events Form",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
     },
     {
-      id: "7",
+      id: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
       documentname: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
       sentby: "Stephanie David",
       datesent: "January 28, 2023",
+    },
+  ];
+
+  const columns = [
+    { field: "documentname", headerName: "DocumentName", width: "180" },
+    { field: "sentby", headerName: "Sent By", width: "175" },
+    { field: "datesent", headerName: "Date Sent", width: "200" },
+    {
+      field: "action",
+      headerName: "Action",
+      width: "100",
+      renderCell: (params) => (
+        <Button style={downloadStyle} onClick={() => handleDownload(params.id)}>
+          Download
+        </Button>
+      ),
     },
   ];
 
@@ -131,9 +149,19 @@ const Continuingtab = (props) => {
     setAssignTo(event.target.value);
   };
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
+
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -160,22 +188,6 @@ const Continuingtab = (props) => {
   const downloadStyle = {
     color: "maroon",
   };
-
-  const columns = [
-    { field: "documentname", headerName: "DocumentName", width: "180" },
-    { field: "sentby", headerName: "Sent By", width: "175" },
-    { field: "datesent", headerName: "Date Sent", width: "200" },
-    {
-      field: "action",
-      headerName: "Action",
-      width: "100",
-      renderCell: (params) => (
-        <Button style={downloadStyle} onClick={() => handleDownload(params.id)}>
-          Download
-        </Button>
-      ),
-    },
-  ];
 
   const closeStyle = {
     color: "maroon",
