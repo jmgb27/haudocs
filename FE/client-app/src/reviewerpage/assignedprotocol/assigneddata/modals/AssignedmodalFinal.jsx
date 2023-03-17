@@ -147,7 +147,7 @@ const AssignedmodalFinal = (props) => {
             type="submit"
             variant="contained"
           >
-            Submit
+            Forward
           </Button>
         </div>
         <Dialog
