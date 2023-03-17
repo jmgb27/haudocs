@@ -10,6 +10,8 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../firebase";
 
 const AssignedmodalFinal = (props) => {
   const navigate = useNavigate();
@@ -38,7 +40,14 @@ const AssignedmodalFinal = (props) => {
     document.getElementById("multiple_files").value = fileNames;
   };
 
-  const rows = [];
+  const rows = [
+    {
+      id: "HAU-IRB FORM 3.7(A) Final Report Form",
+      documentname: "HAU-IRB FORM 3.7(A): Final Report Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+  ];
 
   const columns = [
     { field: "documentname", headerName: "DocumentName", width: "550" },
@@ -55,10 +64,19 @@ const AssignedmodalFinal = (props) => {
     },
   ];
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
 
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const handleOpen = () => {
     setOpen(true);
   };

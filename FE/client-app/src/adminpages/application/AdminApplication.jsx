@@ -6,22 +6,17 @@ import { DataGrid } from "@mui/x-data-grid";
 const AdminApplication = () => {
   // Sample data
   const columns = [
-    { field: "protocolnumber", headerName: "Protocol Number", width: 200 },
-    { field: "classification", headerName: "Classification", width: 200 },
-    {
-      field: "documentname",
-      headerName: "Document Name",
-      width: 210,
-    },
+    { field: "protocolnumber", headerName: "Protocol Number", width: 300 },
+    { field: "classification", headerName: "Classification", width: 300 },
     {
       field: "datesent",
       headerName: "Date Sent",
-      width: 190,
+      width: 200,
     },
     {
       field: "sentto",
       headerName: "Sent To",
-      width: 190,
+      width: 200,
     },
     {
       field: "status",
@@ -32,12 +27,11 @@ const AdminApplication = () => {
   const rows = [
     {
       id: "",
-      protocolnumber: "",
+      protocolnumber: "2023-001-NAME-TITLE",
       classification: "",
-      documentname: "",
-      datesent: "",
-      sentto: "",
-      action: "",
+      datesent: "February 14, 2023",
+      sentto: "Person A",
+      status: "In Progress",
     },
   ];
 

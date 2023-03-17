@@ -10,6 +10,8 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../firebase";
 
 const AssignedmodalContinuing = (props) => {
   const navigate = useNavigate();
@@ -38,8 +40,6 @@ const AssignedmodalContinuing = (props) => {
     document.getElementById("multiple_files").value = fileNames;
   };
 
-  const rows = [];
-
   const columns = [
     { field: "documentname", headerName: "DocumentName", width: "550" },
 
@@ -55,9 +55,65 @@ const AssignedmodalContinuing = (props) => {
     },
   ];
 
-  function handleDownload(id) {
-    // logic to download data for the row with the specified ID
-  }
+  const rows = [
+    {
+      id: "HAU-IRB FORM 3.1(A) Progress Report Form",
+      documentname: "HAU-IRB FORM 3.1(A): Progress Report Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.2(A) Early Termination Report Form",
+      documentname: "HAU-IRB FORM 3.2(A): Early Termination Report Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.3(A) Amendment Review Form",
+      documentname: "HAU-IRB FORM 3.3(A): Amendment Review Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.4(A) Protocol DeviationViolation Report Form",
+      documentname:
+        "HAU-IRB FORM 3.4(A): Protocol DeviationViolation Report Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.5(A) Serious Adverse Event Form",
+      documentname: "HAU-IRB FORM 3.5(A): Serious Adverse Event Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.5(B) Reportable Negative Events Form",
+      documentname: "HAU-IRB FORM 3.5(B): Reportable Negative Events Form",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+    {
+      id: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
+      documentname: "HAU-IRB FORM 3.6(A) Application for Continuing Review",
+      sentby: "Stephanie David",
+      datesent: "January 28, 2023",
+    },
+  ];
+
+  const handleDownload = async (id) => {
+    // Get the reference to the file you want to download
+    const fileRef = ref(storage, `Submissions/${id}.docx`);
+
+    try {
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(fileRef);
+      // Open the file in a new tab/window
+      window.open(downloadURL, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -129,17 +185,17 @@ const AssignedmodalContinuing = (props) => {
             disabled={!isSubmitEnabled}
             variant="contained"
           >
-            Submit
+            Forward
           </Button>
         </div>
         <Dialog
           open={showConfirmation}
           onClose={() => setShowConfirmation(false)}
         >
-          <DialogTitle>Confirm Submit</DialogTitle>
+          <DialogTitle>Confirm Forward</DialogTitle>
           <DialogContent>
             <Typography variant="body1">
-              Are you sure you want to forward the form?
+              Are you sure you want to forward the reviewed forms?
             </Typography>
           </DialogContent>
           <DialogActions>

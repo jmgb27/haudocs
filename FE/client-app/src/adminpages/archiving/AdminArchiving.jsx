@@ -8,10 +8,9 @@ import "./archiving.css";
 const Archiving = () => {
   // Sample data
   const columns = [
-    { field: "id", headerName: "ID", width: 180 },
-    { field: "applicantname", headerName: "Applicant Name", width: 190 },
-    { field: "documentname", headerName: "Document Name", width: 190 },
-    { field: "reviewer", headerName: "Reviewer", width: 190 },
+    { field: "applicantname", headerName: "Applicant Name", width: 230 },
+    { field: "documentname", headerName: "Document Name", width: 230 },
+    { field: "reviewer", headerName: "Reviewer", width: 230 },
     { field: "date", headerName: "Date", width: 190 },
     {
       field: "action",
@@ -25,7 +24,7 @@ const Archiving = () => {
     const handleDelete = () => {};
 
     return (
-      <Button style={deleteStyle} variant="outlined" startIcon={<DeleteIcon />}>
+      <Button style={deleteStyle} startIcon={<DeleteIcon />}>
         Delete
       </Button>
     );
@@ -37,7 +36,7 @@ const Archiving = () => {
   };
 
   const rows = [
-    { id: 1, applicantname: "", documentname: "", reviewer: "", date: "" },
+    { id: "", applicantname: "", documentname: "", reviewer: "", date: "" },
   ];
 
   /*   const buttonStyle = {

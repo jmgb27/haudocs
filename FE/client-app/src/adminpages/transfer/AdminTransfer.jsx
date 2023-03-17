@@ -109,7 +109,7 @@ const AdminTransfer = () => {
               />
 
               <TextField
-                label="Comment"
+                label="Message"
                 variant="outlined"
                 multiline
                 rows={4}
@@ -124,7 +124,7 @@ const AdminTransfer = () => {
                 style={submitStyle}
                 sx={{ width: "100%", height: "3rem" }}
               >
-                Submit
+                Send
               </Button>
               <Dialog
                 open={showConfirmation}
@@ -133,7 +133,7 @@ const AdminTransfer = () => {
                 <DialogTitle>Confirm Submit</DialogTitle>
                 <DialogContent>
                   <Typography variant="body1">
-                    Are you sure you want to submit the form?
+                    Are you sure you want to send the form?
                   </Typography>
                 </DialogContent>
                 <DialogActions>
@@ -148,7 +148,7 @@ const AdminTransfer = () => {
                     onClick={handleSubmit}
                     autoFocus
                   >
-                    Submit
+                    Send
                   </Button>
                 </DialogActions>
               </Dialog>
