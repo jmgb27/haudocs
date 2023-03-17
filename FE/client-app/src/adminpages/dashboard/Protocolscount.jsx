@@ -18,7 +18,7 @@ const Protocolscount = () => {
         </div>
         <div className="text-5xl text-maroon">
           {fullboardcount}
-          <h1 className="text-xl text-black">FullBoard</h1>
+          <h1 className="text-xl text-black">Full Board</h1>
         </div>
       </div>
     </div>
