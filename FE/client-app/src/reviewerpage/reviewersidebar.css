@@ -118,6 +118,12 @@ body {
     }
 }
 
+@media (max-height: 1080px) {
+    .reviewer-bottom_section {
+        padding-top: 35rem;
+    }
+}
+
 @media (max-height: 900px) {
     .reviewer-bottom_section{
         padding-top: 23rem;

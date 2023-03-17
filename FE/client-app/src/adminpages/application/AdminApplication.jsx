@@ -6,13 +6,12 @@ import { DataGrid } from "@mui/x-data-grid";
 const AdminApplication = () => {
   // Sample data
   const columns = [
-    { field: "id", headerName: "ID", width: 180 },
-    { field: "protocolnumber", headerName: "Protocol Number", width: 190 },
-    { field: "classification", headerName: "Classification", width: 190 },
+    { field: "protocolnumber", headerName: "Protocol Number", width: 200 },
+    { field: "classification", headerName: "Classification", width: 200 },
     {
       field: "documentname",
       headerName: "Document Name",
-      width: 190,
+      width: 210,
     },
     {
       field: "datesent",
@@ -32,7 +31,7 @@ const AdminApplication = () => {
 
   const rows = [
     {
-      id: 1,
+      id: "",
       protocolnumber: "",
       classification: "",
       documentname: "",
@@ -62,7 +61,6 @@ const AdminApplication = () => {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            checkboxSelection
           />
         </div>
       </div>

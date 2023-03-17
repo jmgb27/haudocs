@@ -7,10 +7,9 @@ import "./reviewerstatus.css";
 const Reviewstatus = () => {
   // Sample data
   const columns = [
-    { field: "id", headerName: "ID", width: 180 },
-    { field: "protocolnumber", headerName: "Protocol Number", width: 180 },
-    { field: "documentname", headerName: "Document Name", width: 180 },
-    { field: "classification", headerName: "Classification", width: 180 },
+    { field: "protocolnumber", headerName: "Protocol Number", width: 200 },
+    { field: "documentname", headerName: "Document Name", width: 200 },
+    { field: "classification", headerName: "Classification", width: 200 },
     { field: "datesent", headerName: "Date Sent", width: 200 },
     {
       field: "duedate",
@@ -25,12 +24,12 @@ const Reviewstatus = () => {
 
   const rows = [
     {
-      id: 1,
-      protocolnumber: "032323name",
+      id: "",
+      protocolnumber: "2023-001-NAME-TITLE",
       documentname: "",
       classification: "",
       datesent: "",
-      duedate: "04/04/23",
+      duedate: "April, 04, 2023",
       status: "",
     },
   ];
@@ -58,7 +57,6 @@ const Reviewstatus = () => {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            checkboxSelection
           />
         </div>
       </div>
