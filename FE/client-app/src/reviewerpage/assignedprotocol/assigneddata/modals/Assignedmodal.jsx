@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AssignedmodalContinuing from "./AssignedmodalContinuing";
 import AssignedmodalFinal from "./AssignedmodalFinal";
-import AssignedmodalInitial from "./AssignedmodalInitial";
+import AssignedmodalInitial from "./Assignedmodalinitial";
 
 function Assignedmodal(props) {
   const [value, setValue] = React.useState(0);

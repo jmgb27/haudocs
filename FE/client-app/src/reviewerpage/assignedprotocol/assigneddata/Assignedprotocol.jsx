@@ -5,9 +5,9 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import Assignedmodal from "./assigneddata/modals/Assignedmodal";
-import "./assignedprotocol.css";
-import Reviewersidebar from "../Reviewersidebar";
+import Assignedmodal from "./modals/Assignedmodal";
+import "../assignedprotocol.css";
+import Reviewersidebar from "../../Reviewersidebar";
 
 function AssignedProtocol() {
   const [showModal, setShowModal] = useState(false);
