@@ -95,8 +95,8 @@ const AdminTransfer = () => {
                 <InputLabel>Review Type</InputLabel>
                 <Select value={reviewType} onChange={handleReviewTypeChange}>
                   <MenuItem value="Type A">Exempt from Review</MenuItem>
-                  <MenuItem value="Type A">Full Board Review</MenuItem>
-                  <MenuItem value="Type B">Expedited Review</MenuItem>
+                  <MenuItem value="Type B">Full Board Review</MenuItem>
+                  <MenuItem value="Type C">Expedited Review</MenuItem>
                 </Select>
               </FormControl>
 
