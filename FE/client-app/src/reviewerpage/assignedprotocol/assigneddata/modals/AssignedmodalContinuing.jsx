@@ -5,9 +5,11 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogContentText,
   DialogActions,
   Typography,
   Box,
+  Alert,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ref, getDownloadURL } from "firebase/storage";
@@ -23,6 +25,11 @@ const AssignedmodalContinuing = (props) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
+  const [selectedRows, setSelectedRows] = React.useState([]);
+  const [showDownloadDialog, setShowDownloadDialog] = React.useState(false);
+  const [isAnyCheckboxSelected, setIsAnyCheckboxSelected] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
 
   const handleFileUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -102,7 +109,6 @@ const AssignedmodalContinuing = (props) => {
   ];
 
   const handleDownload = async (id) => {
-    // Get the reference to the file you want to download
     const fileRef = ref(storage, `Submissions/${id}.docx`);
 
     try {
@@ -113,6 +119,27 @@ const AssignedmodalContinuing = (props) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleOpenDownloadDialog = () => {
+    if (isAnyCheckboxSelected) {
+      setShowDownloadDialog(true);
+    } else {
+      setShowAlert(true);
+    }
+  };
+
+  const handleCloseDownloadDialog = () => {
+    setShowDownloadDialog(false);
+  };
+
+  const handleDownloadAll = async () => {
+    for (const row of rows) {
+      if (selectedRows.includes(row.id)) {
+        await handleDownload(row.id);
+      }
+    }
+    setShowDownloadDialog(false);
   };
 
   const handleOpen = () => {
@@ -155,6 +182,12 @@ const AssignedmodalContinuing = (props) => {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        checkboxSelection
+        selectionModel={selectedRows}
+        onSelectionModelChange={(newSelection) => {
+          setSelectedRows(newSelection);
+          setIsAnyCheckboxSelected(newSelection.length > 0);
+        }}
       />
       <Box
         component="form"
@@ -163,6 +196,31 @@ const AssignedmodalContinuing = (props) => {
           setShowConfirmation(true);
         }}
       >
+        <div className="mt-[1rem]">
+          {showAlert && !isDownloadSuccessful && (
+            <Alert severity="warning" onClose={() => setShowAlert(false)}>
+              Please select at least one document to download.
+            </Alert>
+          )}
+        </div>
+
+        <div className="flex justify-between mt-[1rem]">
+          <Button
+            variant="contained"
+            size="medium"
+            sx={{
+              color: "white",
+              backgroundColor: "maroon",
+              "&:hover": {
+                backgroundColor: "maroon",
+              },
+            }}
+            onClick={handleOpenDownloadDialog}
+          >
+            Download
+          </Button>
+        </div>
+
         <input
           class="mt-[1rem] block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           id="multiple_files"
@@ -224,6 +282,22 @@ const AssignedmodalContinuing = (props) => {
           </DialogActions>
         </Dialog>
       </Box>
+      <Dialog open={showDownloadDialog} onClose={handleCloseDownloadDialog}>
+        <DialogTitle>Download Selected Files</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Do you want to download all the selected files?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button sx={{ color: "maroon" }} onClick={handleCloseDownloadDialog}>
+            Cancel
+          </Button>
+          <Button sx={{ color: "maroon" }} onClick={handleDownloadAll}>
+            Download
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
