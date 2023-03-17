@@ -7,6 +7,8 @@ import {
   DialogActions,
   DialogContent,
   Typography,
+  Alert,
+  DialogContentText,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -35,7 +37,9 @@ const Initialtab = (props) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isAnyCheckboxSelected, setIsAnyCheckboxSelected] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-
+  const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
+  const [showDownloadDialog, setShowDownloadDialog] = React.useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const formRef = useRef(null);
 
   const rows = [
@@ -148,14 +152,12 @@ const Initialtab = (props) => {
   };
 
   const handleDownload = async (id) => {
-    // Get the reference to the file you want to download
     const fileRef = ref(storage, `Submissions/${id}.docx`);
-
     try {
       // Get the download URL for the file
       const downloadURL = await getDownloadURL(fileRef);
-      // Open the file in a new tab/window
       window.open(downloadURL, "_blank");
+      setIsDownloadSuccessful(true);
     } catch (error) {
       console.error(error);
     }
@@ -178,6 +180,28 @@ const Initialtab = (props) => {
     } else {
       alert("Please select at least one checkbox");
     }
+  };
+
+  const handleOpenDownloadDialog = () => {
+    if (isAnyCheckboxSelected) {
+      setShowDownloadDialog(true);
+    } else {
+      setShowAlert(true);
+    }
+  };
+
+  const handleCloseDownloadDialog = () => {
+    setShowDownloadDialog(false);
+    setShowAlert(false);
+  };
+
+  const handleDownloadAll = async () => {
+    for (const row of rows) {
+      if (selectedRows.includes(row.id)) {
+        await handleDownload(row.id);
+      }
+    }
+    setShowDownloadDialog(false);
   };
 
   const handleClose = () => {
@@ -213,6 +237,30 @@ const Initialtab = (props) => {
           checkFormValidity();
         }}
       />
+
+      <div className="mt-[1rem]">
+        {showAlert && !isDownloadSuccessful && (
+          <Alert severity="warning" onClose={() => setShowAlert(false)}>
+            Please select at least one document to download.
+          </Alert>
+        )}
+      </div>
+      <div className="flex justify-between mt-[1rem]">
+        <Button
+          variant="contained"
+          size="medium"
+          sx={{
+            color: "white",
+            backgroundColor: "maroon",
+            "&:hover": {
+              backgroundColor: "maroon",
+            },
+          }}
+          onClick={handleOpenDownloadDialog}
+        >
+          Download
+        </Button>
+      </div>
       <Box
         ref={formRef}
         component="form"
@@ -321,6 +369,22 @@ const Initialtab = (props) => {
           </DialogActions>
         </Dialog>
       </Box>
+      <Dialog open={showDownloadDialog} onClose={handleCloseDownloadDialog}>
+        <DialogTitle>Download Selected Files</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Do you want to download all the selected files?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button sx={{ color: "maroon" }} onClick={handleCloseDownloadDialog}>
+            Cancel
+          </Button>
+          <Button sx={{ color: "maroon" }} onClick={handleDownloadAll}>
+            Download
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
