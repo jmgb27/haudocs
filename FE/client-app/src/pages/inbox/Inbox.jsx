@@ -6,12 +6,11 @@ import "./inbox.css";
 const Inbox = () => {
   // Sample data
   const columns = [
-    { field: "id", headerName: "ID", width: 200 },
-    { field: "documentname", headerName: "Document Name", width: 350 },
-    { field: "datereceived", headerName: "Date Received", width: 320 },
+    { field: "documentname", headerName: "Document Name", width: 500 },
+    { field: "datereceived", headerName: "Date Received", width: 500 },
     { field: "action", headerName: "Action", width: 100 },
   ];
-  const rows = [{ id: 1, documentname: "", datereceived: "", action: "" }];
+  const rows = [{ id: "", documentname: "", datereceived: "", action: "" }];
 
   return (
     <Sidebar>
@@ -26,7 +25,6 @@ const Inbox = () => {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            checkboxSelection
           />
         </div>
       </div>
