@@ -11,15 +11,15 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Assignedmodalinitial = (props) => {
+const AssignedmodalFinal = (props) => {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const [fileUploads, setfileUpload] = useState(null);
   const [open, setOpen] = useState(false);
   const { handleCloseModal } = props;
-  const [selectedFiles, setSelectedFiles] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
   const handleFileUpload = (event) => {
@@ -38,6 +38,8 @@ const Assignedmodalinitial = (props) => {
     document.getElementById("multiple_files").value = fileNames;
   };
 
+  const rows = [];
+
   const columns = [
     { field: "documentname", headerName: "DocumentName", width: "550" },
 
@@ -51,22 +53,6 @@ const Assignedmodalinitial = (props) => {
         </Button>
       ),
     },
-  ];
-
-  const rows = [
-    { id: "1", documentname: "Research Proposal" },
-    {
-      id: "2",
-      documentname:
-        "Questionnaire/s/Tools (Quantitative), Interview Guide (Qualitative)",
-    },
-    { id: "3", documentname: "Informed consent/assent form" },
-    {
-      id: "4",
-      documentname:
-        "NCIP clearance (for studies involving indigenous groups)(if needed)",
-    },
-    { id: "5", documentname: "Accomplished-IRB Forms" },
   ];
 
   function handleDownload(id) {
@@ -104,6 +90,7 @@ const Assignedmodalinitial = (props) => {
     color: "white",
     backgroundColor: "maroon",
   };
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
@@ -124,7 +111,6 @@ const Assignedmodalinitial = (props) => {
           class="mt-[1rem] block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           id="multiple_files"
           type="file"
-          required
           accept=".pdf,.doc,.docx"
           multiple
           onChange={handleFileUpload}
@@ -139,8 +125,8 @@ const Assignedmodalinitial = (props) => {
           </Button>
           <Button
             id="sub"
-            type="submit"
             disabled={!isSubmitEnabled}
+            type="submit"
             variant="contained"
           >
             Submit
@@ -186,4 +172,4 @@ const Assignedmodalinitial = (props) => {
   );
 };
 
-export default Assignedmodalinitial;
+export default AssignedmodalFinal;

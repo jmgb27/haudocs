@@ -1,6 +1,5 @@
 .assigned {
     margin-left: 15rem;
-    display: flex;
 }
 
 @media (min-width: 1024px) {
@@ -24,16 +23,11 @@
     }
 }
 
-@media (min-width: 1920px) {
-    .assigned {
-        margin-left: 18.3rem;
-        width: 100%;
-    }
-}
 @media (min-width: 1440px) {
     .assigned {
-        margin-left: 19rem;
-        width: 80%;
+        margin-left: 17rem;
+        width: 85%;
+        margin-top: 4rem;
     }
 }
 
@@ -44,9 +38,16 @@
     }
 }
 
+@media (min-width: 1920px) {
+    .assigned {
+        margin-left: 18rem;
+        width: 100%;
+    }
+}
+
 @media (min-width: 2560px) {
     .assigned {
-        margin-left: 20rem;
+        margin-left: 38rem;
         width: 100%;
     }
 }

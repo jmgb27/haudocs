@@ -20,6 +20,9 @@ import {
   DialogActions,
 } from "@mui/material";
 import "./adminsettings.css";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const AdminSettings = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -29,6 +32,9 @@ const AdminSettings = () => {
   const [success, setSuccess] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [image, setImage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
 
@@ -124,22 +130,75 @@ const AdminSettings = () => {
               <form onSubmit={handlePasswordChange}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                   <TextField
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     label="Current Password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowPassword(!showPassword)}
+                            onMouseDown={(e) => e.preventDefault()}
+                            edge="end"
+                          >
+                            {showPassword ? (
+                              <MdVisibilityOff />
+                            ) : (
+                              <MdVisibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                     fullWidth
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                   />
                   <TextField
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     label="New Password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowNewPassword(!showNewPassword)}
+                            onMouseDown={(e) => e.preventDefault()}
+                            edge="end"
+                          >
+                            {showNewPassword ? (
+                              <MdVisibilityOff />
+                            ) : (
+                              <MdVisibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                     fullWidth
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   />
                   <TextField
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     label="Confirm New Password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() =>
+                              setShowConfirmPassword(!showConfirmPassword)
+                            }
+                            onMouseDown={(e) => e.preventDefault()}
+                            edge="end"
+                          >
+                            {showConfirmPassword ? (
+                              <MdVisibilityOff />
+                            ) : (
+                              <MdVisibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                     fullWidth
                     value={confirmNewPassword}
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
