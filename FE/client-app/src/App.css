@@ -53,6 +53,23 @@
     background: #555;
 }
 
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+input:focus::-moz-focus-inner {
+    border: 0;
+}
+
+textarea:focus {
+    outline: none !important;
+}
+
+button:focus {
+    outline: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

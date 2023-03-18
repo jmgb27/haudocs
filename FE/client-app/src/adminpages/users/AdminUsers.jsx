@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Adminsidebar from "../Adminsidebar";
 import "./users.css";
-import { db } from "../../firebase";
 import { userColumns } from "./adminusersdata";
 import {
   collection,
@@ -10,11 +9,12 @@ import {
   doc,
   where,
   query,
+  setDoc,
+  addDoc,
 } from "firebase/firestore/lite";
 
 import { DataGrid } from "@mui/x-data-grid";
 import "./adminusers.css";
-import { registerWithEmailAndPassword } from "../../firebase";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -36,13 +36,15 @@ import {
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { auth, db } from "../../firebase";
+import { serverTimestamp } from "firebase/firestore/lite";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const AdminUsers = () => {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [secondopen, secondsetOpen] = React.useState(false);
@@ -52,11 +54,55 @@ const AdminUsers = () => {
   const secondhandleClose = () => secondsetOpen(false);
   const handleOpen = () => setOpen(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      let list = [];
+    const user = auth.currentUser;
+    if (user) {
+      const fetchData = async () => {
+        let list = [];
+        try {
+          const usersRef = collection(db, "users");
+          const querySnapshotRef = await getDocs(
+            query(
+              usersRef,
+              where("role", "in", ["admin", "scientist", "non-scientist"])
+            )
+          );
+          querySnapshotRef.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+          });
+          setData(list);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    }
+  }, [auth, db]);
+
+  const validateForm = () => {
+    let valid = true;
+    let errorMessage = "";
+    if (!email) {
+      errorMessage += errorMessages.email + "\n";
+      valid = false;
+    }
+    setErrorMessages(errorMessage);
+    return valid;
+  };
+
+  const addusers = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
       try {
+        await setDoc(doc(db, "users", auth.currentUser.uid), {
+          name: name,
+          email: email,
+          role: role,
+        });
+
+        // Fetch the updated user list and update the state with the updated data
         const usersRef = collection(db, "users");
         const querySnapshotRef = await getDocs(
           query(
@@ -64,16 +110,28 @@ const AdminUsers = () => {
             where("role", "in", ["admin", "scientist", "non-scientist"])
           )
         );
-        querySnapshotRef.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setData(list);
+        const updatedData = querySnapshotRef.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(updatedData);
+
+        console.log("User added successfully!");
+        setShowDialog(true);
       } catch (err) {
-        console.log(err);
+        setErrorMessages(err.message);
       }
-    };
-    fetchData();
-  }, []);
+    }
+  };
+
+  const handleDialogClose = () => {
+    setShowDialog(false);
+    setOpen(false);
+    setEmail("");
+    setPassword("");
+    setName("");
+    setRole("");
+  };
 
   const handleEdit = (id) => {
     setSelectedUserId(id);
@@ -118,54 +176,6 @@ const AdminUsers = () => {
       },
     },
   ];
-
-  const validatePassword = () => {
-    let isValid = true;
-    if (password !== "" && confirmPassword !== "") {
-      if (password !== confirmPassword) {
-        isValid = false;
-        setErrorMessages("Passwords does not match");
-      }
-    }
-    return isValid;
-  };
-
-  const errors = {
-    email: "Invalid email",
-    password: "Invalid password",
-    noUsername: "Please enter your username",
-    noPassword: "Please enter your password",
-  };
-
-  const addusers = (e) => {
-    e.preventDefault();
-    if (validatePassword()) {
-      registerWithEmailAndPassword(name, email, password, role)
-        .then((userCredential) => {
-          console.log(userCredential.user);
-          secondhandleClose();
-        })
-        .catch((err) => setErrorMessages(err.message));
-    }
-
-    setRole("");
-    setName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-
-    if (!email) {
-      // Username input is empty
-      setErrorMessages({ email: "noUsername", message: errors.noUsername });
-      return;
-    }
-
-    if (!password) {
-      // Password input is empty
-      setErrorMessages({ email: "noPassword", message: errors.noPassword });
-      return;
-    }
-  };
 
   const saveStyle = {
     color: "maroon",
@@ -261,36 +271,6 @@ const AdminUsers = () => {
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          value={password}
-                          name="password"
-                          label="Password"
-                          type={showPassword ? "text" : "password"}
-                          id="password"
-                          autoComplete="new-password"
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  onClick={() => setShowPassword(!showPassword)}
-                                  onMouseDown={(e) => e.preventDefault()}
-                                  edge="end"
-                                >
-                                  {showPassword ? (
-                                    <MdVisibilityOff />
-                                  ) : (
-                                    <MdVisibility />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </Grid>
                     </Grid>
                     <Button
                       type="submit"
@@ -303,6 +283,22 @@ const AdminUsers = () => {
                       Add User
                     </Button>
                   </Box>
+                  <Dialog open={showDialog} onClose={handleDialogClose}>
+                    <DialogTitle>Success!</DialogTitle>
+                    <DialogContent>
+                      <Typography variant="body1">
+                        You have successfully added a user!
+                      </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        sx={{ color: "maroon" }}
+                        onClick={handleDialogClose}
+                      >
+                        Close
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                 </Container>
               </Box>
             </Modal>

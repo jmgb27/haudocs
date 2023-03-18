@@ -9,6 +9,12 @@
     margin-top: 5rem;
 }
 
+textarea:focus,
+input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 @media (max-width: 1920px) {
     .transfer{
         margin-left: 34rem;

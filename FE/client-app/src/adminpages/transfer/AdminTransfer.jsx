@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import Adminsidebar from "../Adminsidebar";
 import "./transfer.css";
+import "../../App.css";
 
 const AdminTransfer = () => {
   const [file, setFile] = useState(null);
@@ -45,11 +46,11 @@ const AdminTransfer = () => {
     event.preventDefault();
     setShowSuccess(true);
     setShowConfirmation(false);
+    setFile("");
+    setSendTo("");
+    setReviewType("");
+    setComment("");
     formRef.current.reset();
-    console.log("File:", file);
-    console.log("Review type:", reviewType);
-    console.log("Send to:", sendTo);
-    console.log("Comment:", comment);
   };
 
   const submitStyle = {
@@ -103,9 +104,10 @@ const AdminTransfer = () => {
               <TextField
                 label="Send To"
                 required
+                autoComplete="off"
                 value={sendTo}
+                fullWidth
                 onChange={handleSendToChange}
-                sx={{ width: "100%" }}
               />
 
               <TextField
@@ -115,7 +117,8 @@ const AdminTransfer = () => {
                 rows={4}
                 value={comment}
                 onChange={handleCommentChange}
-                sx={{ width: "100%" }}
+                fullWidth
+                margin="nomal"
               />
 
               <Button

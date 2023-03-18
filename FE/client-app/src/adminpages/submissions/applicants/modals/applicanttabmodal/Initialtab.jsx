@@ -294,6 +294,7 @@ const Initialtab = (props) => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <TextField
             required
+            className="no-outline"
             label="Protocol Number"
             value={protocolNumber}
             onChange={handleProtocolNumberChange}

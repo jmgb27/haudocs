@@ -40,8 +40,6 @@ import {
 } from "./adminpages";
 import { db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore/lite";
-import ApplicationParent from "./pages/application/ApplicationParent";
-import { StatusProvider } from "./pages/application/StatusContext";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
