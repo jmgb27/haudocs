@@ -8,3 +8,11 @@
     background-color: maroon;
     cursor: pointer;
 }
+
+.no-outline:focus {
+    outline: none;
+}
+
+input:focus-visible {
+    outline: none !important;
+}
