@@ -97,9 +97,12 @@ const AdminUsers = () => {
     if (validateForm()) {
       try {
         await setDoc(doc(db, "users", auth.currentUser.uid), {
+          createdAt: serverTimestamp(),
+          authProvider: "local",
           name: name,
           email: email,
           role: role,
+          uid: auth.currentUser.uid,
         });
 
         // Fetch the updated user list and update the state with the updated data
