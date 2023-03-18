@@ -32,13 +32,9 @@ import {
   Select,
   MenuItem,
   DialogActions,
+  Alert,
 } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { auth, db } from "../../firebase";
-import { serverTimestamp } from "firebase/firestore/lite";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const AdminUsers = () => {
   const [data, setData] = useState([]);
@@ -53,7 +49,6 @@ const AdminUsers = () => {
   const handleClose = () => setOpen(false);
   const secondhandleClose = () => secondsetOpen(false);
   const handleOpen = () => setOpen(true);
-  const [showPassword, setShowPassword] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
@@ -96,30 +91,43 @@ const AdminUsers = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        await setDoc(doc(db, "users", auth.currentUser.uid), {
-          createdAt: serverTimestamp(),
-          authProvider: "local",
-          name: name,
-          email: email,
-          role: role,
-          uid: auth.currentUser.uid,
-        });
+        // Retrieve the user's uid from Firebase Authentication
+        const user = auth.currentUser;
+        const uid = user.uid;
 
-        // Fetch the updated user list and update the state with the updated data
+        // Check if an existing user with the same email exists
         const usersRef = collection(db, "users");
         const querySnapshotRef = await getDocs(
+          query(usersRef, where("email", "==", email))
+        );
+
+        if (querySnapshotRef.docs.length > 0) {
+          // Update the existing user record
+          const userId = querySnapshotRef.docs[0].id;
+          const userRef = doc(usersRef, userId);
+          await updateDoc(userRef, {
+            name: name,
+            role: role,
+            uid: uid,
+          });
+        } else {
+          throw new Error("User does not exist.");
+        }
+
+        // Fetch the updated user list and update the state with the updated data
+        const updatedSnapshotRef = await getDocs(
           query(
             usersRef,
             where("role", "in", ["admin", "scientist", "non-scientist"])
           )
         );
-        const updatedData = querySnapshotRef.docs.map((doc) => ({
+        const updatedData = updatedSnapshotRef.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setData(updatedData);
 
-        console.log("User added successfully!");
+        console.log("User added/updated successfully!");
         setShowDialog(true);
       } catch (err) {
         setErrorMessages(err.message);
@@ -136,53 +144,12 @@ const AdminUsers = () => {
     setRole("");
   };
 
-  const handleEdit = (id) => {
-    setSelectedUserId(id);
-    secondsetOpen(true);
-  };
+  const actionColumn = [];
 
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-  };
-
-  const handleSave = async () => {
-    try {
-      const userRef = doc(db, "users", selectedUserId);
-      await updateDoc(userRef, { role });
-      const updatedData = data.map((item) =>
-        item.id === selectedUserId ? { ...item, role } : item
-      );
-      setData(updatedData);
-      setSelectedUserId(null);
-      secondhandleClose();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div
-              className="deleteButton"
-              onClick={() => handleEdit(params.row.id)}
-            >
-              Edit Role
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
-
-  const saveStyle = {
-    color: "maroon",
-    borderColor: "maroon",
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setRole("");
   };
 
   const buttonStyle = {
@@ -214,7 +181,7 @@ const AdminUsers = () => {
               variant="contained"
               onClick={handleOpen}
             >
-              Add users
+              Edit Users
             </Button>
             <Modal open={open} onClose={handleClose}>
               <Box sx={style}>
@@ -230,6 +197,18 @@ const AdminUsers = () => {
                     <Typography sx={{ mb: 5 }} component="h1" variant="h5">
                       User Management
                     </Typography>
+                    {errorMessages && (
+                      <Alert
+                        severity="error"
+                        sx={{ width: "100%", mb: "2rem" }}
+                        onClose={() => {
+                          setErrorMessages(null);
+                          resetForm();
+                        }}
+                      >
+                        {errorMessages}
+                      </Alert>
+                    )}
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <TextField
@@ -255,6 +234,7 @@ const AdminUsers = () => {
                             autoComplete="role-name"
                           >
                             <MenuItem value="admin">Admin</MenuItem>
+                            <MenuItem value="applicant">Applicant</MenuItem>
                             <MenuItem value="scientist">Scientist</MenuItem>
                             <MenuItem value="non-scientist">
                               Non-Scientist
@@ -283,14 +263,15 @@ const AdminUsers = () => {
                       sx={{ mt: 3, mb: 8, height: "3rem" }}
                       onClick={addusers}
                     >
-                      Add User
+                      Update User
                     </Button>
                   </Box>
                   <Dialog open={showDialog} onClose={handleDialogClose}>
                     <DialogTitle>Success!</DialogTitle>
                     <DialogContent>
                       <Typography variant="body1">
-                        You have successfully added a user!
+                        You have successfully change the role of {name} to{" "}
+                        {role}!
                       </Typography>
                     </DialogContent>
                     <DialogActions>
@@ -315,33 +296,6 @@ const AdminUsers = () => {
           rowsPerPageOptions={[9]}
           checkboxSelection
         />
-        <Dialog open={secondopen} onClose={secondhandleClose}>
-          <DialogTitle sx={{ width: "30rem" }}>Edit User Role</DialogTitle>
-          <DialogContent>
-            <FormControl sx={{ width: "100%" }}>
-              <InputLabel id="select-label">Role</InputLabel>
-              <Select
-                labelId="select-label"
-                id="simple-select"
-                value={role}
-                onChange={handleRoleChange}
-              >
-                <MenuItem value={"admin"}>Admin</MenuItem>
-                <MenuItem value={"scientist"}>Scientist</MenuItem>
-                <MenuItem value={"non-scientist"}>Non-Scientist</MenuItem>
-                <MenuItem value={"applicant"}>Applicant</MenuItem>
-              </Select>
-            </FormControl>
-          </DialogContent>
-          <DialogActions>
-            <Button style={saveStyle} onClick={secondhandleClose}>
-              Cancel
-            </Button>
-            <Button style={saveStyle} onClick={handleSave}>
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
       </div>
     </Adminsidebar>
   );
