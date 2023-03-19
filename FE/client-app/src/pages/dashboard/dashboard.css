@@ -77,63 +77,6 @@
     margin-top: 4rem;
 }
 
-@media (min-width: 1024px) {
-    .db-containers {
-        width: 70%;
-    }
-}
-
-@media (min-width: 1280px) {
-    .db-containers {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-@media (min-width: 1366px) {
-    .db-containers {
-        margin-left: 5.2rem;
-    }
-}
-
-@media (min-width: 1440px) {
-    .db-containers {
-        margin-left: 7rem;
-        width: 100%;
-    }
-}
-
-@media (min-width: 1600px) {
-    .db-containers {
-        margin:auto;
-    }
-}
-
-@media (min-width: 1920px) {
-    .db-containers {
-        margin-left: 20rem;
-        width: 100%;
-    }
-
-    .card-item {
-        gap: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-@media (min-width: 2560px) {
-    .db-containers {
-        width: 100%;
-        display: block;
-        align-items: center;
-        justify-content: center;
-        margin-left: 30rem;
-    }
-}
-
 
 @tailwind base;
 @tailwind components;

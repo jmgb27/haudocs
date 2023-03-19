@@ -15,11 +15,8 @@ const Inbox = () => {
   return (
     <Sidebar>
       <div className="inbox-datatable">
-        <h1 className="mt-[3rem] text-center text-2xl font-bold">Files</h1>
-        <div
-          className="ml-[2rem] mt-[2rem]"
-          style={{ height: 500, width: "100%" }}
-        >
+        <h1 className="text-center text-2xl font-bold">Files</h1>
+        <div style={{ marginTop: 25, height: 500, width: "80vw" }}>
           <DataGrid
             rows={rows}
             columns={columns}

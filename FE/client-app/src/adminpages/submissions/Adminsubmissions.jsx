@@ -98,7 +98,7 @@ function Adminsubmissions() {
 
   return (
     <Adminsidebar>
-      <div className="flex flex-col items-center justify-center m-auto">
+      <div className="admin-submission">
         <div className="adminsubmit">
           <Box sx={{ width: "100%" }}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

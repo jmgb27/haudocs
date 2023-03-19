@@ -104,9 +104,7 @@ function AssignedProtocol() {
   return (
     <Reviewersidebar>
       <div className="assigned">
-        <h1 className="mt-[3rem] text-center text-2xl font-bold">
-          Assigned Protocol
-        </h1>
+        <h1 className="text-center text-2xl font-bold">Assigned Protocol</h1>
         <div className="mt-[2rem]" style={{ height: 400 }}>
           <DataGrid
             classes={{ header: "custom-header" }}

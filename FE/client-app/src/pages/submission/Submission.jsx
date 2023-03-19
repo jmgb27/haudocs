@@ -21,7 +21,7 @@ function Submission() {
 
   return (
     <Sidebar>
-      <div className="subtabs mt-[5rem] ml-[15rem]">
+      <div className="subtabs">
         <div className="flex justify-center items-center">
           {tabs.map((tab, index) => (
             <button

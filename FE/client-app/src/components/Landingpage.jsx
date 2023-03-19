@@ -16,17 +16,6 @@ function LandingPage() {
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "black",
-          opacity: 0.4,
-        }}
-      />
       <video
         src={HAUVID}
         autoPlay
@@ -45,10 +34,14 @@ function LandingPage() {
       <div
         style={{
           position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 1,
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Container
@@ -66,7 +59,7 @@ function LandingPage() {
           <Typography
             variant="h2"
             gutterBottom
-            sx={{ fontWeight: "bold", letterSpacing: "2px" }}
+            sx={{ fontWeight: "bold", letterSpacing: "2px", mb: 3 }}
           >
             Welcome to HAUDOCS IRB Ethics Review!
           </Typography>

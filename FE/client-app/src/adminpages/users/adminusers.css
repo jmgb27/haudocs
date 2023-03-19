@@ -21,9 +21,8 @@
   }
 
   .usersdatatable {
-    height: 600px;
-    padding: 20px;
-    margin-left: 10rem;
+    width: 80%;
+    height: 500px;
   }
 
   .datatableTitle{
@@ -48,58 +47,5 @@
     border-radius: 50%;
     object-fit: cover;
     margin-right: 20px;
-  }
-
-  @media (max-height: 700px) {
-    .usersdatatable {
-      height: 450px;
-      padding: 20px;
-      margin-left: 13rem;
-    }
-  }
-
-    @media (min-width: 1024px) {
-    .usersdatatable {
-      width: 85%;
-      margin-left: 1rem;
-      margin-right: 4rem;
-    }
-  }
-
-  @media (min-width: 1366px) {
-    .usersdatatable {
-      width: 90%;
-      margin-left: 6rem;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .usersdatatable {
-      width: 90%;
-      margin-left: 10rem;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    .usersdatatable {
-      width: 85%;
-      margin-left: 4rem;
-    }
-  }
-
-  @media (min-width: 1920px) {
-    .usersdatatable {
-      width: 100%;
-      margin-left: 25rem;
-      margin-bottom: 15rem;
-    }
-  }
-
-    @media (min-width: 2560px) {
-    .usersdatatable {
-      width: 100%;
-      margin-left: 63rem;
-      margin-bottom: 40rem;
-    }
   }
   
