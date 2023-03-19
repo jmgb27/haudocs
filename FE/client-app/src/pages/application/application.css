@@ -1,65 +1,54 @@
 .application-container {
-    justify-content: center;
-    margin-top: 1rem;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #800000;
-    padding: 100px;
-    width: 100%;
-    height: 100%;
     display: flex;
-    margin-left: 2rem;
-}
-
-.application {
-    margin-left: 13rem;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 @media (min-width: 1024px) {
-    .application {
-        margin-left: 14rem;
+    .application-container {
+        margin: auto;
         width: 70%;
     }
 }
 
 @media (min-width: 1280px) {
-    .application {
-        margin-left: 16rem;
-        width: 70%;
+    .application-container {
+        margin-left: 9rem;
     }
 }
 
 @media (min-width: 1366px) {
-    .application {
-        margin-left: 12.5rem;
+    .application-container {
+        margin-left: 7rem;
         width: 85%;
     }
 }
 
 @media (min-width: 1440px) {
-    .application {
-        margin-left: 15.5rem;
+    .application-container {
+        margin-left: 10rem;
         width: 85%;
     }
 }
 
 @media (min-width: 1600px) {
-    .application {
-        width: 85%;
-        margin-left: 13.5rem;
+    .application-container {
+        width: 100%;
+        margin: auto;
     }
 }
 
 @media (min-width: 1920px) {
-    .application {
+    .application-container {
         width: 100%;
-        margin-left: 16rem;
+        margin-left: 10rem;
     }
 }
 
 @media (min-width: 2560px) {
-    .application {
+    .application-container {
         width: 100%;
-        margin-left: 35rem;
+        margin-left: 28rem;
     }
 }

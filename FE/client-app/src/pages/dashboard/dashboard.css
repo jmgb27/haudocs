@@ -1,17 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-main {
-    margin-top: 5rem;
-    width: 100%;
-    height: 100%;
-}
-
 .db-containers {
     justify-content: center;
-    margin-top: 5rem;
     height: 100%;
     align-items: center;
 }
@@ -89,36 +77,17 @@ main {
     margin-top: 4rem;
 }
 
-@media (max-width: 1700px) {
-    .db-containers{
-        margin-left: 0.5rem;
-    }
-    .db-bg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 13rem;
-    }
-    .card-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
 @media (min-width: 1024px) {
     .db-containers {
-        width: 90%;
-    }
-
-    .card-item {
-        
+        width: 70%;
     }
 }
 
 @media (min-width: 1280px) {
     .db-containers {
         width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -130,20 +99,20 @@ main {
 
 @media (min-width: 1440px) {
     .db-containers {
-        margin-left: 10rem;
+        margin-left: 7rem;
         width: 100%;
     }
 }
 
 @media (min-width: 1600px) {
     .db-containers {
-        margin-left: 4rem;
+        margin:auto;
     }
 }
 
 @media (min-width: 1920px) {
     .db-containers {
-        margin-left: 34rem;
+        margin-left: 20rem;
         width: 100%;
     }
 
@@ -157,13 +126,14 @@ main {
 
 @media (min-width: 2560px) {
     .db-containers {
-        margin-left: 74rem;
         width: 100%;
         display: block;
         align-items: center;
         justify-content: center;
+        margin-left: 30rem;
     }
 }
+
 
 @tailwind base;
 @tailwind components;

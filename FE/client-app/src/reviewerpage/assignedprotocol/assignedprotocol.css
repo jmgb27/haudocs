@@ -1,53 +1,56 @@
 .assigned {
-    margin-left: 15rem;
+    margin-left: 10rem;
 }
 
 @media (min-width: 1024px) {
     .assigned {
-        margin-left: 17.8rem;
-        width: 65%;
+        margin-left: 1.2rem;
+        width: 90%;
     }
 }
 
 @media (min-width: 1280px) {
     .assigned {
-        margin-left: 18.2rem;
-        width: 70%;
+        margin-left: 2rem;
+        width: 90%;
+        margin-bottom: 5rem;
     }
 }
 
 @media (min-width: 1366px) {
     .assigned {
-        margin-left: 15rem;
-        width: 85%;
+        margin-left: 4.5rem;
+        width: 90%;
     }
 }
 
 @media (min-width: 1440px) {
     .assigned {
-        margin-left: 17rem;
-        width: 85%;
+        margin-left: 3.6rem;
+        width: 100%;
         margin-top: 4rem;
     }
 }
 
 @media (min-width: 1600px) {
     .assigned {
-        margin-left: 15.4rem;
-        width: 85%;
+        margin-left: 1rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1920px) {
     .assigned {
-        margin-left: 18rem;
+        margin-left: 12rem;
         width: 100%;
+        margin-bottom: 20rem;
     }
 }
 
 @media (min-width: 2560px) {
     .assigned {
-        margin-left: 38rem;
+        margin-left: 30rem;
         width: 100%;
+        margin-bottom: 45rem;
     }
 }

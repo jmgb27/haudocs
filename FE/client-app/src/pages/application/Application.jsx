@@ -77,15 +77,13 @@ function Application() {
 
   return (
     <Sidebar>
-      <div className="application mt-[4rem]">
-        <h3 className="text-2xl font-bold text-center ml-7">
-          Application Status
-        </h3>
-        <div className="application-container">
-          <div className="status flex items center flex-col justify-center">
-            {getStatusIcon()}
-            <p>{status}</p>
-          </div>
+      <div className="application-container">
+        <div
+          className="status relative items-center justify-center"
+          style={{ margin: "auto", marginTop: "15rem" }}
+        >
+          {getStatusIcon()}
+          <p>{status}</p>
         </div>
       </div>
     </Sidebar>

@@ -98,23 +98,25 @@ function Adminsubmissions() {
 
   return (
     <Adminsidebar>
-      <div className="adminsubmit">
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <ThemeProvider theme={theme}>
-              <CustomTabs value={value} onChange={handleChange}>
-                <Tab label="Applicants" {...a11yProps(0)} />
-                <Tab label="Reviewers" {...a11yProps(1)} />
-              </CustomTabs>
-            </ThemeProvider>
+      <div className="flex flex-col items-center justify-center m-auto">
+        <div className="adminsubmit">
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <ThemeProvider theme={theme}>
+                <CustomTabs value={value} onChange={handleChange}>
+                  <Tab label="Applicants" {...a11yProps(0)} />
+                  <Tab label="Reviewers" {...a11yProps(1)} />
+                </CustomTabs>
+              </ThemeProvider>
+            </Box>
+            <TabPanel value={value} index={0}>
+              <Applicantstab />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Reviewersstab />
+            </TabPanel>
           </Box>
-          <TabPanel value={value} index={0}>
-            <Applicantstab />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Reviewersstab />
-          </TabPanel>
-        </Box>
+        </div>
       </div>
     </Adminsidebar>
   );

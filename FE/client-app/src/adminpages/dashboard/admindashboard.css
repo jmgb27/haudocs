@@ -4,44 +4,47 @@
 
 @media (min-width: 1280px) {
     .size {
-        margin-left: 18rem;
+        margin-left: 8rem;
         margin-top: 4rem;
         width: 70%;
     }
 }
 @media (min-width: 1366px) {
     .size {
-        margin-left: 28.5rem;
         margin-top: 4rem;
         width: 50%;
+        margin-left: 17rem;
     }
 }
 
 @media (min-width: 1440px) {
     .size {
-        margin-left: 31rem;
+        margin-left: 19rem;
+        width: 50%;
         margin-top: 4rem;
     }
 }
 
 @media (min-width: 1600px) {
     .size {
-        margin-left: 32rem;
+        margin-left: 20rem;
     }
 }
 
 @media (min-width: 1920px) {
     .size {
-        margin-left: 17rem;
+        margin-left: 10rem;
         width: 100%;
-        margin-top: 7rem;
+        margin-top: 1rem;
+        margin-bottom: 5rem;
     }
 }
 
 @media (min-width: 2560px) {
     .size {
-        margin-left: 36rem;
+        margin-left: 30rem;
         width: 100%;
-        margin-top: 7rem;
+        margin-top: 1rem;
+        margin-bottom: 25rem;
     }
 }

@@ -57,75 +57,81 @@ function Dashboard() {
 
   return (
     <Sidebar>
-      <div className="db-bg flex items-center justify-center flex-col">
-        <div className="db-containers">
-          <h1 className="flex text-center flex-col text-3xl">
-            HAU-Institutional Review Board
-          </h1>
-          <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[3rem]">
-            <Card sx={{ maxWidth: 345 }}>
-              <CardMedia component="img" height="140" image={haudocsinitial} />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  Requirements for Ethics Review Initial application
-                </Typography>
-              </CardContent>
-              <div className="flex items-center justify-center">
-                <CardActions>
-                  <Button
-                    sx={{ color: "maroon" }}
-                    onClick={toggleModal2}
-                    size="small"
-                  >
-                    read the instructions
-                  </Button>
-                </CardActions>
-              </div>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image={haudocscontinuing}
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  Requirements for Continuing Ethics Review upon issuance of
-                  ethical clearance
-                </Typography>
-              </CardContent>
-              <div className="flex items-center justify-center">
-                <CardActions>
-                  <Button
-                    sx={{ color: "maroon" }}
-                    onClick={toggleModal}
-                    size="small"
-                  >
-                    read the instructions
-                  </Button>
-                </CardActions>
-              </div>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardMedia component="img" height="140" image={haudocsfinal} />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  Requirements for Final Review upon completion of Continuing
-                  Review
-                </Typography>
-              </CardContent>
-              <div className="flex items-center justify-center">
-                <CardActions>
-                  <Button
-                    sx={{ color: "maroon" }}
-                    onClick={toggleModal3}
-                    size="small"
-                  >
-                    read the instructions
-                  </Button>
-                </CardActions>
-              </div>
-            </Card>
+      <div className="flex flex-col items-center justify-center">
+        <div className="db-bg flex items-center justify-center flex-col">
+          <div className="db-containers">
+            <h1 className="flex text-center flex-col text-3xl">
+              HAU-Institutional Review Board
+            </h1>
+            <div className="card-item text-center flex items-center justify-center space-x-[1rem] mt-[3rem]">
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={haudocsinitial}
+                />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Requirements for Ethics Review Initial application
+                  </Typography>
+                </CardContent>
+                <div className="flex items-center justify-center">
+                  <CardActions>
+                    <Button
+                      sx={{ color: "maroon" }}
+                      onClick={toggleModal2}
+                      size="small"
+                    >
+                      read the instructions
+                    </Button>
+                  </CardActions>
+                </div>
+              </Card>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={haudocscontinuing}
+                />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Requirements for Continuing Ethics Review upon issuance of
+                    ethical clearance
+                  </Typography>
+                </CardContent>
+                <div className="flex items-center justify-center">
+                  <CardActions>
+                    <Button
+                      sx={{ color: "maroon" }}
+                      onClick={toggleModal}
+                      size="small"
+                    >
+                      read the instructions
+                    </Button>
+                  </CardActions>
+                </div>
+              </Card>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia component="img" height="140" image={haudocsfinal} />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Requirements for Final Review upon completion of Continuing
+                    Review
+                  </Typography>
+                </CardContent>
+                <div className="flex items-center justify-center">
+                  <CardActions>
+                    <Button
+                      sx={{ color: "maroon" }}
+                      onClick={toggleModal3}
+                      size="small"
+                    >
+                      read the instructions
+                    </Button>
+                  </CardActions>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
