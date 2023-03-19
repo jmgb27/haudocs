@@ -63,7 +63,9 @@ const DrawerHeader = styled(Toolbar)(({ theme }) => ({
 const Sidebar = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [userName, setUserName] = useState(null);
+  const [userName, setUserName] = useState(
+    localStorage.getItem("userName") || null
+  );
   const [imageUrl, setImageUrl] = useState(
     localStorage.getItem("profileImageUrl") || null
   );
@@ -134,7 +136,9 @@ const Sidebar = ({ children }) => {
 
         getDoc(userRef).then((doc) => {
           if (doc.exists()) {
-            setUserName(doc.data().name);
+            const name = doc.data().name;
+            setUserName(name);
+            localStorage.setItem("userName", name);
           }
         });
       }
@@ -192,6 +196,7 @@ const Sidebar = ({ children }) => {
             height={30}
           />
         </div>
+        <div>{userName}</div>
         <div>
           <Badge
             badgeContent={notifications.filter((n) => !n.read).length}
@@ -214,6 +219,7 @@ const Sidebar = ({ children }) => {
         </div>
       </DrawerHeader>
       <List>
+        <Divider />
         {SidenavItem.map((item, index) => (
           <NavLink to={item.path} key={index} className="link-sidebar">
             <ListItem key={item.name}>
