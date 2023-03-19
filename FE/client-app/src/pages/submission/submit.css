@@ -6,6 +6,10 @@
     padding: 30px;
     
 }
+
+.subtabs{
+    width: 80%;
+}
 hr {
     height: 1px;
     border: 1px solid gray;
@@ -85,55 +89,4 @@ button {
 #sub:enabled {
     background-color: maroon;
     cursor: pointer;
-}
-
-@media (min-width: 1024px) {
-    .subtabs {
-        margin-left: 1rem;
-        margin-right: 3rem;
-        margin-top: 8rem;
-        width: 90%;
-    }
-}
-
-@media (min-width: 1280px) {
-    .subtabs {
-        margin-left: 1rem;
-        width: 90%;
-    }
-}
-
-@media (min-width: 1366px) {
-    .subtabs {
-        margin-left: 5rem;
-        width: 85%;
-    }
-}
-
-@media (min-width: 1440px) {
-    .subtabs {
-        margin-left: 9rem;
-        width: 90%;
-    }
-}
-
-@media (min-width: 1600px) {
-    .subtabs {
-        margin-top: 10rem;
-        margin-left: 4rem;
-    }
-}
-
-@media (min-width: 1920px) {
-    .subtabs {
-        margin-left: 22rem;
-        width: 100%;
-    }
-}
-
-@media (min-width: 2560px) {
-    .subtabs {
-        margin-left: 58rem;
-        width: 100%;
-    }
 }

@@ -42,19 +42,17 @@ const Archiving = () => {
 
   return (
     <Adminsidebar>
-      <div className="flex flex-col items-center justify-center m-auto">
-        <div className="archivingdatatable">
-          <h1 className="text-center text-2xl font-bold">Archiving</h1>
-          <Box sx={{ height: 500, width: "100%", marginTop: 5 }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-            />
-          </Box>
-        </div>
+      <div className="archivingdatatable">
+        <h1 className="text-center text-2xl font-bold">Archiving</h1>
+        <Box sx={{ height: 500, width: "100%", marginTop: 5 }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
+        </Box>
       </div>
     </Adminsidebar>
   );

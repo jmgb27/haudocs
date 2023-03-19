@@ -37,10 +37,8 @@ const Reviewstatus = () => {
   return (
     <Reviewersidebar>
       <div className="reviewdatatable">
-        <h1 className="mt-[3rem] text-center text-2xl font-bold">
-          Review Status
-        </h1>
-        <div className=" mt-[2rem]" style={{ height: 500, width: "100%" }}>
+        <h1 className="text-center text-2xl font-bold">Review Status</h1>
+        <div className=" mt-[2rem]" style={{ height: 500 }}>
           <DataGrid
             rows={rows}
             columns={columns}
