@@ -1,50 +1,54 @@
 .sub-container {
-    width: 70%;
-    margin-left: 13rem;
+    width: 100%;
     margin-top: 1rem;
 }
 
 @media (min-width: 1024px) {
     .sub-container {
-        margin-left: 15.7rem;
+        margin-left: 1rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1280px) {
     .sub-container {
-        margin-left: 18rem;
+
+        width: 100%;
     }
 }
 
 @media (min-width: 1366px) {
     .sub-container {
-        margin-left: 21rem;
+  
     }
 }
 
 @media (min-width: 1440px) {
     .sub-container {
-        margin-left: 23rem;
+
     }
 }
 
 @media (min-width: 1600px) {
     .sub-container {
-        margin-left: 18rem;
-        width: 80%;
+        margin-left: 1rem;
+        width: 100%;
+        margin-top: 5rem;
     }
 }
 
 @media (min-width: 1920px) {
     .sub-container {
-        margin-left: 18rem;
         width: 100%;
+        margin-bottom: 10rem;
+        margin-left: 10rem;
     }
 }
 
 @media (min-width: 2560px) {
     .sub-container {
-        margin-left: 37rem;
+        margin-left: 30rem;
         width: 100%;
+        margin-bottom: 20rem;
     }
 }

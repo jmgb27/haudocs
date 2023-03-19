@@ -34,24 +34,13 @@ const Reviewstatus = () => {
     },
   ];
 
-  /*   const buttonStyle = {
-    backgroundColor: 'maroon',
-    color: 'white',
-  }; */
-
   return (
     <Reviewersidebar>
       <div className="reviewdatatable">
         <h1 className="mt-[3rem] text-center text-2xl font-bold">
           Review Status
         </h1>
-        {/*     <div className='flex items-end justify-end'>
-    <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
-    </div> */}
-        <div
-          className="ml-[2rem] mt-[2rem]"
-          style={{ height: 500, width: "100%" }}
-        >
+        <div className=" mt-[2rem]" style={{ height: 500, width: "100%" }}>
           <DataGrid
             rows={rows}
             columns={columns}

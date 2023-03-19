@@ -1,42 +1,44 @@
+
+
 @media (min-width: 1024px) {
     .reviewerdashboard {
-        margin-left: 8.4rem;
-        width: 50%;
+        margin-bottom: 15rem;
     }
 }
 @media (min-width: 1280px) {
     .reviewerdashboard {
-        margin-left: 10.4rem;
-        width: 70%;
     }
 }
 
 @media (min-width: 1366px) {
     .reviewerdashboard {
-        margin-left: 13rem;
+        margin-left: 3.5rem;
     }
 }
 
 @media (min-width: 1440px) {
     .reviewerdashboard {
-        margin-left: 16rem;
+        margin-left: 6rem;
     }
 }
 
 @media (min-width: 1600px) {
     .reviewerdashboard {
-        margin-left: 15rem;
+        margin-left: 1rem;
+        margin-bottom: 10rem;
     }
 }
 
 @media (min-width: 1920px) {
     .reviewerdashboard {
-        margin-left: 21rem;
+        margin-left: 19rem;
+        margin-bottom: 40rem;
     }
 }
 
 @media (min-width: 2560px) {
     .reviewerdashboard {
-        margin-left: 43rem;
+        margin-left: 44rem;
+        margin-bottom: 55rem;
     }
 }

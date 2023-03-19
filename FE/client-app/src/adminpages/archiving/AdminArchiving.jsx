@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./archiving.css";
+import { Box } from "@mui/system";
 
 const Archiving = () => {
   // Sample data
@@ -39,26 +40,20 @@ const Archiving = () => {
     { id: "", applicantname: "", documentname: "", reviewer: "", date: "" },
   ];
 
-  /*   const buttonStyle = {
-    backgroundColor: 'maroon',
-    color: 'white',
-  }; */
-
   return (
     <Adminsidebar>
-      <div className="archivingdatatable">
-        <h1 className="mt-[3rem] text-center text-2xl font-bold">Archiving</h1>
-        {/*     <div className='flex items-end justify-end'>
-    <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
-    </div> */}
-        <div className="mt-4" style={{ height: 500, width: "100%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-          />
+      <div className="flex flex-col items-center justify-center m-auto">
+        <div className="archivingdatatable">
+          <h1 className="text-center text-2xl font-bold">Archiving</h1>
+          <Box sx={{ height: 500, width: "100%", marginTop: 5 }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+            />
+          </Box>
         </div>
       </div>
     </Adminsidebar>

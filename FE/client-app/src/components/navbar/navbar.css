@@ -28,8 +28,21 @@
     position: flex;
     height: 30px;
     width: 30px;
-    margin-right: 20px;
     border-radius: 50%;
+}
+
+.menu-trigger-profile img {
+    position: flex;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.menu-trigger-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .dropdown-menu {
@@ -110,6 +123,18 @@ h3 span{
     transform: translateY(-20px);
     transition: var(--speed) ease;
 }
+.menu-container {
+    position: relative;
+}
+
+.menu-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+
 
 /* @media screen and (max-width: 768px) {
   .hau_navbar {

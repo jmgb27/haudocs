@@ -3,11 +3,10 @@ import "./sidebar.css";
 import { FaTh } from "react-icons/fa";
 import {
   AiOutlineFileSync,
-  AiFillSetting,
   AiOutlineFileAdd,
   AiOutlineFileExclamation,
 } from "react-icons/ai";
-import { FiDownload, FiLogOut } from "react-icons/fi";
+import { FiDownload } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import { BsFillInboxFill } from "react-icons/bs";
@@ -45,21 +44,6 @@ const Sidebar = ({ children }) => {
       icon: <BsFillInboxFill />,
     },
   ];
-  const Setting = [
-    {
-      path: "/setting",
-      name: "Setting",
-      icon: <AiFillSetting />,
-    },
-  ];
-
-  const BottomnavItem = [
-    {
-      path: "/logout",
-      name: "Logout",
-      icon: <FiLogOut />,
-    },
-  ];
   return (
     <div className="container">
       <div className="sidebar">
@@ -71,23 +55,8 @@ const Sidebar = ({ children }) => {
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))}
-        <div className="bottom_section">
-          {Setting.map((item, index) => (
-            <NavLink to={item.path} key={index} className="link-sidebar">
-              <div className="icon-sidebar">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-
-          {BottomnavItem.map((item, index) => (
-            <NavLink to={item.path} key={index} className="link-sidebar">
-              <div className="icon-sidebar">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-        </div>
       </div>
-      <main>{children}</main>
+      <div className="main-content">{children}</div>
     </div>
   );
 };

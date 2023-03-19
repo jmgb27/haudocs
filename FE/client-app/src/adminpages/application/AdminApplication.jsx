@@ -34,21 +34,10 @@ const AdminApplication = () => {
       status: "In Progress",
     },
   ];
-
-  /*   const buttonStyle = {
-    backgroundColor: 'maroon',
-    color: 'white',
-  }; */
-
   return (
     <Adminsidebar>
       <div className="adminreviewdatatable">
-        <h1 className="mt-[3rem] text-center text-2xl font-bold">
-          Review Status
-        </h1>
-        {/*     <div className='flex items-end justify-end'>
-    <Button sx={{ width: '100px' }} style={buttonStyle} onClick={""}>Delete</Button>
-    </div> */}
+        <h1 className="text-center text-2xl font-bold">Review Status</h1>
         <div className="review mt-4" style={{ height: 500, width: "100%" }}>
           <DataGrid
             rows={rows}

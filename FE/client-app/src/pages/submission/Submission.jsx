@@ -7,36 +7,6 @@ import Final from "./Final";
 
 function Submission() {
   const [activeTab, setActiveTab] = useState(0);
-  /*   const [fileUpload, setfileUpload] = useState(null);
-  const [fileUrls, setfileUrls] = useState([]);
-
-  const filesListRef = ref(storage, "HAU-IRB-INITIAL-REVIEW/");
-  const uploadFile = () => {
-    if (fileUpload == null) return;
-    const imageRef = ref(
-      storage,
-      `HAU-IRB-INITIAL-REVIEW/${fileUpload.name + v4()}`
-    );
-    uploadBytes(imageRef, fileUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setfileUrls((prev) => [...prev, url]);
-      });
-    });
-  };
-
-  useEffect(() => {
-    listAll(filesListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setfileUrls((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
-
-  const chooseStyle = {
-    backgroundColor: "maroon",
-  }; */
   const tabs = [
     { label: "Initial Process", content: <Initial /> },
     {

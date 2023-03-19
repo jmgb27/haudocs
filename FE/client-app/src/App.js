@@ -40,6 +40,7 @@ import {
 } from "./adminpages";
 import { db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore/lite";
+import LandingPage from "./components/Landingpage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -100,7 +101,7 @@ function App() {
                     </ProtectedRoute>
                   )
                 ) : (
-                  <Signin />
+                  <LandingPage />
                 )
               }
             />
@@ -115,6 +116,7 @@ function App() {
                 )
               }
             />
+
             <Route
               path="/Signup"
               element={

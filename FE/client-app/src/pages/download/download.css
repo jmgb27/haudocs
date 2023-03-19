@@ -1,47 +1,56 @@
-.accordion {
-    margin-left: 15rem;
-    margin-top: 5rem;
-    text-align: center;
+.download-accordion {
+    width: 100%;
 }
 
 @media (min-width: 1024px) {
-    .accordion {
-        margin-left: 16rem;
+    .download-accordion {
         width: 70%;
+        margin-bottom: 35rem;
     }
 }
 
 @media (min-width: 1280px) {
-    .accordion {
-        margin-left: 17.9rem;
-        width: 70%;
+    .download-accordion {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 35rem;
     }
 }
 
 @media (min-width: 1366px) {
-    .accordion {
-        margin-left: 15rem;
-        width: 85%;
+    .download-accordion {
+        margin-left: 4rem;
+        margin-bottom: 35rem;
     }
 }
 
 @media (min-width: 1440px) {
-    .accordion {
-        margin-left: 17rem;
-        width: 85%;
+    .download-accordion {
+        margin-left: 6rem;
+        margin-bottom: 35rem;
     }
 }
 
 @media (min-width: 1600px) {
-    .accordion {
-        margin-left: 15.6rem;
-        width: 85%;
+    .download-accordion {
+        margin: auto;
+        margin-top: 10rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .download-accordion {
+        margin-left: 10rem;
+        margin-top: 10rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 2560px) {
-    .accordion {
-        margin-left: 36rem;
+    .download-accordion {
         width: 100%;
+        margin-left: 30rem;
+        margin-top: 10rem;
     }
 }

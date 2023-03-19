@@ -1,54 +1,55 @@
 .reviewdatatable {
-    width: 90%;
-    margin-left: 15rem;
+    margin-left: 10rem;
 }
 
 @media (min-width: 1024px) {
     .reviewdatatable {
-        margin-left: 15.5rem;
-        width: 65%;
+        margin-left: 1rem;
+        width: 90%;
     }
 }
 
 @media (min-width: 1280px) {
     .reviewdatatable {
-        margin-left: 16rem;
-        width: 70%;
+        margin-left: 2rem;
+        width: 90%;
     }
 }
 
 @media (min-width: 1366px) {
     .reviewdatatable {
-        margin-left: 13rem;
-        width: 85%;
+        margin-left: 1.5rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1440px) {
     .reviewdatatable {
-        margin-left: 13.2rem;
-        width: 90%;
+        margin-left: 4rem;
+        width: 100%;
     }
 }
 
 
 @media (min-width: 1600px) {
     .reviewdatatable {
-        margin-left: 13.5rem;
-        width: 85%;
+        margin-left: 1rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1920px) {
     .reviewdatatable {
-        margin-left: 16.2rem;
-        width: 100%
+        margin-left: 11rem;
+        width: 100%;
+        margin-bottom: 15rem;
     }
 }
 
 @media (min-width: 2560px) {
     .reviewdatatable {
-        margin-left: 35.2rem;
-        width: 100%
+        margin-left: 29rem;
+        width: 100%;
+        margin-bottom: 35rem;
     }
 }

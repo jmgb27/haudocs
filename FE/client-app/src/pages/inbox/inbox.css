@@ -5,49 +5,54 @@
 
 @media (min-width: 1024px) {
     .inbox-datatable {
-        margin-left: 15.5rem;
-        width: 65%;
+        margin-left: 1rem;
+        width: 85%;
+        margin-right: 8rem;
+        margin-bottom: 7rem;
     }
 }
 
 @media (min-width: 1280px) {
     .inbox-datatable {
-        margin-left: 16rem;
-        width: 70%;
+        margin-left: 1rem;
+        width: 85%;
     }
 }
 
 @media (min-width: 1366px) {
     .inbox-datatable {
-        margin-left: 13rem;
-        width: 85%;
+        margin-left: 7rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1440px) {
     .inbox-datatable {
-        margin-left: 13rem;
-        width: 90%;
+        margin-left: 11rem;
+        width: 100%;
     }
 }
 
 @media (min-width: 1600px) {
     .inbox-datatable {
-        margin-left: 13.4rem;
-        width: 85%;
+        margin-left: 5rem;
+        width: 100%;
+        margin-top: 5rem;
     }
 }
 
 @media (min-width: 1920px) {
     .inbox-datatable {
-        margin-left: 16.5rem;
+        margin-left: 25rem;
         width: 100%;
+        margin-bottom: 20rem;
     }
 }
 
 @media (min-width: 2560px) {
     .inbox-datatable {
-        margin-left: 35rem;
+        margin-left: 64rem;
         width: 100%;
+        margin-bottom: 45rem;
     }
 }

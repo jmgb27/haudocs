@@ -172,130 +172,132 @@ const AdminUsers = () => {
 
   return (
     <Adminsidebar>
-      <div className="usersdatatable">
-        <div className="datatableTitle">
-          <h1 className="text-2xl font-bold text-black">Users Management</h1>
-          <div>
-            <Button
-              style={buttonStyle}
-              variant="contained"
-              onClick={handleOpen}
-            >
-              Edit Users
-            </Button>
-            <Modal open={open} onClose={handleClose}>
-              <Box sx={style}>
-                <Container component="main" maxWidth="xs">
-                  <CssBaseline />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Typography sx={{ mb: 5 }} component="h1" variant="h5">
-                      User Management
-                    </Typography>
-                    {errorMessages && (
-                      <Alert
-                        severity="error"
-                        sx={{ width: "100%", mb: "2rem" }}
-                        onClose={() => {
-                          setErrorMessages(null);
-                          resetForm();
-                        }}
-                      >
-                        {errorMessages}
-                      </Alert>
-                    )}
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          autoComplete="given-name"
-                          name="Name"
-                          required
-                          fullWidth
-                          id="Name"
-                          label="Name"
-                          value={name}
-                          autoFocus
-                          onChange={(e) => setName(e.target.value)}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <FormControl required fullWidth>
-                          <InputLabel id="role-label">Role</InputLabel>
-                          <Select
-                            labelId="role-label"
-                            id="role"
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            autoComplete="role-name"
-                          >
-                            <MenuItem value="admin">Admin</MenuItem>
-                            <MenuItem value="applicant">Applicant</MenuItem>
-                            <MenuItem value="scientist">Scientist</MenuItem>
-                            <MenuItem value="non-scientist">
-                              Non-Scientist
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="email"
-                          value={email}
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </Grid>
-                    </Grid>
-                    <Button
-                      type="submit"
-                      style={buttonStyle}
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 3, mb: 8, height: "3rem" }}
-                      onClick={addusers}
+      <div className="flex flex-col items-center justify-center">
+        <div className="usersdatatable">
+          <div className="datatableTitle">
+            <h1 className="text-2xl font-bold text-black">Users Management</h1>
+            <div>
+              <Button
+                style={buttonStyle}
+                variant="contained"
+                onClick={handleOpen}
+              >
+                Edit Users
+              </Button>
+              <Modal open={open} onClose={handleClose}>
+                <Box sx={style}>
+                  <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
                     >
-                      Update User
-                    </Button>
-                  </Box>
-                  <Dialog open={showDialog} onClose={handleDialogClose}>
-                    <DialogTitle>Success!</DialogTitle>
-                    <DialogContent>
-                      <Typography variant="body1">
-                        You have successfully change the role of {name} to{" "}
-                        {role}!
+                      <Typography sx={{ mb: 5 }} component="h1" variant="h5">
+                        User Management
                       </Typography>
-                    </DialogContent>
-                    <DialogActions>
+                      {errorMessages && (
+                        <Alert
+                          severity="error"
+                          sx={{ width: "100%", mb: "2rem" }}
+                          onClose={() => {
+                            setErrorMessages(null);
+                            resetForm();
+                          }}
+                        >
+                          {errorMessages}
+                        </Alert>
+                      )}
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <TextField
+                            autoComplete="given-name"
+                            name="Name"
+                            required
+                            fullWidth
+                            id="Name"
+                            label="Name"
+                            value={name}
+                            autoFocus
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <FormControl required fullWidth>
+                            <InputLabel id="role-label">Role</InputLabel>
+                            <Select
+                              labelId="role-label"
+                              id="role"
+                              value={role}
+                              onChange={(e) => setRole(e.target.value)}
+                              autoComplete="role-name"
+                            >
+                              <MenuItem value="admin">Admin</MenuItem>
+                              <MenuItem value="applicant">Applicant</MenuItem>
+                              <MenuItem value="scientist">Scientist</MenuItem>
+                              <MenuItem value="non-scientist">
+                                Non-Scientist
+                              </MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            required
+                            fullWidth
+                            id="email"
+                            value={email}
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                        </Grid>
+                      </Grid>
                       <Button
-                        sx={{ color: "maroon" }}
-                        onClick={handleDialogClose}
+                        type="submit"
+                        style={buttonStyle}
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 8, height: "3rem" }}
+                        onClick={addusers}
                       >
-                        Close
+                        Update User
                       </Button>
-                    </DialogActions>
-                  </Dialog>
-                </Container>
-              </Box>
-            </Modal>
+                    </Box>
+                    <Dialog open={showDialog} onClose={handleDialogClose}>
+                      <DialogTitle>Success!</DialogTitle>
+                      <DialogContent>
+                        <Typography variant="body1">
+                          You have successfully change the role of {name} to{" "}
+                          {role}!
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          sx={{ color: "maroon" }}
+                          onClick={handleDialogClose}
+                        >
+                          Close
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </Container>
+                </Box>
+              </Modal>
+            </div>
           </div>
+          <DataGrid
+            className="datagrid"
+            rows={data}
+            columns={userColumns.concat(actionColumn)}
+            pageSize={9}
+            rowsPerPageOptions={[9]}
+            checkboxSelection
+          />
         </div>
-        <DataGrid
-          className="datagrid"
-          rows={data}
-          columns={userColumns.concat(actionColumn)}
-          pageSize={9}
-          rowsPerPageOptions={[9]}
-          checkboxSelection
-        />
       </div>
     </Adminsidebar>
   );

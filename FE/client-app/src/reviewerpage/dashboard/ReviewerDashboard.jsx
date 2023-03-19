@@ -9,7 +9,7 @@ function Box(props) {
     <div
       style={{
         backgroundColor: props.color,
-        width: "500px",
+        width: "400px",
         height: "300px",
         border: "2px solid black",
         marginTop: "8rem",
@@ -28,7 +28,6 @@ function ReviewerDashboard() {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginLeft: "15rem",
             marginTop: "4rem",
             alignItems: "center",
           }}

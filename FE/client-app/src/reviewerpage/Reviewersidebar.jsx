@@ -40,21 +40,6 @@ const Reviewersidebar = ({ children }) => {
       icon: <GoFileSymlinkDirectory />,
     },
   ];
-  const Setting = [
-    {
-      path: "/reviewersettings",
-      name: "Setting",
-      icon: <AiFillSetting />,
-    },
-  ];
-
-  const BottomnavItem = [
-    {
-      path: "/reviewerlogout",
-      name: "Logout",
-      icon: <FiLogOut />,
-    },
-  ];
   return (
     <div className="container">
       <div className="sidebar">
@@ -66,32 +51,10 @@ const Reviewersidebar = ({ children }) => {
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))}
-        <div className="reviewer-bottom_section">
-          {Setting.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-reviewersidebar flex items-center"
-            >
-              <div className="icon-admin">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-
-          {BottomnavItem.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-reviewersidebar flex items-center"
-              onClick={handleLogout}
-            >
-              <div className="icon-admin">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-        </div>
       </div>
-      <main>{children}</main>
+      <div className="main-content">
+        <main>{children}</main>
+      </div>
     </div>
   );
 };

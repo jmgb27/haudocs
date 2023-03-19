@@ -1,54 +1,59 @@
 .adminsubmit {
-    width: 100%;
-    margin-left: 15rem;
-    margin-top: 5rem;
+    margin-top: 10rem;
 }
 
 @media (min-width: 1024px) {
     .adminsubmit {
-        width: 65%;
-        margin-left: 17.3rem;
+        width: 90%;
+        margin-right: 3rem;
+        margin-bottom: 20rem;
     }
 }
 
 @media (min-width: 1280px) {
     .adminsubmit {
-        width: 70%;
-        margin-left: 18rem;
+        width: 100%;
+        margin-left: 1rem;
+        margin-bottom: 15rem;
     }
 }
 
 @media (min-width: 1366px) {
     .adminsubmit {
-        width: 80%;
-        margin-left: 17rem;
+        width: 100%;
+        margin-left: 6rem;
     }
 }
 
 @media (min-width: 1440px) {
     .adminsubmit {
-        width: 90%;
-        margin-left: 15.2rem;
+        width: 100%;
+        margin-left: 10rem;
     }
 }
 
 @media (min-width: 1600px) {
     .adminsubmit {
-        width: 85%;
-        margin-left: 15.5rem;
+        width: 100%;
+        margin-left: 4rem;
+    }
+    body {
+         overflow: hidden;
     }
 }
 
 @media (min-width: 1920px) {
     .adminsubmit {
         width: 100%;
-        margin-left: 18rem;
+        margin-left: 27rem;
+        margin-bottom: 35rem;
     }
 }
 
 @media (min-width: 2560px) {
     .adminsubmit {
         width: 100%;
-        margin-left: 37rem;
+        margin-left: 65rem;
+        margin-bottom: 50rem;
     }
 }

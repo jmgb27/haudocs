@@ -11,19 +11,36 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon,
   Button,
   Typography,
+  Menu,
+  MenuItem,
+  Divider,
 } from "@mui/material";
-import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
+import { Notifications as NotificationsIcon } from "@mui/icons-material";
+import Tooltip from "@mui/material/Tooltip";
+import Avatar from "@mui/material/Avatar";
+import { useNavigate } from "react-router-dom";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import { signOut } from "firebase/auth";
+import { db } from "../../firebase";
+import { doc, collection, getDoc } from "firebase/firestore/lite";
 
 function Navbar() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [userName, setUserName] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const [anchorEl2, setAnchorEl2] = useState(null);
   const [imageUrl, setImageUrl] = useState(
     localStorage.getItem("profileImageUrl") || null
   );
+  const open = Boolean(anchorEl2);
+  const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState([
     {
@@ -66,6 +83,13 @@ function Navbar() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClick = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl2(null);
   };
 
   const handleClose = () => {
@@ -111,11 +135,37 @@ function Navbar() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setCurrentUser(currentUser);
+
+      if (currentUser) {
+        const userRef = doc(db, "users", currentUser.uid);
+
+        getDoc(userRef).then((doc) => {
+          if (doc.exists()) {
+            setUserName(doc.data().name);
+          }
+        });
+      }
     });
+
     return unsubscribe;
   }, []);
 
   const hasPhotoURL = currentUser && currentUser.photoURL;
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+    handleClose();
+  };
+
+  const handleSettings = () => {
+    navigate("/adminsettings");
+    handleClose();
+  };
 
   return (
     <div>
@@ -184,13 +234,88 @@ function Navbar() {
           </Popover>
           <div className="menu-container">
             <div className="menu-trigger">
-              <img
-                src={
-                  imageUrl ||
-                  (currentUser && hasPhotoURL ? currentUser.photoURL : userIcon)
-                }
-                alt="Profile"
-              />
+              <Tooltip title="Account settings">
+                <IconButton
+                  onClick={handleMenuClick}
+                  size="small"
+                  aria-controls={open ? "account-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                >
+                  <img
+                    src={
+                      imageUrl ||
+                      (currentUser && hasPhotoURL
+                        ? currentUser.photoURL
+                        : userIcon)
+                    }
+                    alt="Profile"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                anchorEl={anchorEl2}
+                id="account-menu"
+                open={open}
+                onClose={handleMenuClose}
+                onClick={handleMenuClose}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.51,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 15,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem onClick={handleClose}>
+                  <div className="menu-trigger-profile">
+                    <img
+                      src={
+                        imageUrl ||
+                        (currentUser && hasPhotoURL
+                          ? currentUser.photoURL
+                          : userIcon)
+                      }
+                      alt="Profile"
+                    />{" "}
+                    {userName}
+                  </div>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleSettings}>
+                  <ListItemIcon>
+                    <Settings fontSize="small" />
+                  </ListItemIcon>
+                  Settings
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
             </div>
           </div>
         </div>

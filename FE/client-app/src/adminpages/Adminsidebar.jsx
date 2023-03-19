@@ -47,21 +47,6 @@ const Adminsidebar = ({ children }) => {
       icon: <FaUserAlt />,
     },
   ];
-  const Setting = [
-    {
-      path: "/adminsettings",
-      name: "Setting",
-      icon: <AiFillSetting />,
-    },
-  ];
-
-  const BottomnavItem = [
-    {
-      path: "/adminlogout",
-      name: "Logout",
-      icon: <FiLogOut />,
-    },
-  ];
   return (
     <div className="container">
       <div className="sidebar">
@@ -73,31 +58,10 @@ const Adminsidebar = ({ children }) => {
             <div className="link_text">{item.name}</div>
           </NavLink>
         ))}
-        <div className="admin-bottom_section">
-          {Setting.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-adminsidebar flex items-center"
-            >
-              <div className="icon-admin">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-
-          {BottomnavItem.map((item, index) => (
-            <NavLink
-              to={item.path}
-              key={index}
-              className="link-adminsidebar flex items-center"
-            >
-              <div className="icon-admin">{item.icon}</div>
-              <div className="link_text">{item.name}</div>
-            </NavLink>
-          ))}
-        </div>
       </div>
-      <main>{children}</main>
+      <div className="main-content">
+        <main>{children}</main>
+      </div>
     </div>
   );
 };
