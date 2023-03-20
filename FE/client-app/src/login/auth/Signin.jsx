@@ -105,6 +105,7 @@ function Signin() {
           role: "applicant",
         });
       }
+      window.location.href = "/";
     } catch (err) {
       console.error(err);
       alert(err.message);
