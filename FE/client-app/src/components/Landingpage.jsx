@@ -45,7 +45,7 @@ function LandingPage() {
         }}
       >
         <Container
-          maxWidth="md"
+          maxWidth="sm"
           sx={{
             color: "white",
             textAlign: "center",
@@ -54,12 +54,20 @@ function LandingPage() {
             borderRadius: "10px",
             backdropFilter: "blur(10px)",
             boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+            width: "80%",
+            maxWidth: "500px",
+            margin: "auto",
           }}
         >
           <Typography
             variant="h2"
             gutterBottom
-            sx={{ fontWeight: "bold", letterSpacing: "2px", mb: 3 }}
+            sx={{
+              fontWeight: "bold",
+              letterSpacing: "2px",
+              mb: 3,
+              fontSize: "2rem",
+            }}
           >
             Welcome to HAUDOCS IRB Ethics Review!
           </Typography>
@@ -70,10 +78,11 @@ function LandingPage() {
               fontStyle: "italic",
               letterSpacing: "1px",
               lineHeight: "1.5",
+              fontSize: "1rem",
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            This is the website for Submission and processing of documents for
+            Ethics Review.
           </Typography>
           {isLoading ? (
             <CircularProgress sx={{ color: "white" }} />

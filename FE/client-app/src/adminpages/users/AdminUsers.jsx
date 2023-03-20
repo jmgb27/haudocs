@@ -155,6 +155,10 @@ const AdminUsers = () => {
   const buttonStyle = {
     backgroundColor: "maroon",
     color: "white",
+    "@media (max-width: 600px)": {
+      fontSize: "14px",
+      padding: "8px 16px",
+    },
   };
 
   const style = {
@@ -174,12 +178,12 @@ const AdminUsers = () => {
     <Adminsidebar>
       <div className="usersdatatable">
         <div className="datatableTitle">
-          <h1 className="text-2xl font-bold text-black">Users Management</h1>
           <div>
             <Button
               style={buttonStyle}
               variant="contained"
               onClick={handleOpen}
+              className="editUsersButton"
             >
               Edit Users
             </Button>

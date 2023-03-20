@@ -72,7 +72,13 @@ function Reviewersmodal(props) {
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <ThemeProvider theme={theme}>
-            <CustomTabs value={value} onChange={handleChange}>
+            <CustomTabs
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons
+              allowScrollButtonsMobile
+            >
               <Tab label="Initial Review" {...a11yProps(0)} />
               <Tab label="Continuing Review" {...a11yProps(1)} />
               <Tab label="Final Review" {...a11yProps(2)} />

@@ -22,12 +22,16 @@ function AssignedProtocol() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "50%",
-    height: "90%",
+    minHeight: "70vh",
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
     overflow: "auto",
     p: 4,
+    "@media (max-width: 600px)": {
+      width: "100%",
+      minHeight: "80vh",
+    },
   };
 
   const columns = [

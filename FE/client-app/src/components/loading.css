@@ -1,0 +1,17 @@
+.loading-page {
+    background-color: maroon;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-page img {
+    max-width: 8%;
+    margin-bottom: 1rem;
+}
+
+.loading-page h2 {
+    color: white;
+}

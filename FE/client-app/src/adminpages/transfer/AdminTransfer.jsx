@@ -76,7 +76,7 @@ const AdminTransfer = () => {
                 alignItems: "center",
                 gap: 2,
                 borderWidth: 2,
-                borderColor: "maroon",
+                borderColor: "black",
                 borderRadius: 2,
                 p: 4,
               }}

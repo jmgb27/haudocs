@@ -1,4 +1,5 @@
-import React from "react";
+import react from "react";
+import { Grid, Box } from "@mui/material";
 import Adminsidebar from "../Adminsidebar";
 import Count from "./Count";
 import Protocolscount from "./Protocolscount";
@@ -6,56 +7,85 @@ import Protocolsinsideoutside from "./Protocolsinsideoutside";
 import Research from "./Research";
 import "./admindashboard.css";
 
-function Box(props) {
-  return (
-    <div
-      style={{
-        backgroundColor: props.color,
-        width: "400px",
-        height: "300px",
-        border: "2px solid black",
-      }}
-    >
-      {props.content}
-    </div>
-  );
-}
-
 function AdminDashboard() {
   return (
     <Adminsidebar>
-      <div
+      <Box
         className="size"
-        style={{
+        sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <div
-          className="space-x-4"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            textAlign: "center",
-          }}
-        >
-          <Box content={<Count />} />
-          <Box content={<Protocolscount />} />
-        </div>
-        <div
-          className="space-x-4"
-          style={{
-            display: "flex",
-            marginTop: "10px",
-            textAlign: "center",
-          }}
-        >
-          <Box content={<Protocolsinsideoutside />} />
-          <Box content={<Research />} />
-        </div>
-      </div>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "300px",
+                border: "2px solid black",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <Count />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "300px",
+                border: "2px solid black",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <Protocolscount />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "300px",
+                border: "2px solid black",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <Protocolsinsideoutside />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "300px",
+                border: "2px solid black",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <Research />
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
     </Adminsidebar>
   );
 }

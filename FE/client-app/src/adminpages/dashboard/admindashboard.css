@@ -1,1 +1,37 @@
+.size {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    padding: 2rem;
+}
 
+.admin-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .size {
+        padding: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .admin-container {
+        flex-direction: column;
+    }
+
+    .MuiGrid-item {
+        width: 100% !important;
+    }
+
+    .MuiGrid-item:nth-child(1),
+    .MuiGrid-item:nth-child(2) {
+        order: 1;
+    }
+
+    .MuiGrid-item:nth-child(3),
+    .MuiGrid-item:nth-child(4) {
+        order: 2;
+    }
+}

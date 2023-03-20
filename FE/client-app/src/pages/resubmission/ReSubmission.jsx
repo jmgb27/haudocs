@@ -114,22 +114,22 @@ const ReSubmission = () => {
                     accept=".pdf,.doc,.docx"
                     onChange={handleFileUpload}
                   />
-                  <article className="upload">
-                    <label
-                      class="block mb-5 text-lg font-medium text-gray-900 dark:text-white"
-                      for="file_input"
-                    >
-                      3. Others
-                    </label>
-                    <input
-                      class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                      id="multiple_files"
-                      accept=".pdf,.doc,.docx"
-                      type="file"
-                      multiple
-                      onChange={handleFileUpload}
-                    />
-                  </article>
+                </article>
+                <article className="upload">
+                  <label
+                    class="block mb-5 text-lg font-medium text-gray-900 dark:text-white"
+                    for="file_input"
+                  >
+                    3. Others
+                  </label>
+                  <input
+                    class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    id="multiple_files"
+                    accept=".pdf,.doc,.docx"
+                    type="file"
+                    multiple
+                    onChange={handleFileUpload}
+                  />
                 </article>
                 <form>
                   <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">

@@ -18,6 +18,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Grid,
 } from "@mui/material";
 import "./setting.css";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -121,150 +122,165 @@ const Setting = () => {
   return (
     <Sidebar>
       <div className="password">
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-          <Card sx={{ maxWidth: 600 }}>
-            <CardContent>
-              <Typography variant="h5" align="center" mb={3}>
-                Change Password for {currentUser && currentUser.email}
-              </Typography>
-              <form onSubmit={handlePasswordChange}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ flexDirection: { xs: "column", sm: "row" } }}
+        >
+          <Grid item xs={12} sm={6}>
+            <Card sx={{ maxWidth: { xs: "100%", sm: 600 }, mx: "auto" }}>
+              <CardContent>
+                <Typography variant="h5" align="center" mb={3}>
+                  Change Password for {currentUser && currentUser.email}
+                </Typography>
+                <form onSubmit={handlePasswordChange}>
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+                  >
+                    <TextField
+                      type={showPassword ? "text" : "password"}
+                      label="Current Password"
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowPassword(!showPassword)}
+                              onMouseDown={(e) => e.preventDefault()}
+                              edge="end"
+                            >
+                              {showPassword ? (
+                                <MdVisibilityOff />
+                              ) : (
+                                <MdVisibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    />
+                    <TextField
+                      type={showNewPassword ? "text" : "password"}
+                      label="New Password"
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() =>
+                                setShowNewPassword(!showNewPassword)
+                              }
+                              onMouseDown={(e) => e.preventDefault()}
+                              edge="end"
+                            >
+                              {showNewPassword ? (
+                                <MdVisibilityOff />
+                              ) : (
+                                <MdVisibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    <TextField
+                      type={showConfirmPassword ? "text" : "password"}
+                      label="Confirm New Password"
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() =>
+                                setShowConfirmPassword(!showConfirmPassword)
+                              }
+                              onMouseDown={(e) => e.preventDefault()}
+                              edge="end"
+                            >
+                              {showConfirmPassword ? (
+                                <MdVisibilityOff />
+                              ) : (
+                                <MdVisibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth
+                      value={confirmNewPassword}
+                      onChange={(e) => setConfirmNewPassword(e.target.value)}
+                    />
+                    {error && (
+                      <Typography variant="body1" color="error">
+                        {error}
+                      </Typography>
+                    )}
+                    {success && (
+                      <Typography variant="body1" color="success">
+                        Password changed successfully.
+                      </Typography>
+                    )}
+                    <Button
+                      style={changeStyle}
+                      sx={{ mt: 3 }}
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      disabled={isDisabled}
+                    >
+                      Change Password
+                    </Button>
+                  </Box>
+                </form>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Card sx={{ maxWidth: { xs: "100%", sm: 600 }, mx: "auto" }}>
+              <CardContent>
+                <Typography variant="h5" align="center" mb={3}>
+                  Upload A Profile Photo
+                </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                  <TextField
-                    type={showPassword ? "text" : "password"}
-                    label="Current Password"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={() => setShowPassword(!showPassword)}
-                            onMouseDown={(e) => e.preventDefault()}
-                            edge="end"
-                          >
-                            {showPassword ? (
-                              <MdVisibilityOff />
-                            ) : (
-                              <MdVisibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
                   />
-                  <TextField
-                    type={showNewPassword ? "text" : "password"}
-                    label="New Password"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={() => setShowNewPassword(!showNewPassword)}
-                            onMouseDown={(e) => e.preventDefault()}
-                            edge="end"
-                          >
-                            {showNewPassword ? (
-                              <MdVisibilityOff />
-                            ) : (
-                              <MdVisibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                  <TextField
-                    type={showConfirmPassword ? "text" : "password"}
-                    label="Confirm New Password"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={() =>
-                              setShowConfirmPassword(!showConfirmPassword)
-                            }
-                            onMouseDown={(e) => e.preventDefault()}
-                            edge="end"
-                          >
-                            {showConfirmPassword ? (
-                              <MdVisibilityOff />
-                            ) : (
-                              <MdVisibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth
-                    value={confirmNewPassword}
-                    onChange={(e) => setConfirmNewPassword(e.target.value)}
-                  />
-                  {error && (
-                    <Typography variant="body1" color="error">
-                      {error}
-                    </Typography>
-                  )}
-                  {success && (
-                    <Typography variant="body1" color="success">
-                      Password changed successfully.
-                    </Typography>
-                  )}
                   <Button
                     style={changeStyle}
                     sx={{ mt: 3 }}
                     variant="contained"
                     color="primary"
-                    type="submit"
-                    disabled={isDisabled}
+                    onClick={handleUpload}
+                    disabled={!image}
                   >
-                    Change Password
+                    Upload Photo
                   </Button>
                 </Box>
-              </form>
-            </CardContent>
-          </Card>
-          <Card sx={{ maxWidth: 600, ml: 3 }}>
-            <CardContent>
-              <Typography variant="h5" align="center" mb={3}>
-                Upload A Profile Photo
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                />
-                <Button
-                  style={changeStyle}
-                  sx={{ mt: 3 }}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleUpload}
-                  disabled={!image}
-                >
-                  Upload Photo
+              </CardContent>
+            </Card>
+            <Dialog
+              open={isSuccessDialogOpen}
+              onClose={handleCloseSuccessDialog}
+            >
+              <DialogTitle>Success!</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Your profile picture has been uploaded successfully.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseSuccessDialog} autoFocus>
+                  OK
                 </Button>
-              </Box>
-            </CardContent>
-          </Card>
-          <Dialog open={isSuccessDialogOpen} onClose={handleCloseSuccessDialog}>
-            <DialogTitle>Success!</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Your profile picture has been uploaded successfully.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseSuccessDialog} autoFocus>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Box>
+              </DialogActions>
+            </Dialog>
+          </Grid>
+        </Grid>
       </div>
     </Sidebar>
   );

@@ -8,7 +8,7 @@ const Subtabs = (props) => {
     setActiveTab(tabIndex);
   };
   return (
-    <div className="">
+    <div className="subtabs">
       <ul className="flex bg-maroon border-gray-200">
         {props.tabs.map((tab, index) => (
           <li
