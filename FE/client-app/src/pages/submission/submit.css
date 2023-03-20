@@ -7,9 +7,41 @@
     
 }
 
-.subtabs{
-    width: 80%;
+@media screen and (max-width: 768px) {
+    .subtabs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+        margin-bottom: 7rem;
+    }
 }
+
+@media screen and (max-width: 480px) {
+    .subtabs a {
+        font-size: 1em;
+    }
+
+    .subtabs li {
+        margin-right: 10px;
+    }
+}
+
+.subtabs {
+    width: 90%;
+    max-width: 800px;
+    /* adjust as needed */
+}
+
+.subtabs a {
+    font-size: 1.2em;
+    /* adjust as needed */
+}
+
+.subtabs ul {
+  height: 10vh; /* adjust as needed */
+}
+
 hr {
     height: 1px;
     border: 1px solid gray;

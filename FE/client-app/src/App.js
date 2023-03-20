@@ -41,6 +41,7 @@ import {
 import { db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore/lite";
 import LandingPage from "./components/Landingpage";
+import LoadingPage from "./components/Loadingpage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -50,6 +51,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
       if (user) {
         setCurrentUser(user);
         const userRef = doc(db, "users", user.uid);
@@ -70,8 +72,20 @@ function App() {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTimeActive(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [timeActive]);
+
   if (loading) {
-    return <div></div>;
+    return (
+      <div>
+        <LoadingPage />
+      </div>
+    );
   }
   return (
     <AuthContextProvider>
@@ -101,7 +115,7 @@ function App() {
                     </ProtectedRoute>
                   )
                 ) : (
-                  <LandingPage />
+                  <Signin />
                 )
               }
             />
@@ -111,6 +125,17 @@ function App() {
               element={
                 !currentUser || !currentUser.emailVerified ? (
                   <Signin />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+
+            <Route
+              path="/haudocs"
+              element={
+                !currentUser || !currentUser.emailVerified ? (
+                  <LandingPage />
                 ) : (
                   <Navigate to="/" replace />
                 )

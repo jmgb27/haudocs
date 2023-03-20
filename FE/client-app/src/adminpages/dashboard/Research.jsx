@@ -8,7 +8,7 @@ const Research = () => {
   const [socialcount, setSocialCount] = useState(0);
   return (
     <div>
-      <h1 className="text-2xl font-bold">Research Type</h1>
+      <h1 className="text-2xl text-center font-bold">Research Type</h1>
       <div className="space-y-4 ml-4 mt-[1rem] mr-4">
         <p className="text-left text-xl  border-t-2 border-black pb-1 ">
           Biomedical Studies:{" "}

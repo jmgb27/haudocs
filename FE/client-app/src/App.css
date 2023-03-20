@@ -69,6 +69,24 @@ textarea:focus {
 button:focus {
     outline: none;
 }
+no-outline:focus {
+    outline: none;
+}
+
+.no-outline:focus {
+    outline: none;
+}
+
+input:focus-visible {
+    outline: none !important;
+}
+
+textarea:focus,
+input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 
 @tailwind base;
 @tailwind components;

@@ -6,8 +6,10 @@ const Protocolscount = () => {
   const [fullboardcount, setFullboardCount] = useState(0);
   return (
     <div>
-      <h1 className="text-xl mb-5 mt-[5rem] font-bold">Protocols Reviewed</h1>
-      <div className="flex items-center justify-center space-x-10">
+      <h1 className="text-xl items-center justify-center flex text-center font-bold">
+        Protocols Reviewed
+      </h1>
+      <div className="flex items-center justify-center text-center mt-5 space-x-10">
         <div className="text-5xl text-maroon">
           {exemptedcount}
           <h1 className="text-xl text-black">Exempted</h1>

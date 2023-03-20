@@ -1,3 +1,11 @@
 .admin-submission {
     width: 80%;
 }
+
+@media (max-width: 768px) {
+    .admin-submission {
+        display: block;
+        width: 90%;
+        margin-top: 1rem;
+    }
+}
