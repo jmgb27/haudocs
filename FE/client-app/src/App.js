@@ -94,7 +94,7 @@ function App() {
           <Routes>
             <Route
               exact
-              path="/"
+              path="*"
               element={
                 currentUser && role ? (
                   role === "admin" ? (
@@ -115,7 +115,7 @@ function App() {
                     </ProtectedRoute>
                   )
                 ) : (
-                  <Signin />
+                  <LandingPage />
                 )
               }
             />
@@ -125,17 +125,6 @@ function App() {
               element={
                 !currentUser || !currentUser.emailVerified ? (
                   <Signin />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-
-            <Route
-              path="/haudocs"
-              element={
-                !currentUser || !currentUser.emailVerified ? (
-                  <LandingPage />
                 ) : (
                   <Navigate to="/" replace />
                 )
