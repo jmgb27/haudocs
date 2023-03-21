@@ -67,7 +67,7 @@ const DrawerHeader = styled(Toolbar)(({ theme }) => ({
   justifyContent: "space-between",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  "& div:first-child": {
+  "& div:first-of-type": {
     display: "flex",
     alignItems: "center",
   },
@@ -79,7 +79,7 @@ const DrawerHeader = styled(Toolbar)(({ theme }) => ({
     },
   },
   [theme.breakpoints.down("sm")]: {
-    "& div:nth-child(2)": {
+    "& div:nth-of-type(2)": {
       display: "none",
     },
   },
