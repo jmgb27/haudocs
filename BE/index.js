@@ -5,6 +5,7 @@ const fs = require("fs");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");
+require("dotenv").config();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,30 +40,7 @@ const deleteFiles = (files) => {
     });
 };
 
-const uploadFiles = (files, folderName) => {
-    files.forEach((file) => {
-        const fileName = file.filename;
-        const fileContent = fs.readFileSync(file.path);
-
-        console.log(fileName);
-
-        // Define the file parameters
-        const params = {
-            Bucket: BUCKET_NAME,
-            Key: folderName + "/" + fileName,
-            Body: fileContent,
-        };
-
-        // Upload the file
-        s3.upload(params, (err, data) => {
-            if (err) {
-                console.error(err);
-            }
-        });
-    });
-};
-
-//Upload a file to the S3 bucket
+// Upload a file to the S3 bucket
 app.post("/files", upload.any(), (req, res) => {
     const folderName = req.headers.filefolder;
     if (!req.files) {
@@ -84,44 +62,70 @@ app.post("/files", upload.any(), (req, res) => {
                         res.send(err);
                     }
                     // If the folder is created successfully, upload all the files
-                    uploadFiles(files, folderName);
-                    res.send({
-                        success: true,
-                        message: "All files are uploaded successfully.",
-                        files: files,
-                    });
+                    uploadFiles(files, folderName, res);
                 }
             );
             deleteFiles(req.files);
         } else {
             // If the folder already exists, upload all the files
-            uploadFiles(files, folderName);
-            res.send({
-                success: true,
-                message: "All files are uploaded successfully.",
-                files: files,
-            });
+            uploadFiles(files, folderName, res);
             deleteFiles(req.files);
         }
     });
 });
 
+function uploadFiles(files, folderName, res) {
+    const uploadedFiles = files.map((file) => {
+        const params = {
+            Bucket: BUCKET_NAME,
+            Key: `${folderName}/${file.originalname}`,
+            Body: fs.readFileSync(file.path),
+        };
+
+        s3.upload(params, (err, data) => {
+            if (err) {
+                console.log(`Error uploading ${file.originalname}:`, err);
+            } else {
+                console.log(`File uploaded successfully: ${file.originalname}`);
+            }
+        });
+
+        return {
+            downloadLink: `/files/${folderName}/${file.originalname}`,
+            filename: file.originalname,
+            fieldname: file.fieldname,
+        };
+    });
+
+    res.send({
+        success: true,
+        message: "All files are uploaded successfully.",
+        files: uploadedFiles,
+    });
+}
+
 // Download File from the S3 bucket
-app.get("/files/:key", (req, res) => {
+app.get("/files/*", (req, res) => {
+    // Extract the folder and file name from the URL
+    const filePath = decodeURIComponent(req.path.substr(7)); // Remove the "/files/" part from the path
+
     // Define the file parameters
     const params = {
         Bucket: BUCKET_NAME,
-        Key: req.params.key,
+        Key: filePath,
     };
 
-    // Retrieve the file
-    s3.getObject(params, (err, data) => {
-        if (err) {
-            return res.status(500).send(err);
-        }
+    // Retrieve the file name and set the Content-Disposition header to include the file name
+    const fileName = filePath.split("/").pop();
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
 
-        res.send(data.Body);
-    });
+    // Retrieve the file
+    s3.getObject(params)
+        .createReadStream()
+        .on("error", (err) => {
+            return res.status(500).send(err);
+        })
+        .pipe(res);
 });
 
 // Delete file from the S3 bucket
