@@ -28,6 +28,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Checkbox from "@mui/material/Checkbox";
+import LoadingPage from "../../components/Loadingpage";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -38,6 +39,7 @@ function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const isMobile = window.innerWidth < 1000;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
@@ -52,6 +54,7 @@ function Signin() {
 
   const Login = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
@@ -69,7 +72,10 @@ function Signin() {
           navigate("/verifyemail");
         });
       } else {
-        navigate("/");
+        setTimeout(() => {
+          setIsLoading(false);
+          navigate("/");
+        }, 2000);
       }
     } catch (error) {
       switch (error.code) {
@@ -112,6 +118,14 @@ function Signin() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <LoadingPage />
+      </div>
+    );
+  }
+
   const myStyle = {
     backgroundImage: `url(${bgimage})`,
     backgroundPosition: "center",
@@ -142,6 +156,7 @@ function Signin() {
                   </button>
                 </div>
               )}
+
               <TextField
                 label="Email Address"
                 className="textfield text-white"

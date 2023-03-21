@@ -87,34 +87,31 @@ function App() {
       </div>
     );
   }
+
   return (
     <AuthContextProvider>
       <AuthProvider value={{ role, currentUser, timeActive, setTimeActive }}>
         <BrowserRouter>
           <Routes>
             <Route
-              exact
               path="*"
               element={
                 currentUser && role ? (
-                  role === "admin" ? (
-                    <ProtectedRoute>
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  ) : role === "scientist" ? (
-                    <ProtectedRoute>
-                      <ReviewerDashboard />
-                    </ProtectedRoute>
-                  ) : role === "non-scientist" ? (
-                    <ProtectedRoute>
-                      <ReviewerDashboard />
-                    </ProtectedRoute>
-                  ) : (
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  )
-                ) : (
+                  <>
+                    {role === "admin" && (
+                      <Navigate to="/admindashboard" replace />
+                    )}
+                    {role === "scientist" && (
+                      <Navigate to="/reviewerdashboard" replace />
+                    )}
+                    {role === "non-scientist" && (
+                      <Navigate to="/reviewerdashboard" replace />
+                    )}
+                    {role === "applicant" && (
+                      <Navigate to="/dashboard" replace />
+                    )}
+                  </>
+                ) : currentUser || role ? null : (
                   <LandingPage />
                 )
               }

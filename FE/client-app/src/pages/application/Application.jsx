@@ -66,7 +66,7 @@ function Application() {
           {getStatusIcon()}
           <Typography
             variant="h5"
-            sx={{ fontWeight: "bold", mt: 1, textAlign: "center" }}
+            sx={{ fontWeight: "bold", textAlign: "center" }}
           >
             {status}
           </Typography>
