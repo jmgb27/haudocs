@@ -106,7 +106,6 @@ const AdminUsers = () => {
           const userId = querySnapshotRef.docs[0].id;
           const userRef = doc(usersRef, userId);
           await updateDoc(userRef, {
-            name: name,
             role: role,
             uid: uid,
           });
@@ -140,14 +139,12 @@ const AdminUsers = () => {
     setOpen(false);
     setEmail("");
     setPassword("");
-    setName("");
     setRole("");
   };
 
   const actionColumn = [];
 
   const resetForm = () => {
-    setName("");
     setEmail("");
     setRole("");
   };
@@ -216,15 +213,14 @@ const AdminUsers = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <TextField
-                          autoComplete="given-name"
-                          name="Name"
                           required
                           fullWidth
-                          id="Name"
-                          label="Name"
-                          value={name}
-                          autoFocus
-                          onChange={(e) => setName(e.target.value)}
+                          id="email"
+                          value={email}
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -245,18 +241,6 @@ const AdminUsers = () => {
                             </MenuItem>
                           </Select>
                         </FormControl>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="email"
-                          value={email}
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
                       </Grid>
                     </Grid>
                     <Button
