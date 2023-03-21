@@ -407,6 +407,7 @@ const Sidebar = ({ children }) => {
           left: 0,
           right: 0,
           display: "none",
+          transition: "transform 0.3s ease-in-out",
           "@media (min-width: 390px)": {
             display: "block",
           },

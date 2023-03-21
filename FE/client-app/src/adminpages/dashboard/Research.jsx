@@ -15,7 +15,7 @@ const Research = () => {
           <span className="float-right text-maroon mr-5">{biocount}</span>
         </p>
         <p className="text-left text-xl border-t-2 border-black pb-1 ">
-          Health Operations Reasearch:{" "}
+          Health Operations Research:{" "}
           <span className="float-right text-maroon mr-5">{healthcount}</span>
         </p>
         <p className="text-left text-xl border-t-2 border-black pb-1 ">
@@ -23,11 +23,11 @@ const Research = () => {
           <span className="float-right text-maroon mr-5">{clinicalcount}</span>
         </p>
         <p className="text-left text-xl border-t-2 border-black pb-1 ">
-          Public Health Reasearch:{" "}
+          Public Health Research:{" "}
           <span className="float-right text-maroon mr-5">{publiccount}</span>
         </p>
         <p className="text-left text-xl border-t-2 border-black pb-1 ">
-          Social Reasearch:{" "}
+          Social Research:{" "}
           <span className="float-right text-maroon mr-5">{socialcount}</span>
         </p>
       </div>
