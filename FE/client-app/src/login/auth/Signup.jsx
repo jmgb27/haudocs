@@ -19,17 +19,41 @@ function Signup() {
   const navigate = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
   const { setTimeActive } = useAuthValue();
-  const [name, setName] = useState("");
+  const [name, setname] = useState("");
+  const [lastname, setLastName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const nameRegex = /^[A-Za-z]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
   const validatePassword = () => {
     let isValid = true;
     if (password !== "" && confirmPassword !== "") {
       if (password !== confirmPassword) {
         isValid = false;
-        setErrorMessages("Passwords does not match");
+        setErrorMessages("Passwords do not match");
       }
+    }
+    return isValid;
+  };
+
+  const validateName = () => {
+    let isValid = true;
+    if (!name.match(nameRegex)) {
+      isValid = false;
+      setErrorMessages("Invalid name format");
+    }
+    return isValid;
+  };
+
+  const validatePasswordFormat = () => {
+    let isValid = true;
+    if (!password.match(passwordRegex)) {
+      isValid = false;
+      setErrorMessages(
+        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number"
+      );
     }
     return isValid;
   };
@@ -42,14 +66,13 @@ function Signup() {
   };
 
   const register = () => {
-    if (!name || !email || !password || !confirmPassword) {
-      // Username or password input is empty
+    if (!name || !lastname || !email || !password || !confirmPassword) {
       setErrorMessages("Please fill out all required fields.");
       return;
     }
 
-    if (validatePassword()) {
-      registerWithEmailAndPassword(name, email, password)
+    if (validateName() && validatePassword() && validatePasswordFormat()) {
+      registerWithEmailAndPassword(name, lastname, email, password)
         .then(() => {
           sendEmailVerification(auth.currentUser)
             .then(() => {
@@ -59,23 +82,6 @@ function Signup() {
             .catch((err) => alert(err.message));
         })
         .catch((err) => setErrorMessages(err.message));
-    }
-
-    setName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-
-    if (!email) {
-      // Username input is empty
-      setErrorMessages({ email: "noUsername", message: errors.noUsername });
-      return;
-    }
-
-    if (!password) {
-      // Password input is empty
-      setErrorMessages({ email: "noPassword", message: errors.noPassword });
-      return;
     }
   };
 
@@ -114,20 +120,37 @@ function Signup() {
             Welcome! Please Enter your details
           </p>
           {errorMessages && <div className="auth__error">{errorMessages}</div>}
-          <TextField
-            label="Name"
-            className="textfield"
-            required
-            variant="outlined"
-            fullWidth
-            id="name"
-            name="name"
-            margin="normal"
-            autoComplete="name"
-            autoFocus
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+            <TextField
+              label="First Name"
+              className="textfield"
+              required
+              variant="outlined"
+              fullWidth
+              id="name"
+              name="name"
+              margin="normal"
+              autoComplete="name"
+              autoFocus
+              value={name}
+              onChange={(e) => setname(e.target.value)}
+            />
+
+            <TextField
+              label="Last Name"
+              className="textfield"
+              required
+              variant="outlined"
+              fullWidth
+              id="lastname"
+              name="lastname"
+              margin="normal"
+              autoComplete="lastname"
+              autoFocus
+              value={lastname}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
 
           <TextField
             label="Email Address"
@@ -146,67 +169,71 @@ function Signup() {
           {renderErrorMsg("username")}
           {renderErrorMsg("noUsername")}
 
-          <TextField
-            className="textfield"
-            margin="normal"
-            label="Password"
-            fullWidth
-            required
-            name="password"
-            id="password"
-            autoComplete="current-password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    onMouseDown={(e) => e.preventDefault()}
-                    edge="end"
-                  >
-                    {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          {renderErrorMsg("password")}
-          {renderErrorMsg("noPassword")}
+          <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+            <TextField
+              className="textfield"
+              margin="normal"
+              label="Password"
+              fullWidth
+              required
+              name="password"
+              id="password"
+              autoComplete="current-password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseDown={(e) => e.preventDefault()}
+                      edge="end"
+                    >
+                      {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {renderErrorMsg("password")}
+            {renderErrorMsg("noPassword")}
 
-          <TextField
-            className="textfield"
-            margin="normal"
-            label="Confirm Password"
-            fullWidth
-            required
-            name="password"
-            id="confirmpassword"
-            autoComplete="current-password"
-            type={showConfirmPassword ? "text" : "password"}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    onMouseDown={(e) => e.preventDefault()}
-                    edge="end"
-                  >
-                    {showConfirmPassword ? (
-                      <MdVisibilityOff />
-                    ) : (
-                      <MdVisibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          {renderErrorMsg("password")}
-          {renderErrorMsg("noPassword")}
+            <TextField
+              className="textfield"
+              margin="normal"
+              label="Confirm Password"
+              fullWidth
+              required
+              name="password"
+              id="confirmpassword"
+              autoComplete="current-password"
+              type={showConfirmPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      onMouseDown={(e) => e.preventDefault()}
+                      edge="end"
+                    >
+                      {showConfirmPassword ? (
+                        <MdVisibilityOff />
+                      ) : (
+                        <MdVisibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {renderErrorMsg("password")}
+            {renderErrorMsg("noPassword")}
+          </div>
         </div>
         <input
           onClick={register}
@@ -214,7 +241,9 @@ function Signup() {
           type="submit"
           value="Signup"
           className="login_button"
-          disabled={!name || !email || !password || !confirmPassword}
+          disabled={
+            !name || !lastname || !email || !password || !confirmPassword
+          }
         />
         <div className="w-full flex items-center justify-center">
           <p className="text-sm font-normal text-black mt-5">
