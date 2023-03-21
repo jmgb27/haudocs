@@ -34,6 +34,7 @@ export const storage = getStorage(app);
 
 export const registerWithEmailAndPassword = async (
   name,
+  lastname,
   email,
   password,
   role
@@ -43,12 +44,14 @@ export const registerWithEmailAndPassword = async (
       auth,
       email,
       password,
-      name
+      name,
+      lastname
     );
     const user = res.user;
     await setDoc(doc(db, "users", user.uid), {
       createdAt: serverTimestamp(),
       name,
+      lastname,
       authProvider: "local",
       email,
       role: role || "applicant",

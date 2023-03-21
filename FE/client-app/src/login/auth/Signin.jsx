@@ -217,23 +217,23 @@ function Signin() {
                   <Link to="/forgotpassword">Forgot Password?</Link>
                 </div>
               </div>
-            </div>
-            <input type="submit" value="Login" className="login_button" />
-            <div className="hau-signup">
-              <div className="text-black">
-                Dont have an account? Click{" "}
-                <Link
-                  className="text-black font-semibold underline underline-offset-2 cursor-pointer"
-                  to="/signup"
-                >
-                  here
-                </Link>{" "}
-                to register
+              <input type="submit" value="Login" className="login_button" />
+              <div className="hau-signup">
+                <div className="text-black">
+                  Dont have an account? Click{" "}
+                  <Link
+                    className="text-black font-semibold underline underline-offset-2 cursor-pointer"
+                    to="/signup"
+                  >
+                    here
+                  </Link>{" "}
+                  to register
+                </div>
               </div>
-            </div>
-            <div className="w-full flex items-center justify-center relative py-6">
-              <div className="w-full h-[1px] bg-black"></div>
-              <p className="or text-lg absolute">or</p>
+              <div className="w-full flex items-center justify-center relative py-6">
+                <div className="w-full h-[1px] bg-black"></div>
+                <p className="or text-lg absolute">or</p>
+              </div>
             </div>
           </form>
           <div>
