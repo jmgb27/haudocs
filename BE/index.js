@@ -10,9 +10,6 @@ require("dotenv").config();
 app.use(
     cors({
         origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization", "filefolder"],
-        preflightContinue: false,
     })
 );
 app.use(bodyParser.json());
