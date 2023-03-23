@@ -85,7 +85,7 @@ function Initial() {
                     body: form,
                 }
             );
-            const data = await response;
+            const data = await response.json();
             console.log(data);
 
             try {
@@ -104,10 +104,10 @@ function Initial() {
                 });
                 console.log("Document written with ID: ", docRef.id);
             } catch (e) {
-                console.error("Error adding document: ", e);
+                console.log("Error adding document: ", e);
             }
         } catch (error) {
-            console.error(error);
+            console.log(error);
             return false;
         }
     }
