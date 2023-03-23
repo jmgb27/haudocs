@@ -7,7 +7,11 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 require("dotenv").config();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 app.use(bodyParser.json());
 
 // Create an S3 client
